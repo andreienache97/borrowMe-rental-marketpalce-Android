@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.message_user) {
 
-        } //change234
+        } //change2345
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
