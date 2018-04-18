@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_item) {
-            // Handle the add item action
+            Intent intent;
         } else if (id == R.id.fav_items) {
 
         } else if (id == R.id.lent_items) {
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.message_user) {
 
-        } //change1
+        } //change
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
