@@ -148,7 +148,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_item) {
-            Intent intent;
+            Intent incomingintent = getIntent();
+            String email = incomingintent.getStringExtra("email");
+            Intent intent = new Intent( MainActivity.this, Add_itemActivity.class );
+            intent.putExtra( "email", email );
+            startActivity( intent );
         } else if (id == R.id.fav_items) {
 
         } else if (id == R.id.lent_items) {

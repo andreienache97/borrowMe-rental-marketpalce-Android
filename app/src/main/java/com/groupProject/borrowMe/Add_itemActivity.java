@@ -33,10 +33,12 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
 //The spinner
         Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
+        assert spin != null;
         spin.setOnItemSelectedListener( this );
 
 //Add array to the spinner
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,DepartmentNames);
+        ArrayAdapter<String> aa;
+        aa = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,DepartmentNames);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(aa);
 
@@ -95,11 +97,12 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                         try {
                             JSONObject jsonResponse = new JSONObject( response );
                             boolean success = jsonResponse.getBoolean( "success" );
-                            if (success) {
+                           if (success) {
+                                String email = jsonResponse.getString( "email" );
 
-                                Intent intent = new Intent( Add_itemActivity.this, MainActivity.class );
-                                intent.putExtra( "email",email );
-                                Add_itemActivity.this.startActivity( intent );
+                                Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
+                               BacktoMainintent.putExtra( "email",email );
+                                Add_itemActivity.this.startActivity( BacktoMainintent );
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
                                 builder.setMessage( "Failed" )

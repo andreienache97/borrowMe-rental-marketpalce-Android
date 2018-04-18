@@ -21,7 +21,7 @@ public class AddItemRequest extends StringRequest{
         params.put("Price",price);
         params.put("ADate", ADate);
         params.put("UDate", UDate);
-        params.put("department", department);
+        params.put("Department", department);
 
 
     }
