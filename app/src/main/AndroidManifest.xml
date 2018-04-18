@@ -26,6 +26,15 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Add_itemActivity"
+            android:label="Add_item" />
+        <activity
+            android:name=".Unavaliable_Date"
+            android:label="Unavaliable Date" />
+        <activity
+            android:name=".AvailableDate"
+            android:label="Available Date" />
+        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".UserDetails" />
