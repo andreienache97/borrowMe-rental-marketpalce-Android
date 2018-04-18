@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/borrowMeApp.iml" filepath="$PROJECT_DIR$/borrowMeApp.iml" />
+      <module fileurl="file://C:\Users\Enache\Desktop\borrow\borrowMeApp\app\app.iml" filepath="C:\Users\Enache\Desktop\borrow\borrowMeApp\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/borrowMeApp.iml" filepath="$PROJECT_DIR$/.idea/borrowMeApp.iml" />
+      <module fileurl="file://C:\Users\Enache\Desktop\borrow\borrowMeApp\borrowMeApp.iml" filepath="C:\Users\Enache\Desktop\borrow\borrowMeApp\borrowMeApp.iml" />
     </modules>
   </component>
 </project>
