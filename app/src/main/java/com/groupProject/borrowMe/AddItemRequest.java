@@ -15,13 +15,13 @@ public class AddItemRequest extends StringRequest{
     public AddItemRequest(String email,String name, String price, String des, String ADate, String UDate, String department, Response.Listener<String> listener) {
             super( Method.POST, REGISTER_REQUEST_URL, listener, null);
         params = new HashMap<>();
-//        params.put("email", email);
-//        params.put("Name", name);
-//        params.put("Des", des );
-//        params.put("Price",price);
-//        params.put("ADate", ADate);
-//        params.put("UDate", UDate);
-//        params.put("department", department);
+        params.put("email", email);
+        params.put("Name", name);
+        params.put("Des", des );
+        params.put("Price",price);
+        params.put("ADate", ADate);
+        params.put("UDate", UDate);
+        params.put("department", department);
 
 
     }
