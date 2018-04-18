@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/add_item"
+            android:icon="@drawable/ic_menu_add_item"
+            android:title="Add new item"/>
+
+
+        <item
+            android:id="@+id/fav_items"
+            android:icon="@drawable/ic_menu_fav"
+            android:title="Favorite items" />
+        <item
+            android:id="@+id/lent_items"
+            android:icon="@drawable/ic_menu_lent"
+            android:title="Borrowed items" />
+        <item
+            android:id="@+id/borrowed_items"
+            android:icon="@drawable/ic_menu_borrowed"
+            android:title="Lent items" />
+        <item
+            android:id="@+id/history"
+            android:icon="@drawable/ic_menu_history"
+            android:title="Historic" />
+        <item
+            android:id="@+id/faq"
+            android:icon="@drawable/ic_menu_faq"
+            android:title="Frequently Asked Questions" />
+        <item
+            android:id="@+id/support"
+            android:icon="@drawable/ic_menu_support"
+            android:title="User Support" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/message_user"
+                android:icon="@drawable/ic_menu_chat"
+                android:title="Chat room" />
+
+        </menu>
+    </item>
+
+
+</menu>
