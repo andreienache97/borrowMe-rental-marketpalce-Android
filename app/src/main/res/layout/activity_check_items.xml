@@ -4,14 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminAreaActivity">
-
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/check"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Check items added by users" />
+    tools:context="com.groupProject.borrowMe.CheckItems">
 
 </android.support.constraint.ConstraintLayout>

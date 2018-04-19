@@ -39,14 +39,14 @@
             android:label="@string/title_activity_settings" />
         <activity android:name=".UserDetails" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".ChangeUserDetails"></activity>
-
+        <activity android:name=".ChangeUserDetails" />
         <activity
             android:name=".FaqActivity"
             android:label="@string/title_activity_faq" />
         <activity
             android:name=".SupportActivity"
             android:label="User Support" />
+        <activity android:name=".CheckItems"></activity>
     </application>
 
 </manifest>
