@@ -4,77 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.groupProject.borrowMe.SupportActivity">
+    tools:context="com.groupProject.borrowMe.SupportActivity"
+    tools:layout_editor_absoluteY="81dp">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="330dp"
-        android:layout_marginEnd="33dp"
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="58dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="36dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:entries="@array/support_issues"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="246dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="18dp"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="292dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="351dp"
-        android:layout_marginStart="16dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:entries="@array/support_issues"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-    <EditText
         android:id="@+id/editText4"
         android:layout_width="293dp"
-        android:layout_height="172dp"
-        android:layout_marginBottom="147dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="38dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:ems="10"
         android:hint="Your message here..."
         android:inputType="textPersonName"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.984" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="124dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
 
 </android.support.constraint.ConstraintLayout>
