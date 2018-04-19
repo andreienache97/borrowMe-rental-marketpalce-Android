@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(LoginActivity.this, Add_itemActivity.class);
+                Intent registerIntent = new Intent(LoginActivity.this, AdminLoginActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
             }
         });

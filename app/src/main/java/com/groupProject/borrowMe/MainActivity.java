@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
 
     void ListItem(){
         listView = (ListView)findViewById(R.id.lv_display);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.department_list,LANG);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>( this, R.layout.department_list, LANG );
         adapter.sort(new Comparator<String>() {
             @Override
             public int compare(String lhs, String rhs) {
