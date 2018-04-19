@@ -1,14 +1,23 @@
 package com.groupProject.borrowMe.adaptors;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.groupProject.borrowMe.ChangeUserDetails;
+import com.groupProject.borrowMe.CheckItems;
+import com.groupProject.borrowMe.InspectItem;
+import com.groupProject.borrowMe.LoginActivity;
 import com.groupProject.borrowMe.R;
+import com.groupProject.borrowMe.UserDetails;
 import com.groupProject.borrowMe.models.ItemCheck;
 
 
@@ -36,13 +45,30 @@ public class AdaptorAdminCheckItem extends RecyclerView.Adapter<AdaptorAdminChec
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        ItemCheck product = items.get(position);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final ItemCheck product = items.get(position);
 
+        holder.item_id.setText(product.getItemId());
+        holder.email.setText(product.getItemEmail());
         holder.title.setText(product.getItemTitle());
         holder.price.setText(product.getItemPrice());
         holder.details.setText(product.getItemDetails());
         holder.department.setText(product.getItemDepartment());
+        holder.inspect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentChange = new Intent(context, InspectItem.class);
+                intentChange.putExtra("item_id", product.getItemId());
+                intentChange.putExtra( "email",product.getItemEmail() );
+                intentChange.putExtra( "title",product.getItemTitle() );
+                intentChange.putExtra( "price",product.getItemPrice() );
+                intentChange.putExtra( "description",product.getItemDetails() );
+                intentChange.putExtra( "department",product.getItemDepartment() );
+                context.startActivity(intentChange);
+
+            }
+        });
 
     }
 
@@ -56,27 +82,19 @@ public class AdaptorAdminCheckItem extends RecyclerView.Adapter<AdaptorAdminChec
         public AppCompatTextView title;
         public AppCompatTextView price;
         public AppCompatTextView details;
-        public AppCompatTextView department;
+        public AppCompatTextView department, item_id, email;
+        public Button inspect;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
+            item_id = (AppCompatTextView) itemView.findViewById(R.id.idItem);
+            email = (AppCompatTextView) itemView.findViewById(R.id.emailItem);
             title = (AppCompatTextView) itemView.findViewById(R.id.titleItem);
             price = (AppCompatTextView) itemView.findViewById(R.id.priceItem);
             details = (AppCompatTextView) itemView.findViewById(R.id.descriptionItem);
             department = (AppCompatTextView) itemView.findViewById(R.id.departmentItem);
-
-
-          //  itemView.setOnClickListener(new View.OnClickListener() {
-          //      @Override
-           //     public void onClick(View view) {
-
-          //          ItemCheck cpu = (ItemCheck) view.getTag();
-
-           //         Toast.makeText(view.getContext(), cpu.getItemTitle()+" "+cpu.getItemPrice()+"  "+ cpu.getItemDetails()+"  "+ cpu.getItemDepartment(), Toast.LENGTH_SHORT).show();
-
-          //      }
-          //  });
+            inspect = (Button) itemView.findViewById(R.id.bInspect);
 
         }
     }

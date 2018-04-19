@@ -1,4 +1,4 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.JSONRequests;
 
 import com.android.volley.Request;
 import com.android.volley.Response;

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.groupProject.borrowMe.InspectItem"
+    tools:showIn="@layout/activity_inspect_item">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,64 +16,63 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Id"
                 />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/idItem"
+                android:id="@+id/textId"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Id"
                 />
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Email"
                 />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/emailItem"
+                android:id="@+id/textEmail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Email"
-                />
+                android:text="Email" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Title"
                 />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/titleItem"
+                android:id="@+id/textTitle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Title"
                 />
@@ -76,20 +80,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Price"
                 />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/priceItem"
+                android:id="@+id/textPrice"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Price"
                 />
@@ -97,54 +102,48 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Description"
+                android:text="Details"
                 />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/descriptionItem"
+                android:id="@+id/textDetails"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Description"
+                android:text="Details"
                 />
         </LinearLayout>
-
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Department"
                 />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/departmentItem"
+                android:id="@+id/textDepartment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Department"
                 />
         </LinearLayout>
-
-            <Button
-                android:id="@+id/bInspect"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Inspect item" />
-
 
     </LinearLayout>
 

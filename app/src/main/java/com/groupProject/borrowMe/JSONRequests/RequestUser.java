@@ -1,4 +1,4 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.JSONRequests;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -6,15 +6,20 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminLoginRequest extends StringRequest {
-    private static final String LOGIN_REQUEST_URL = "https://myxstyle120.000webhostapp.com/admin.php";
+/**
+ * Created by Enache on 18/04/2018.
+ */
+
+public class RequestUser extends StringRequest {
+
+    private static final String LOGIN_REQUEST_URL = "https://myxstyle120.000webhostapp.com/getUser.php";
     private Map<String, String> params;
 
-    public AdminLoginRequest(String name, String password, Response.Listener<String> listener) {
+    public RequestUser(String email, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL, listener, null);
         params = new HashMap<>();
-        params.put("name", name);
-        params.put("password", password);
+        params.put("email", email);
+
     }
 
     @Override
@@ -22,3 +27,4 @@ public class AdminLoginRequest extends StringRequest {
         return params;
     }
 }
+

@@ -75,6 +75,8 @@ public class CheckItems extends AppCompatActivity {
 
                                 //adding the product to product list
                                 items.add(new ItemCheck(
+                                        item.getString("item_id"),
+                                        item.getString("email"),
                                         item.getString("name"),
                                         item.getString("price"),
                                         item.getString("Description"),

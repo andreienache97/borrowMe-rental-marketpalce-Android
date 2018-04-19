@@ -11,8 +11,12 @@ public class ItemCheck {
     private String price;
     private String details;
     private String department;
+    private String item_id;
+    private String email;
 
-    public ItemCheck(String title, String price, String details,String department) {
+    public ItemCheck(String item_id,String email ,String title, String price, String details,String department) {
+        this.item_id= item_id;
+        this.email = email;
         this.title = title;
         this.price = price;
         this.details = details;
@@ -21,6 +25,14 @@ public class ItemCheck {
 
     public String getItemTitle() {
         return title;
+    }
+
+    public String getItemId() {
+        return item_id;
+    }
+
+    public String getItemEmail() {
+        return email;
     }
 
     public void setItemTitle(String title) {
