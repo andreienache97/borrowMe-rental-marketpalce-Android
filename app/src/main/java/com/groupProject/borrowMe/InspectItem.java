@@ -14,8 +14,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.AcceptItemRequest;
-import com.groupProject.borrowMe.JSONRequests.DenyItemRequest;
+
 import com.groupProject.borrowMe.JSONRequests.UpdateRequest;
+import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,7 +122,7 @@ public class InspectItem extends AppCompatActivity {
                     }
                 };
 
-                DenyItemRequest reject = new DenyItemRequest(item_id, deny );
+                denyItemRequest reject = new denyItemRequest(item_id, deny );
                 RequestQueue queue1 = Volley.newRequestQueue( InspectItem.this );
                 queue1.add( reject );
 
