@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,7 +25,7 @@ import java.util.Calendar;
 
 public class Add_itemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final String[] DepartmentNames={"Select a department","Mobile Devices & Tablets" ,"Camera & Accessories",
+    private static final String[] DepartmentNames={"Mobile Devices & Tablets" ,"Camera & Accessories",
     "Computer & Accessories", "Tools & Equipments", "Furniture", "Home Appliances", "Bicycles & E-Scooter",
     "Car Accessories", "Sports Equipments", "Party", "Wedding Essentials", "Clothing", "Costumes", "Luxury", "Travel Essentials",
     "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Healthcare Items", "Music Related", "Other"};
@@ -53,7 +54,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         final TextView tvUDate = (TextView) findViewById( R.id.tvUDate );
         final TextView DADate = (TextView) findViewById( R.id.DADate );
         final TextView DUDate = (TextView) findViewById( R.id.DUDate );
-        final Button bSubmit = (Button) findViewById( R.id.bSubmit );
+        final AppCompatButton bSubmit = (AppCompatButton) findViewById( R.id.bSubmit );
 
         Intent incomingIntent = getIntent();
 

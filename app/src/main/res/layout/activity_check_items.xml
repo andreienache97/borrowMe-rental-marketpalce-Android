@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.groupProject.borrowMe.CheckItems">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/CheckItemsAdapter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
 </android.support.constraint.ConstraintLayout>
