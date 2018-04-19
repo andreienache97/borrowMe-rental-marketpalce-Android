@@ -25,9 +25,9 @@ import java.util.Calendar;
 public class Add_itemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String[] DepartmentNames={"Select a department","Mobile Devices & Tablets" ,"Camera & Accessories",
-    "Computer & Accessories", "Tools & Equipments", "Furnitures", "Home Appliances", "Bicycles & E-Scooter",
+    "Computer & Accessories", "Tools & Equipments", "Furniture", "Home Appliances", "Bicycles & E-Scooter",
     "Car Accessories", "Sports Equipments", "Party", "Wedding Essentials", "Clothing", "Costumes", "Luxury", "Travel Essentials",
-    "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Healthcare Items", "Music Related", "Ohters"};
+    "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Healthcare Items", "Music Related", "Other"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

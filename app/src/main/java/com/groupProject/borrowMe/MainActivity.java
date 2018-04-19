@@ -24,7 +24,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView listView;
-    private static String[] LANG = new String[] {"All Departments","Comic & Magazines", "Business, Office & Industrial", "Cameras & Photography", "Cars,Motorcycles & Vehicles", "Clothes, Shoes & Accessories", "Computers/Tablets & Networking", "DVDs, Films & TV", "Event Tickets", "Garden & Patio", "Health & Beauty", "Holiday & Travel", "Home,Furniture", "Mobile Phones & Communication", "Music, Sound & Vision", "Sporting Goods", "Video Games & Consoles", "Everything else"};
+    private static String[] LANG = new String[] {"All Departments","Mobile Devices & Tablets" ,"Camera & Accessories",
+            "Computer & Accessories", "Tools & Equipments", "Furniture", "Home Appliances", "Bicycles & E-Scooter",
+            "Car Accessories", "Sports Equipments", "Party", "Wedding Essentials", "Clothing", "Costumes", "Luxury", "Travel Essentials",
+            "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Healthcare Items", "Music Related", "Other"};
 
     //HI
 
