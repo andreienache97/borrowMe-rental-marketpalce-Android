@@ -19,6 +19,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Add_itemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String[] DepartmentNames={"Select a department","Mobile Devices & Tablets" ,"Camera & Accessories",
@@ -51,12 +54,21 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         final TextView DADate = (TextView) findViewById( R.id.DADate );
         final TextView DUDate = (TextView) findViewById( R.id.DUDate );
         final Button bSubmit = (Button) findViewById( R.id.bSubmit );
+
         Intent incomingIntent = getIntent();
+
         final String email = incomingIntent.getStringExtra( "email" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
         final String UDate = incomingIntent.getStringExtra( "UDate" );
+        final String N1 = incomingIntent.getStringExtra( "Name" );
+        final String P1 = incomingIntent.getStringExtra( "Price" );
+        final String D1 = incomingIntent.getStringExtra( "Des" );
+
             DADate.setText( ADate );
             DUDate.setText( UDate );
+            etItemName.setText( N1 );
+            etPrice.setText( P1 );
+            etDes.setText( D1 );
 
 
 //When user click select avaliable date
@@ -64,9 +76,15 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
             @Override
             public void onClick(View view) {
+                final String item_name = etItemName.getText().toString();
+                final String item_price = etPrice.getText().toString();
+                final String item_Des = etDes.getText().toString();
                 Intent SelectADate = new Intent( Add_itemActivity.this, AvailableDate.class );
                 SelectADate.putExtra( "email",email );
                 SelectADate.putExtra( "UDate",UDate );
+                SelectADate.putExtra( "Name",item_name );
+                SelectADate.putExtra( "Price",item_price );
+                SelectADate.putExtra( "Des",item_Des );
                 startActivity( SelectADate );
             }
         } );
@@ -75,9 +93,15 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         tvUDate.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String item_name = etItemName.getText().toString();
+                final String item_price = etPrice.getText().toString();
+                final String item_Des = etDes.getText().toString();
                 Intent SelectUDate = new Intent( Add_itemActivity.this, Unavaliable_Date.class );
                 SelectUDate.putExtra( "email",email );
                 SelectUDate.putExtra( "ADate", ADate );
+                SelectUDate.putExtra( "Name",item_name );
+                SelectUDate.putExtra( "Price",item_price );
+                SelectUDate.putExtra( "Des",item_Des );
                 startActivity( SelectUDate );
             }
         } );
@@ -90,37 +114,43 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                 final String item_Des = etDes.getText().toString();
                 Spinner mySpinner=(Spinner) findViewById(R.id.simpleSpinner);
                 final String Department = mySpinner.getSelectedItem().toString();
+                boolean check = TextIsNull( item_name,  item_price,  item_Des,  ADate,  UDate);
+                boolean test = ValidDates(ADate,UDate);
+                if(ValidDepartment(Department) == false || check == false || test == false){
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject( response );
-                            boolean success = jsonResponse.getBoolean( "success" );
-                           if (success) {
-                                String email = jsonResponse.getString( "email" );
 
-                                Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
-                               BacktoMainintent.putExtra( "email",email );
-                                Add_itemActivity.this.startActivity( BacktoMainintent );
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
-                                builder.setMessage( "Failed" )
-                                        .setNegativeButton( "Retry", null )
-                                        .create()
-                                        .show();
+                } else {
+
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject( response );
+                                boolean success = jsonResponse.getBoolean( "success" );
+                                if (success) {
+                                    String email = jsonResponse.getString( "email" );
+
+                                    Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
+                                    BacktoMainintent.putExtra( "email", email );
+                                    Add_itemActivity.this.startActivity( BacktoMainintent );
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
+                                    builder.setMessage( "Failed" )
+                                            .setNegativeButton( "Retry", null )
+                                            .create()
+                                            .show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                };
+                    };
 
-                AddItemRequest addItemRequest = new AddItemRequest( email, item_name, item_price, item_Des, ADate, UDate, Department, responseListener );
-                RequestQueue queue = Volley.newRequestQueue( Add_itemActivity.this );
-                queue.add( addItemRequest);
+                    AddItemRequest addItemRequest = new AddItemRequest( email, item_name, item_price, item_Des, ADate, UDate, Department, responseListener );
+                    RequestQueue queue = Volley.newRequestQueue( Add_itemActivity.this );
+                    queue.add( addItemRequest );
 
-
+                }
             }
         } );
 
@@ -137,6 +167,120 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    private boolean ValidDepartment(String Department) {
+        if (Department == DepartmentNames[0]) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+            builder.setMessage("Please select a department")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
+        } else {
+
+        }
+        return true;
+    }
+
+    private boolean TextIsNull(String Name, String Price, String Des, String ADate, String UDate) {
+        if (Name.isEmpty() ) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+            builder.setMessage("Please enter the item name")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
+        } else { if (Price.isEmpty() ) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                builder.setMessage("Please enter the price")
+                        .setNegativeButton("Retry", null)
+                        .create()
+                        .show();
+                return false;
+                } else{  if (Des.isEmpty() ) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                        builder.setMessage("Please enter the desription")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                        return false;
+                        } else{ if (ADate.isEmpty() || UDate.isEmpty()) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                                builder.setMessage("Please select the date")
+                                        .setNegativeButton("Retry", null)
+                                        .create()
+                                        .show();
+                                return false;
+                                } else {}
+                        }
+                 }
+
+        }
+        return true;
+    }
+
+    private boolean ValidDates(String ADate, String UDate) {
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        String Date;
+
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd" );
+        Date = simpleDateFormat.format( calendar.getTime() );
+        String splitCDate[] = Date.split( "-" );
+        String splitADate[] = ADate.split( "-" );
+        String splitUDate[] = UDate.split( "-" );
+
+        int CDateArray[] = new int[3];
+        int ADateArray[] = new int[3];
+        int UDateArray[] = new int[3];
+
+        for (int i = 0 ; i < 3; i++ ){
+            CDateArray[i] = Integer.parseInt( splitCDate[i] );
+            ADateArray[i] = Integer.parseInt( splitADate[i] );
+            UDateArray[i] = Integer.parseInt( splitUDate[i] );
+
+        }
+
+
+        if (ADateArray[0] >= CDateArray[0] && UDateArray[0] >= ADateArray[0]) {
+            if(UDateArray[0] > ADateArray[0]){return true;} else{
+                if(ADateArray[1] >= CDateArray[1] && UDateArray[1] >= ADateArray[1]){
+                    if(UDateArray[1] > ADateArray[1]){return true;} else{
+                        if (ADateArray[2] >= CDateArray[2] && UDateArray[2] > ADateArray[2]){
+                            return true;
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                            builder.setMessage("Please select a valid day")
+                                    .setNegativeButton("Retry", null)
+                                    .create()
+                                    .show();
+                            return false;
+                            }
+                        }
+                }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                        builder.setMessage("Please select a valid month")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                        return false;
+                  }
+            }
+        } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                builder.setMessage("Please select a valid year")
+                        .setNegativeButton("Retry", null)
+                        .create()
+                        .show();
+                return false;
+            }
+
+
 
     }
 }

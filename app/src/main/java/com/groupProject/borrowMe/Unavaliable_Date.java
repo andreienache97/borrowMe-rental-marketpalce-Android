@@ -20,6 +20,10 @@ public class Unavaliable_Date extends AppCompatActivity{
         Intent incomingIntent = getIntent();
         final String email = incomingIntent.getStringExtra( "email" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
+        final String name = incomingIntent.getStringExtra( "Name" );
+        final String price = incomingIntent.getStringExtra( "Price" );
+        final String des = incomingIntent.getStringExtra( "Des" );
+
         UCalendarView.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
@@ -28,6 +32,9 @@ public class Unavaliable_Date extends AppCompatActivity{
                 BackToAddItem.putExtra( "email", email );
                 BackToAddItem.putExtra( "UDate", date);
                 BackToAddItem.putExtra( "ADate", ADate );
+                BackToAddItem.putExtra( "Name", name );
+                BackToAddItem.putExtra( "Price", price );
+                BackToAddItem.putExtra( "Des", des );
                 startActivity( BackToAddItem );
             }
         } );
