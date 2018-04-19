@@ -12,6 +12,13 @@ public class ItemCheck {
     private String details;
     private String department;
 
+    public ItemCheck(String title, String price, String details,String department) {
+        this.title = title;
+        this.price = price;
+        this.details = details;
+        this.department = department;
+    }
+
     public String getItemTitle() {
         return title;
     }

@@ -23,28 +23,26 @@ public class AdaptorAdminCheckItem extends RecyclerView.Adapter<AdaptorAdminChec
     private Context context;
     private List<ItemCheck> items;
 
-    public AdaptorAdminCheckItem(Context context, List items) {
+    public AdaptorAdminCheckItem(Context context, List<ItemCheck> items) {
         this.context = context;
         this.items = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_item_check_admin, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.single_item_check_admin, null);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.itemView.setTag(items.get(position));
+        ItemCheck product = items.get(position);
 
-        ItemCheck pu = items.get(position);
-
-        holder.title.setText(pu.getItemTitle());
-        holder.price.setText(pu.getItemPrice());
-        holder.details.setText(pu.getItemDetails());
-        holder.department.setText(pu.getItemDepartment());
+        holder.title.setText(product.getItemTitle());
+        holder.price.setText(product.getItemPrice());
+        holder.details.setText(product.getItemDetails());
+        holder.department.setText(product.getItemDepartment());
 
     }
 
@@ -69,16 +67,16 @@ public class AdaptorAdminCheckItem extends RecyclerView.Adapter<AdaptorAdminChec
             department = (AppCompatTextView) itemView.findViewById(R.id.departmentItem);
 
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+          //  itemView.setOnClickListener(new View.OnClickListener() {
+          //      @Override
+           //     public void onClick(View view) {
 
-                    ItemCheck cpu = (ItemCheck) view.getTag();
+          //          ItemCheck cpu = (ItemCheck) view.getTag();
 
-                    Toast.makeText(view.getContext(), cpu.getItemTitle()+" "+cpu.getItemPrice()+"  "+ cpu.getItemDetails()+"  "+ cpu.getItemDepartment(), Toast.LENGTH_SHORT).show();
+           //         Toast.makeText(view.getContext(), cpu.getItemTitle()+" "+cpu.getItemPrice()+"  "+ cpu.getItemDetails()+"  "+ cpu.getItemDepartment(), Toast.LENGTH_SHORT).show();
 
-                }
-            });
+          //      }
+          //  });
 
         }
     }

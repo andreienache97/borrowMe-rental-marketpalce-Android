@@ -11,6 +11,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.adaptors.AdaptorAdminCheckItem;
 import com.groupProject.borrowMe.models.ItemCheck;
@@ -28,14 +29,13 @@ public class CheckItems extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    RecyclerView.Adapter mAdapter;
-    RecyclerView.LayoutManager layoutManager;
 
-    List<ItemCheck> personUtilsList;
 
-    RequestQueue rq;
+    List<ItemCheck> items;
 
-    String request_url = "http://localhost/testapi.php";
+
+
+    private static final String request_url = "https://myxstyle120.000webhostapp.com/uncheckedItems.php";
 
 
     @Override
@@ -43,16 +43,14 @@ public class CheckItems extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_items);
 
-        rq = Volley.newRequestQueue(this);
 
-        recyclerView = (RecyclerView) findViewById(R.id.CheckItemsAdapter);
+        recyclerView = findViewById(R.id.CheckItemsAdapter);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        layoutManager = new LinearLayoutManager(this);
 
-        recyclerView.setLayoutManager(layoutManager);
+        items = new ArrayList<>();
 
-        personUtilsList = new ArrayList<>();
 
         sendRequest();
 
@@ -61,41 +59,46 @@ public class CheckItems extends AppCompatActivity {
 
     public void sendRequest(){
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, request_url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, request_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
 
-                for(int i = 0; i < response.length(); i++){
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
 
-                    ItemCheck items = new ItemCheck();
+                                //getting product object from json array
+                                JSONObject item = array.getJSONObject(i);
 
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
+                                //adding the product to product list
+                                items.add(new ItemCheck(
+                                        item.getString("name"),
+                                        item.getString("price"),
+                                        item.getString("Description"),
+                                        item.getString("Department")
 
-                        items.setItemTitle(jsonObject.getString("name"));
-                        items.setItemPrice(jsonObject.getString("price"));
-                        items.setItemDetails(jsonObject.getString("des"));
-                        items.setItemDepartment(jsonObject.getString("department"));
+                                ));
+                            }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            //creating adapter object and setting it to recyclerview
+                            AdaptorAdminCheckItem adapter = new AdaptorAdminCheckItem(CheckItems.this, items);
+                            recyclerView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-                    personUtilsList.add(items);
+                    }
+                });
 
-                }
-
-                mAdapter = new AdaptorAdminCheckItem(CheckItems.this, personUtilsList);
-
-                recyclerView.setAdapter(mAdapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("Volley Error: ", String.valueOf(error));
-            }
-        });
-        rq.add(jsonArrayRequest);
-
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(this).add(stringRequest);
     }
 }
