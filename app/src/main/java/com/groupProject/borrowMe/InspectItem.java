@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.AcceptItemRequest;
+import com.groupProject.borrowMe.JSONRequests.DenyItemRequest;
 import com.groupProject.borrowMe.JSONRequests.UpdateRequest;
 
 import org.json.JSONException;
@@ -94,9 +95,36 @@ public class InspectItem extends AppCompatActivity {
         FloatingActionButton delete = (FloatingActionButton) findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(final View view) {
+
+                Response.Listener<String> deny = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponseDeny = new JSONObject( response );
+                            boolean success = jsonResponseDeny.getBoolean( "success" );
+                            if (success) {
+
+                                Snackbar.make(view, "Item has been denied and removed", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder( InspectItem.this );
+                                builder.setMessage( "Update Failed" )
+                                        .setNegativeButton( "Retry", null )
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                DenyItemRequest reject = new DenyItemRequest(item_id, deny );
+                RequestQueue queue1 = Volley.newRequestQueue( InspectItem.this );
+                queue1.add( reject );
+
             }
         });
     }
