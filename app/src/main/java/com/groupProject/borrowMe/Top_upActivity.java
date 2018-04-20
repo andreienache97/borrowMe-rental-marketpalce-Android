@@ -59,7 +59,7 @@ public class Top_upActivity extends AppCompatActivity{
                                         Top_upActivity.this.startActivity( BacktoMainintent );
                                     } else {
                                         AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
-                                        builder.setMessage( "Please enter a valid amount( > 0 )" )
+                                        builder.setMessage( "Please enter a valid amount( not 0 )" )
                                                 .setNegativeButton( "Retry", null )
                                                 .create()
                                                 .show();
