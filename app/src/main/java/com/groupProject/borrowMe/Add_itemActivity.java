@@ -26,9 +26,9 @@ import java.util.Calendar;
 public class Add_itemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String[] DepartmentNames={"Mobile Devices & Tablets" ,"Camera & Accessories",
-    "Computer & Accessories", "Tools & Equipments", "Furniture", "Home Appliances", "Bicycles & E-Scooter",
-    "Car Accessories", "Sports Equipments", "Party", "Wedding Essentials", "Clothing", "Costumes", "Luxury", "Travel Essentials",
-    "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Healthcare Items", "Music Related", "Other"};
+    "Computer & Accessories", "Tools & Equipments", "Bicycles & E-Scooter",
+    "Car Accessories", "Sports Equipments", "Party", "Clothing", "Costumes", "Travel Essentials",
+    "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Music Related", "Other"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +172,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private boolean ValidDepartment(String Department) {
-        if (Department == DepartmentNames[0]) {
+        if (Department == DepartmentNames[-1]) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
             builder.setMessage("Please select a department")

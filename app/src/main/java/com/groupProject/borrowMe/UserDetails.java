@@ -104,7 +104,7 @@ public class UserDetails extends AppCompatActivity {
             }
         });
     }
-};
+}
 
 
 

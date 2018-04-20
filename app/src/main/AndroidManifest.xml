@@ -34,9 +34,6 @@
             android:name=".AvailableDate"
             android:label="Available Date" />
         <activity
-            android:name=".Top_upActivity"
-            android:label="Top up your account" />
-        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".UserDetails" />
@@ -52,8 +49,31 @@
         <activity
             android:name=".InspectItem"
             android:label="@string/title_activity_inspect_item"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Departments.AllDepartments" />
+        <activity android:name=".Top_upActivity" />
+        <activity android:name=".ItemDetails"></activity>
 
+        <activity android:name=".Departments.Mobile"></activity>
+
+        <activity android:name=".Departments.Bike"></activity>
+
+        <activity android:name=".Departments.Board"></activity>
+        <activity android:name=".Departments.Books"></activity>
+        <activity android:name=".Departments.Camera"></activity>
+        <activity android:name=".Departments.Car"></activity>
+        <activity android:name=".Departments.Clothing"></activity>
+        <activity android:name=".Departments.Computer"></activity>
+        <activity android:name=".Departments.Costumes"></activity>
+        <activity android:name=".Departments.Music"></activity>
+        <activity android:name=".Departments.Other"></activity>
+        <activity android:name=".Departments.Outdoor"></activity>
+        <activity android:name=".Departments.Party"></activity>
+        <activity android:name=".Departments.Sport"></activity>
+        <activity android:name=".Departments.Tools"></activity>
+        <activity android:name=".Departments.Toys"></activity>
+        <activity android:name=".Departments.Travel"></activity>
+        <activity android:name=".Departments.Video"></activity>
 
     </application>
 

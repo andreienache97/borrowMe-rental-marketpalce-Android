@@ -15,7 +15,26 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.groupProject.borrowMe.Departments.AllDepartments;
+import com.groupProject.borrowMe.Departments.Bike;
+import com.groupProject.borrowMe.Departments.Board;
+import com.groupProject.borrowMe.Departments.Books;
+import com.groupProject.borrowMe.Departments.Camera;
+import com.groupProject.borrowMe.Departments.Car;
+import com.groupProject.borrowMe.Departments.Clothing;
+import com.groupProject.borrowMe.Departments.Computer;
+import com.groupProject.borrowMe.Departments.Costumes;
+import com.groupProject.borrowMe.Departments.Mobile;
+import com.groupProject.borrowMe.Departments.Music;
+import com.groupProject.borrowMe.Departments.Other;
+import com.groupProject.borrowMe.Departments.Outdoor;
+import com.groupProject.borrowMe.Departments.Party;
+import com.groupProject.borrowMe.Departments.Sport;
+import com.groupProject.borrowMe.Departments.Tools;
+import com.groupProject.borrowMe.Departments.Toys;
+import com.groupProject.borrowMe.Departments.Travel;
+import com.groupProject.borrowMe.Departments.Video;
 
 import java.util.Comparator;
 
@@ -24,9 +43,9 @@ public class MainActivity extends AppCompatActivity
 
     private ListView listView;
     private static String[] LANG = new String[] {"All Departments","Mobile Devices & Tablets" ,"Camera & Accessories",
-            "Computer & Accessories", "Tools & Equipments", "Furniture", "Home Appliances", "Bicycles & E-Scooter",
-            "Car Accessories", "Sports Equipments", "Party", "Wedding Essentials", "Clothing", "Costumes", "Luxury", "Travel Essentials",
-            "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Healthcare Items", "Music Related", "Other"};
+            "Computer & Accessories", "Tools & Equipments", "Bicycles & E-Scooter",
+            "Car Accessories", "Sports Equipments", "Party", "Clothing", "Costumes", "Travel Essentials",
+            "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Music Related", "Other"};
 
     //HI
 
@@ -76,11 +95,91 @@ public class MainActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String display = (String)listView.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this, display, Toast.LENGTH_SHORT).show();
+                String dep = (String)listView.getItemAtPosition(position);
+
+                if(dep == "All Departments") {
+                    Intent listItems = new Intent(MainActivity.this, AllDepartments.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Mobile Devices & Tablets"){
+                    Intent listItems = new Intent(MainActivity.this, Mobile.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Camera & Accessories"){
+                    Intent listItems = new Intent(MainActivity.this, Camera.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Computer & Accessories"){
+                    Intent listItems = new Intent(MainActivity.this, Computer.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Tools & Equipments"){
+                    Intent listItems = new Intent(MainActivity.this, Tools.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Bicycles & E-Scooter"){
+                    Intent listItems = new Intent(MainActivity.this, Bike.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Car Accessories"){
+                    Intent listItems = new Intent(MainActivity.this, Car.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Sports Equipments"){
+                    Intent listItems = new Intent(MainActivity.this, Sport.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Party"){
+                    Intent listItems = new Intent(MainActivity.this, Party.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Clothing"){
+                    Intent listItems = new Intent(MainActivity.this, Clothing.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Costumes"){
+                    Intent listItems = new Intent(MainActivity.this, Costumes.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Travel Essentials"){
+                    Intent listItems = new Intent(MainActivity.this, Travel.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Outdoor Essentials"){
+                    Intent listItems = new Intent(MainActivity.this, Outdoor.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Board Games"){
+                    Intent listItems = new Intent(MainActivity.this, Board.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Toys"){
+                    Intent listItems = new Intent(MainActivity.this, Toys.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Video Games"){
+                    Intent listItems = new Intent(MainActivity.this, Video.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Books"){
+                    Intent listItems = new Intent(MainActivity.this, Books.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Music Related"){
+                    Intent listItems = new Intent(MainActivity.this, Music.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }else if(dep == "Other"){
+                    Intent listItems = new Intent(MainActivity.this, Other.class);
+                    listItems.putExtra("department", dep);
+                    MainActivity.this.startActivity(listItems);
+                }
+
             }
         });
     }
+
+
 
     @Override
     public void onBackPressed() {
