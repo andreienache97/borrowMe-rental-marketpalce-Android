@@ -72,7 +72,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
             etDes.setText( D1 );
 
 
-//When user click select avaliable date
+//When user click select available date
         tvADate.setOnClickListener( new View.OnClickListener() {
 
             @Override
@@ -90,7 +90,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
             }
         } );
 
-//When user click select unavaliable date
+//When user click select unavailable date
         tvUDate.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {

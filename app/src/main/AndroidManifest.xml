@@ -20,7 +20,6 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminLoginActivity" />
         <activity android:name=".AdminAreaActivity" />
-        <activity android:name=".UserAreaActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
