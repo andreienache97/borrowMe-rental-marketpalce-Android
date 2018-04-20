@@ -10,22 +10,26 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.AcceptItemRequest;
 
+import com.groupProject.borrowMe.JSONRequests.LoginRequest;
 import com.groupProject.borrowMe.JSONRequests.UpdateRequest;
 import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class
-InspectItem extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
 
-    String item_id,email,title,price,details,department;
-    public AppCompatTextView ID,EMAIL,TITLE,PRICE,DETAILS,DEPARTMENT;
+public class InspectItem extends AppCompatActivity {
+
+    String item_id, email, title, price, details, department;
+    public AppCompatTextView ID, EMAIL, TITLE, PRICE, DETAILS, DEPARTMENT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,6 @@ InspectItem extends AppCompatActivity {
         DEPARTMENT.setText(department);
 
 
-
         FloatingActionButton check = (FloatingActionButton) findViewById(R.id.check);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,17 +70,17 @@ InspectItem extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject jsonResponse = new JSONObject( response );
-                            boolean success = jsonResponse.getBoolean( "success" );
+                            JSONObject jsonResponse = new JSONObject(response);
+                            boolean success = jsonResponse.getBoolean("success");
                             if (success) {
 
                                 Snackbar.make(view, "Item has been accepted", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
 
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder( InspectItem.this );
-                                builder.setMessage( "Update Failed" )
-                                        .setNegativeButton( "Retry", null )
+                                AlertDialog.Builder builder = new AlertDialog.Builder(InspectItem.this);
+                                builder.setMessage("Update Failed")
+                                        .setNegativeButton("Retry", null)
                                         .create()
                                         .show();
                             }
@@ -87,9 +90,9 @@ InspectItem extends AppCompatActivity {
                     }
                 };
 
-                AcceptItemRequest registerRequest = new AcceptItemRequest(item_id, responseListener );
-                RequestQueue queue = Volley.newRequestQueue( InspectItem.this );
-                queue.add( registerRequest );
+                AcceptItemRequest registerRequest = new AcceptItemRequest(item_id, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(InspectItem.this);
+                queue.add(registerRequest);
 
             }
         });
@@ -99,36 +102,38 @@ InspectItem extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
 
-                Response.Listener<String> deny = new Response.Listener<String>() {
+                Response.Listener<String> deleteItem = new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response1) {
+
+
                         try {
-                            JSONObject jsonResponseDeny = new JSONObject( response );
-                            boolean success = jsonResponseDeny.getBoolean( "success" );
-                            if (success) {
+                            JSONObject jsonResponse = new JSONObject(response1);
+                            boolean success1 = jsonResponse.getBoolean("success");
+
+                            if (success1) {
 
                                 Snackbar.make(view, "Item has been denied and removed", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
-
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder( InspectItem.this );
-                                builder.setMessage( "Update Failed" )
-                                        .setNegativeButton( "Retry", null )
+                                AlertDialog.Builder builder = new AlertDialog.Builder(InspectItem.this);
+                                builder.setMessage("Update Failed")
+                                        .setNegativeButton("Retry", null)
                                         .create()
                                         .show();
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 };
 
-                denyItemRequest reject = new denyItemRequest(item_id, deny );
-                RequestQueue queue1 = Volley.newRequestQueue( InspectItem.this );
-                queue1.add( reject );
-
+                denyItemRequest Request = new denyItemRequest(item_id, deleteItem);
+                RequestQueue queue = Volley.newRequestQueue(InspectItem.this);
+                queue.add(Request);
             }
         });
-    }
 
+    }
 }
