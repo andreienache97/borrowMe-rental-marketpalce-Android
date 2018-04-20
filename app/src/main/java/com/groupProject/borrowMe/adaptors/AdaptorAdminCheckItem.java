@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -83,7 +84,7 @@ public class AdaptorAdminCheckItem extends RecyclerView.Adapter<AdaptorAdminChec
         public AppCompatTextView price;
         public AppCompatTextView details;
         public AppCompatTextView department, item_id, email;
-        public Button inspect;
+        public AppCompatButton inspect;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -94,7 +95,7 @@ public class AdaptorAdminCheckItem extends RecyclerView.Adapter<AdaptorAdminChec
             price = (AppCompatTextView) itemView.findViewById(R.id.priceItem);
             details = (AppCompatTextView) itemView.findViewById(R.id.descriptionItem);
             department = (AppCompatTextView) itemView.findViewById(R.id.departmentItem);
-            inspect = (Button) itemView.findViewById(R.id.bInspect);
+            inspect = (AppCompatButton) itemView.findViewById(R.id.bInspect);
 
         }
     }

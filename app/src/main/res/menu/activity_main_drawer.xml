@@ -9,6 +9,11 @@
             android:icon="@drawable/ic_menu_add_item"
             android:title="Add new item"/>
 
+        <item
+        android:id="@+id/top_up"
+        android:icon="@drawable/ic_top_up"
+        android:title="Top up account"/>
+
 
         <item
             android:id="@+id/fav_items"

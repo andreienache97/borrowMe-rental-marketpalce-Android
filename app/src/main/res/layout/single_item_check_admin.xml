@@ -139,11 +139,14 @@
                 />
         </LinearLayout>
 
-            <Button
-                android:id="@+id/bInspect"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Inspect item" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bInspect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:text="Inspect item" />
 
 
     </LinearLayout>

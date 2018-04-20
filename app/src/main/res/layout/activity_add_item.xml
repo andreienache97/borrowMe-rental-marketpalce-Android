@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Select a department"
+                android:text="Department:"
                 android:textSize="@dimen/select"
                 />
 
@@ -98,9 +98,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
-            android:text="Enter five keywords to let others search "
+            android:text="Enter four keywords to let others search "
             android:textSize="18sp" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
 
         <EditText
@@ -119,6 +125,14 @@
         android:hint="Keyword"
         android:inputType="text|textAutoCorrect" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
     <EditText
         android:id="@+id/etKeyword_three"
         android:layout_width="wrap_content"
@@ -134,15 +148,7 @@
         android:ems="10"
         android:hint="keyword"
         android:inputType="text|textAutoCorrect" />
-
-    <EditText
-        android:id="@+id/etKeyword_five"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Keyword"
-        android:inputType="text|textAutoCorrect" />
-
+    </LinearLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/bSubmit"
