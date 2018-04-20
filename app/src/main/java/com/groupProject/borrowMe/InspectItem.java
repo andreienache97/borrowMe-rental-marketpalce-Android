@@ -21,7 +21,8 @@ import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class InspectItem extends AppCompatActivity {
+public class
+InspectItem extends AppCompatActivity {
 
     String item_id,email,title,price,details,department;
     public AppCompatTextView ID,EMAIL,TITLE,PRICE,DETAILS,DEPARTMENT;

@@ -148,15 +148,21 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent incomingintent = getIntent();
+        String email = incomingintent.getStringExtra("email");
+        int balance = incomingintent.getIntExtra( "balance",0 );
 
         if (id == R.id.add_item) {
-            Intent incomingintent = getIntent();
-            String email = incomingintent.getStringExtra("email");
             Intent intent = new Intent(MainActivity.this, Add_itemActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
         }
         else if (id == R.id.top_up) {
+            Intent TopUpintent= new Intent( MainActivity.this, Top_upActivity.class );
+            TopUpintent.putExtra( "email", email );
+            TopUpintent.putExtra( "balance", balance );
+            startActivity( TopUpintent );
+
 
         } else if (id == R.id.fav_items) {
 

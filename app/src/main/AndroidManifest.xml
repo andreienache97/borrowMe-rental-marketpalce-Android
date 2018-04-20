@@ -34,6 +34,9 @@
             android:name=".AvailableDate"
             android:label="Available Date" />
         <activity
+            android:name=".Top_upActivity"
+            android:label="Top up your account" />
+        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".UserDetails" />
@@ -50,6 +53,8 @@
             android:name=".InspectItem"
             android:label="@string/title_activity_inspect_item"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
     </application>
 
 </manifest>
