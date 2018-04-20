@@ -44,7 +44,7 @@ public class CheckItems extends AppCompatActivity {
         setContentView(R.layout.activity_check_items);
 
 
-        recyclerView = findViewById(R.id.CheckItemsAdapter);
+        recyclerView = (RecyclerView) findViewById(R.id.CheckItemsAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
