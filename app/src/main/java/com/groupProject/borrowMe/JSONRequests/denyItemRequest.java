@@ -1,5 +1,6 @@
 package com.groupProject.borrowMe.JSONRequests;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
@@ -16,9 +17,17 @@ public class denyItemRequest extends StringRequest {
     private Map<String, String> params;
 
     public denyItemRequest(String id, Response.Listener<String> listener) {
-        super(Method.DELETE, REGISTER_REQUEST_URL, listener, null);
+        super(Method.POST, REGISTER_REQUEST_URL, listener, null);
         params = new HashMap<>();
         params.put("item_id", id);
 
     }
+
+    @Override
+    public Map<String, String> getParams() {
+        return params;
+    }
+
+
+
 }
