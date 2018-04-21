@@ -25,16 +25,17 @@ import java.util.Calendar;
 
 public class Add_itemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final String[] DepartmentNames={"Select a department","Devices & Tablets" ,"Camera & Accessories",
+//Drop down menu
+    private static final String[] DepartmentNames={"Select a department","Mobile Devices & Tablets" ,"Camera & Accessories",
     "Computer & Accessories", "Tools & Equipments", "Bicycles & E-Scooter",
     "Car Accessories", "Sports Equipments", "Party", "Clothing", "Costumes", "Travel Essentials",
     "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Music Related", "Other"};
-
     private static final String [] Deposit = {"Refundable deposit","none - £0","low - £25", "normal - £75", "high - £125"};
     private static final String [] Fine = {"Late return fine","low - £15/day", "normal - £30/day", "high - £60/day"};
 
     private int finalD;
     private int finalF;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +46,12 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
         assert spin != null;
         spin.setOnItemSelectedListener( this );
-
         Spinner deposit = (Spinner) findViewById(R.id.simpleSpinner2);
         assert deposit != null;
         deposit.setOnItemSelectedListener( this );
-
         Spinner fine = (Spinner) findViewById(R.id.simpleSpinner3);
         assert fine != null;
         fine.setOnItemSelectedListener( this );
-
 
 
 //Add array to the spinner
@@ -80,10 +78,14 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         final TextView tvUDate = (TextView) findViewById( R.id.tvUDate );
         final TextView DADate = (TextView) findViewById( R.id.DADate );
         final TextView DUDate = (TextView) findViewById( R.id.DUDate );
+        final EditText Keyword_one = (EditText) findViewById( R.id.etKeyword_one );
+        final EditText Keyword_two = (EditText) findViewById( R.id.etKeyword_two );
+        final EditText Keyword_three = (EditText) findViewById( R.id.etKeyword_three );
+        final EditText Keyword_four = (EditText) findViewById( R.id.etKeyword_four );
         final AppCompatButton bSubmit = (AppCompatButton) findViewById( R.id.bSubmit );
 
         Intent incomingIntent = getIntent();
-
+//Get incoming values
         final String email = incomingIntent.getStringExtra( "email" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
         final String UDate = incomingIntent.getStringExtra( "UDate" );
@@ -133,9 +135,11 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
             }
         } );
 
+//When user click the submit button
         bSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//Get all the text from the form
                 final String item_name = etItemName.getText().toString();
                 final String item_price = etPrice.getText().toString();
                 final String item_Des = etDes.getText().toString();
@@ -145,13 +149,20 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                 final String deposit = myDeposit.getSelectedItem().toString();
                 Spinner myfine=(Spinner) findViewById(R.id.simpleSpinner3);
                 final String fine = myfine.getSelectedItem().toString();
+                final String Keywords_1 = Keyword_one.getText().toString();
+                final String Keywords_2 = Keyword_two.getText().toString();
+                final String Keywords_3 = Keyword_three.getText().toString();
+                final String Keywords_4 = Keyword_four.getText().toString();
+
+//Validation and check if not null
                 boolean check = TextIsNull( item_name,  item_price,  item_Des,  ADate,  UDate);
                 boolean test = ValidDates(ADate,UDate);
-                if(!ValidDepartmentAndFine( Department, deposit, fine ) || !check || !test){
+                boolean validKeyword = ValidKeywords(Keywords_1,Keywords_2,Keywords_3,Keywords_4);
+                if(!ValidDepartmentAndFine( Department, deposit, fine ) || !check || !test || !validKeyword){
 
 
                 } else {
-
+//process when all input is checked
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -160,10 +171,11 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                                 boolean success = jsonResponse.getBoolean( "success" );
                                 if (success) {
                                     String email = jsonResponse.getString( "email" );
-
-                                    Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
-                                    BacktoMainintent.putExtra( "email", email );
-                                    Add_itemActivity.this.startActivity( BacktoMainintent );
+                                    secondRequest( email,item_name,item_price,item_Des, Keywords_1, Keywords_2, Keywords_3,Keywords_4 );
+//                                    int ID = jsonResponse.getInt( "ID" );
+//                                    Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
+//                                    BacktoMainintent.putExtra( "email", email );
+//                                    Add_itemActivity.this.startActivity( BacktoMainintent );
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
                                     builder.setMessage( "Failed" )
@@ -189,6 +201,59 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    public void secondRequest(String email,String item_name, String item_price, String item_Des,String Keyword_one, String Keyword_two,String Keyword_three, String Keyword_four){
+        Response.Listener<String> Insertinto = new Response.Listener<String>() {
+
+
+            @Override
+            public void onResponse(String response) {
+//                try {
+//                    JSONObject jsonResponse = new JSONObject( response );
+//                    boolean success = jsonResponse.getBoolean( "success" );
+//                    if (success) {
+                        Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
+                        Add_itemActivity.this.startActivity( BacktoMainintent );
+
+//                    } else {
+//                        AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
+//                        builder.setMessage( "Failed" )
+//                                .setNegativeButton( "Retry", null )
+//                                .create()
+//                                .show();
+//                    }
+//
+//                }catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+
+
+            }
+        };
+
+        Insert_KeywordRequests Insert = new Insert_KeywordRequests( email,item_name,item_price,item_Des, Keyword_one, Keyword_two, Keyword_three,Keyword_four, Insertinto );
+        RequestQueue queue1 = Volley.newRequestQueue(Add_itemActivity.this);
+        queue1.add(Insert);
+
+
+    }
+
+
+
+    private boolean ValidKeywords(String keywords_1, String keywords_2, String keywords_3, String keywords_4) {
+        if(keywords_1.isEmpty() || keywords_2.isEmpty() || keywords_3.isEmpty() || keywords_4.isEmpty()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+            builder.setMessage("Please fill up the keyword text fields")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
+
+        } else{
+            return true;
+
+        }
+
+    }
 
 
     @Override
@@ -347,4 +412,6 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
 
     }
+
+
 }
