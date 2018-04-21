@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,40 +21,50 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import static com.groupProject.borrowMe.R.layout.activity_item_department;
 
-public class Video extends AppCompatActivity {
+public class DepartmentByName extends AppCompatActivity{
+
+
 
     RecyclerView recyclerView;
 
 
-
     List<ItemDepartments> items;
 
-    private static final String request_url = "https://myxstyle120.000webhostapp.com/departments/video.php";
 
-    String Department;
+
+  String request_url ="https://myxstyle120.000webhostapp.com/itemsDepartment.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(activity_item_department);
+        setContentView(R.layout.activity_item_department);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.ItemsAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
         items = new ArrayList<>();
 
         Intent intent = getIntent();
-        Department = intent.getStringExtra("department");
+        String dep = intent.getStringExtra("department");
 
 
+        sendRequest(dep);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, request_url,
+    }
+
+
+    public void sendRequest(final String department) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, request_url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -76,7 +87,7 @@ public class Video extends AppCompatActivity {
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            AdaptorItemDepartments adapter = new AdaptorItemDepartments(Video.this, items);
+                            AdaptorItemDepartments adapter = new AdaptorItemDepartments(DepartmentByName.this, items);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -88,11 +99,30 @@ public class Video extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                });
+
+                }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Department", department); //Add the data you'd like to send to the server.
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+
+
+        } ;
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(this).add(stringRequest);
+    }
+
+
+}
 
 
 
-    }}
