@@ -22,9 +22,9 @@ import org.json.JSONObject;
 public class ItemDetails extends AppCompatActivity {
 
 
-    public AppCompatTextView title,price,details,available,unavailable,department;
+    public AppCompatTextView title,price,details,available,unavailable,department,deposit,fine;
     public Button userDetails,borrow,report;
-    String id,TITLE,PRICE,DETAILS,AVAILABLE,UNAVAILABLE,DEPARTMENT,EMAIL,name,phone,address,city,postcode;
+    String id,TITLE,PRICE,DETAILS,AVAILABLE,UNAVAILABLE,DEPARTMENT,EMAIL,name,phone,address,city,postcode,DEPOSIT,FINE;
 
 
     @Override
@@ -38,6 +38,9 @@ public class ItemDetails extends AppCompatActivity {
         available = (AppCompatTextView) findViewById(R.id.textViewAvailable);
         unavailable = (AppCompatTextView) findViewById(R.id.textViewUnavailable);
         department = (AppCompatTextView) findViewById(R.id.textViewDepartment);
+        deposit = (AppCompatTextView) findViewById(R.id.textViewDeposit);
+        fine = (AppCompatTextView) findViewById(R.id.textViewFine);
+
 
         userDetails = (Button) findViewById(R.id.bUserDetails);
         borrow = (Button) findViewById(R.id.bBorrow);
@@ -64,14 +67,18 @@ public class ItemDetails extends AppCompatActivity {
                         AVAILABLE = jsonResponse.getString("AvailableDate");
                         UNAVAILABLE = jsonResponse.getString("UnavailableDate");
                         DEPARTMENT = jsonResponse.getString("Department");
+                        DEPOSIT = jsonResponse.getString("Deposit");
+                        FINE = jsonResponse.getString("Fine");
 
 
                         title.setText(TITLE);
-                        price.setText(PRICE);
+                        price.setText(PRICE+" £/day");
                         details.setText(DETAILS);
                         available.setText(AVAILABLE);
                         unavailable.setText(UNAVAILABLE);
                         department.setText(DEPARTMENT);
+                        deposit.setText(DEPOSIT+" £");
+                        fine.setText(FINE+" £");
 
                         secondRequest(EMAIL);
 
