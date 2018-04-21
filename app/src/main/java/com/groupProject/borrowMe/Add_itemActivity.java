@@ -25,10 +25,16 @@ import java.util.Calendar;
 
 public class Add_itemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final String[] DepartmentNames={"Mobile Devices & Tablets" ,"Camera & Accessories",
+    private static final String[] DepartmentNames={"Select a department","Mobile Devices & Tablets" ,"Camera & Accessories",
     "Computer & Accessories", "Tools & Equipments", "Bicycles & E-Scooter",
     "Car Accessories", "Sports Equipments", "Party", "Clothing", "Costumes", "Travel Essentials",
     "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Music Related", "Other"};
+
+    private static final String [] Deposit = {"Refundable deposit","none - £0","low - £25", "normal - £75", "high - £125"};
+    private static final String [] Fine = {"Late return fine","low - £15/day", "normal - £30/day", "high - £60/day"};
+
+    private int finalD;
+    private int finalF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +46,31 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         assert spin != null;
         spin.setOnItemSelectedListener( this );
 
+        Spinner deposit = (Spinner) findViewById(R.id.simpleSpinner2);
+        assert deposit != null;
+        deposit.setOnItemSelectedListener( this );
+
+        Spinner fine = (Spinner) findViewById(R.id.simpleSpinner3);
+        assert fine != null;
+        fine.setOnItemSelectedListener( this );
+
+
+
 //Add array to the spinner
         ArrayAdapter<String> aa;
         aa = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,DepartmentNames);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(aa);
+
+        ArrayAdapter<String> aadeposit;
+        aadeposit = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,Deposit);
+        aadeposit.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        deposit.setAdapter(aadeposit);
+
+        ArrayAdapter<String> aafine;
+        aafine = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,Fine);
+        aafine.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fine.setAdapter(aafine);
 
 //Field
         final EditText etItemName = (EditText) findViewById( R.id.etItemName );
@@ -115,9 +141,13 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                 final String item_Des = etDes.getText().toString();
                 Spinner mySpinner=(Spinner) findViewById(R.id.simpleSpinner);
                 final String Department = mySpinner.getSelectedItem().toString();
+                Spinner myDeposit=(Spinner) findViewById(R.id.simpleSpinner2);
+                final String deposit = myDeposit.getSelectedItem().toString();
+                Spinner myfine=(Spinner) findViewById(R.id.simpleSpinner3);
+                final String fine = myfine.getSelectedItem().toString();
                 boolean check = TextIsNull( item_name,  item_price,  item_Des,  ADate,  UDate);
                 boolean test = ValidDates(ADate,UDate);
-                if(ValidDepartment(Department) == false || check == false || test == false){
+                if(!ValidDepartmentAndFine( Department, deposit, fine ) || !check || !test){
 
 
                 } else {
@@ -147,7 +177,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                         }
                     };
 
-                    AddItemRequest addItemRequest = new AddItemRequest( email, item_name, item_price, item_Des, ADate, UDate, Department, responseListener );
+                    AddItemRequest addItemRequest = new AddItemRequest( email, item_name, item_price, item_Des, ADate, UDate, Department, finalD, finalF, responseListener );
                     RequestQueue queue = Volley.newRequestQueue( Add_itemActivity.this );
                     queue.add( addItemRequest );
 
@@ -171,8 +201,8 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    private boolean ValidDepartment(String Department) {
-        if (Department == DepartmentNames[-1]) {
+    private boolean ValidDepartmentAndFine(String Department, String deposit, String fine) {
+        if (Department.equals( DepartmentNames[0] )) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
             builder.setMessage("Please select a department")
@@ -180,9 +210,42 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                     .create()
                     .show();
             return false;
-        } else {
+        } else { if(deposit.equals( Deposit[0] )){
+                AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                builder.setMessage("Please select a deposit plan ")
+                        .setNegativeButton("Retry", null)
+                        .create()
+                        .show();
+                return false;
+                 }else{ if(fine.equals( Fine[0] )){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Add_itemActivity.this);
+                        builder.setMessage("Please select a late return fine plan ")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                        return false;
+                        }else{
 
+
+                             }
+                }
         }
+        if(deposit.equals( Deposit[1] ))
+            finalD = 0;
+        if(deposit.equals( Deposit[2] ))
+            finalD = 25;
+        if(deposit.equals( Deposit[3] ))
+            finalD = 75;
+        if(deposit.equals( Deposit[4] ))
+            finalD = 125;
+
+        if(fine.equals( Fine[1] ))
+            finalF = 15;
+        if(fine.equals( Fine[2] ))
+            finalF = 30;
+        if(fine.equals( Fine[3] ))
+            finalF = 60;
+
         return true;
     }
 

@@ -12,69 +12,71 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_alignParentRight="true">
 
-    <EditText
-        android:id="@+id/etItemName"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:ems="10"
-        android:hint="Item Name"
-        android:inputType="text|textAutoCorrect" />
+        <EditText
+            android:id="@+id/etItemName"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Item Name"
+            android:inputType="text|textAutoCorrect" />
 
-    <EditText
-        android:id="@+id/etPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Price"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/etPrice"
 
-    <EditText
-        android:id="@+id/etDes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:ems="10"
-        android:hint="Desription"
-        android:inputType="textMultiLine" />
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Price"
+            android:inputType="number" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Select available date"
-        android:id="@+id/tvADate"/>
+        <EditText
+            android:id="@+id/etDes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Desription"
+            android:inputType="textMultiLine" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:hint="Available date"
-        android:id="@+id/DADate"></TextView>
+        <TextView
+            android:id="@+id/tvADate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select available date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Select unavailable date"
-        android:id="@+id/tvUDate"/>
+        <TextView
+            android:id="@+id/DADate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Available date"
+            android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
 
 
-    <TextView
-        android:id="@+id/DUDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Unavailable date"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/tvUDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select unavailable date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
+
+        <TextView
+            android:id="@+id/DUDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Unavailable date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
@@ -82,13 +84,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Department:"
-                android:textSize="@dimen/select"
-                />
+                android:textSize="@dimen/select" />
 
             <Spinner
                 android:id="@+id/simpleSpinner"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -96,65 +97,81 @@
             android:id="@+id/Message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:text="Enter four keywords to let others search "
-            android:textSize="18sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
 
-        <EditText
-        android:id="@+id/etKeyword_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Keyword"
-        android:inputType="text|textAutoCorrect" />
+            <EditText
+                android:id="@+id/etKeyword_one"
+                android:layout_width="139dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Keyword"
+                android:inputType="text|textAutoCorrect" />
 
-    <EditText
-        android:id="@+id/etKeyword_two"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Keyword"
-        android:inputType="text|textAutoCorrect" />
+            <EditText
+                android:id="@+id/etKeyword_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Keyword"
+                android:inputType="text|textAutoCorrect" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etKeyword_three"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Keyword"
-        android:inputType="text|textAutoCorrect" />
+            <EditText
+                android:id="@+id/etKeyword_three"
+                android:layout_width="141dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Keyword"
+                android:inputType="text|textAutoCorrect" />
 
-    <EditText
-        android:id="@+id/etKeyword_four"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="keyword"
-        android:inputType="text|textAutoCorrect" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/etKeyword_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="keyword"
+                android:inputType="text|textAutoCorrect" />
+        </LinearLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/bSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Submit" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/simpleSpinner2"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" />
+
+            <Spinner
+                android:id="@+id/simpleSpinner3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
 
 
     </LinearLayout>
