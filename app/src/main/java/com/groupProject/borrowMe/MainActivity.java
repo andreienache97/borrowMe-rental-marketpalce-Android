@@ -180,15 +180,24 @@ public class MainActivity extends AppCompatActivity
             startActivity( TopUpintent );
 
 
-        } else if (id == R.id.fav_items) {
+        }
+        else if (id == R.id.fav_items) {
 
-        } else if (id == R.id.lent_items) {
+        }
+        else if (id == R.id.borrow_request) {
+
+        }
+        else if (id == R.id.my_items) {
+
+        }
+
+        else if (id == R.id.lent_items) {
 
         } else if (id == R.id.borrowed_items) {
 
-        } else if (id == R.id.history) {
+        }
 
-        } else if (id == R.id.message_user) {
+        else if (id == R.id.message_user) {
 
         } else if (id == R.id.faq){
             Intent registerIntent = new Intent(MainActivity.this, FaqActivity.class);
