@@ -207,24 +207,26 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
             @Override
             public void onResponse(String response) {
-//                try {
-//                    JSONObject jsonResponse = new JSONObject( response );
-//                    boolean success = jsonResponse.getBoolean( "success" );
-//                    if (success) {
+                try {
+                    JSONObject jsonResponse = new JSONObject( response );
+                    boolean success = jsonResponse.getBoolean( "success" );
+                    if (success) {
+                        String email = jsonResponse.getString( "email" );
                         Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
+                        BacktoMainintent.putExtra( "email",email );
                         Add_itemActivity.this.startActivity( BacktoMainintent );
 
-//                    } else {
-//                        AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
-//                        builder.setMessage( "Failed" )
-//                                .setNegativeButton( "Retry", null )
-//                                .create()
-//                                .show();
-//                    }
-//
-//                }catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
+                        builder.setMessage( "Failed" )
+                                .setNegativeButton( "Retry", null )
+                                .create()
+                                .show();
+                    }
+
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
             }
