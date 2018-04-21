@@ -2,8 +2,10 @@ package com.groupProject.borrowMe.adaptors;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +16,18 @@ import com.groupProject.borrowMe.models.ItemDepartments;
 
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by Enache on 20/04/2018.
  */
 
-public class AdaptorItemDepartments extends RecyclerView.Adapter<AdaptorItemDepartments.ViewHolder> {
+public class AdaptorItemDepartments extends RecyclerView.Adapter<AdaptorItemDepartments.ViewHolder>
+{
 
-    private Context context;
+    private static Context context;
     private List<ItemDepartments> items;
-    String id;
+    String ID;
 
     public AdaptorItemDepartments(Context context, List<ItemDepartments> items) {
         this.context = context;
@@ -43,16 +48,8 @@ public class AdaptorItemDepartments extends RecyclerView.Adapter<AdaptorItemDepa
         holder.title.setText(product.getItemTitle());
         holder.price.setText(product.getItemPrice());
        // holder.id.setText(product.getItemId());
-          id = product.getItemId();
 
-        holder.title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent listItems = new Intent(context, ItemDetails.class);
-                listItems.putExtra("id", id);
-                context.startActivity(listItems);
-            }
-        });
+        holder.id = product.getItemId();
 
 
             }
@@ -62,14 +59,16 @@ public class AdaptorItemDepartments extends RecyclerView.Adapter<AdaptorItemDepa
         return items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
         public AppCompatTextView title,price;
+        String id;
 
 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
 
             title = (AppCompatTextView) itemView.findViewById(R.id.textViewTitle);
@@ -77,6 +76,13 @@ public class AdaptorItemDepartments extends RecyclerView.Adapter<AdaptorItemDepa
            // id = (AppCompatTextView) itemView.findViewById(R.id.textViewID);
 
 
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent listItems = new Intent(context, ItemDetails.class);
+             listItems.putExtra("item_id", id);
+              context.startActivity(listItems);
         }
     }
 
