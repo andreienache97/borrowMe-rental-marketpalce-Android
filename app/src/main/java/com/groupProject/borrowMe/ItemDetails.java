@@ -73,13 +73,13 @@ public class ItemDetails extends AppCompatActivity {
 
 
                         title.setText(TITLE);
-                        price.setText(PRICE+" £/day");
+                        price.setText( String.format( "%s £/day", PRICE ) );
                         details.setText(DETAILS);
                         available.setText(AVAILABLE);
                         unavailable.setText(UNAVAILABLE);
                         department.setText(DEPARTMENT);
-                        deposit.setText("£ " +DEPOSIT);
-                        fine.setText("£ " + FINE);
+                        deposit.setText( String.format( "£ %s", DEPOSIT ) );
+                        fine.setText( String.format( "£ %s", FINE ) );
 
                         secondRequest(LendarEMAIL);
 
@@ -116,18 +116,15 @@ public class ItemDetails extends AppCompatActivity {
         });
 
         borrow.setOnClickListener( new View.OnClickListener() {
+            int test = 0;
             @Override
             public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
-//                builder.setMessage("Email contact: "+ LendarEMAIL +"\nYour Email "+BorrowerEmail
-//                        )
-//                        .setNegativeButton("OK", null)
-//                        .create()
-//                        .show();
-
-                Intent BackToMain = new Intent( ItemDetails.this, MainActivity.class );
-                BackToMain.putExtra( "email", BorrowerEmail );
-                ItemDetails.this.startActivity( BackToMain );
+                Intent SelectDate = new Intent( ItemDetails.this, AvailableDate.class );
+                SelectDate.putExtra( "Lenderemail", LendarEMAIL );
+                SelectDate.putExtra( "Borrowemail", BorrowerEmail );
+                SelectDate.putExtra( "item_id", id );
+                SelectDate.putExtra( "FromItemDetail", test );
+                startActivity( SelectDate );
 
             }
         } );
