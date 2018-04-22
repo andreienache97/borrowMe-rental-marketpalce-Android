@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_menu_add_item"
             android:title="Add new item"/>
 
+        <item
+        android:id="@+id/top_up"
+        android:icon="@drawable/ic_top_up"
+        android:title="Account finance"/>
 
         <item
             android:id="@+id/fav_items"
@@ -23,9 +27,15 @@
             android:icon="@drawable/ic_menu_borrowed"
             android:title="Lent items" />
         <item
-            android:id="@+id/history"
-            android:icon="@drawable/ic_menu_history"
-            android:title="Historic" />
+            android:id="@+id/my_items"
+            android:icon="@drawable/ic_my_items"
+            android:title="My items" />
+
+        <item
+            android:id="@+id/borrow_request"
+            android:icon="@drawable/ic_item_request"
+            android:title="Borrow requests" />
+
         <item
             android:id="@+id/faq"
             android:icon="@drawable/ic_menu_faq"

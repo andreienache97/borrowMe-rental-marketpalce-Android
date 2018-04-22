@@ -2,6 +2,7 @@ package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.JSONRequests.UpdateRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,9 +66,9 @@ public class ChangeUserDetails extends AppCompatActivity {
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
-               GetDataFromEditText();
+                GetDataFromEditText();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -76,8 +78,9 @@ public class ChangeUserDetails extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean( "success" );
                             if (success) {
 
-                                Intent intent = new Intent( ChangeUserDetails.this, UserDetails.class );
-                                ChangeUserDetails.this.startActivity( intent );
+                                Snackbar.make(v, "Update made", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder( ChangeUserDetails.this );
                                 builder.setMessage( "Update Failed" )

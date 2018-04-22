@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.JSONRequests.LoginRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -66,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String city = jsonResponse.getString("city");
                                 String postcode = jsonResponse.getString("postcode");
                                 String pass = jsonResponse.getString("postcode");
+                                int balance = jsonResponse.getInt( "balance" );
 
 
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -76,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra( "address",address );
                                 intent.putExtra( "city",city );
                                 intent.putExtra( "postcode",postcode );
+                                intent.putExtra( "balance", balance);
                                 LoginActivity.this.startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);

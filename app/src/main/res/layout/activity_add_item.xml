@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_alignParentRight="true">
+
+        <EditText
+            android:id="@+id/etItemName"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Item Name"
+            android:inputType="text|textAutoCorrect" />
+
+        <EditText
+            android:id="@+id/etPrice"
+
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Price"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etDes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Desription"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/tvADate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select available date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/DADate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Available date"
+            android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+
+
+        <TextView
+            android:id="@+id/tvUDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select unavailable date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+        <TextView
+            android:id="@+id/DUDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Unavailable date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Department:"
+                android:textSize="@dimen/select" />
+
+            <Spinner
+                android:id="@+id/simpleSpinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/Message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter four keywords to let others search "
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+
+            <EditText
+                android:id="@+id/etKeyword_one"
+                android:layout_width="139dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Keyword"
+                android:inputType="text|textAutoCorrect" />
+
+            <EditText
+                android:id="@+id/etKeyword_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Keyword"
+                android:inputType="text|textAutoCorrect" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/etKeyword_three"
+                android:layout_width="141dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Keyword"
+                android:inputType="text|textAutoCorrect" />
+
+            <EditText
+                android:id="@+id/etKeyword_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="keyword"
+                android:inputType="text|textAutoCorrect" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/simpleSpinner2"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" />
+
+            <Spinner
+                android:id="@+id/simpleSpinner3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

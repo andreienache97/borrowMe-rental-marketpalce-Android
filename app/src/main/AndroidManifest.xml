@@ -20,24 +20,44 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminLoginActivity" />
         <activity android:name=".AdminAreaActivity" />
-        <activity android:name=".UserAreaActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Add_itemActivity"
+            android:label="Add_item" />
+        <activity
+            android:name=".Unavaliable_Date"
+            android:label="Unavaliable Date" />
+        <activity
+            android:name=".AvailableDate"
+            android:label="Available Date" />
+        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".UserDetails" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".ChangeUserDetails"></activity>
-
+        <activity android:name=".ChangeUserDetails" />
         <activity
             android:name=".FaqActivity"
             android:label="@string/title_activity_faq" />
         <activity
             android:name=".SupportActivity"
             android:label="User Support" />
+        <activity android:name=".CheckItems" />
+        <activity
+            android:name=".InspectItem"
+            android:label="@string/title_activity_inspect_item"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Departments.AllDepartments" />
+        <activity android:name=".Top_upActivity" />
+        <activity android:name=".ItemDetails"></activity>
+
+        <activity android:name=".Departments.DepartmentByName"></activity>
+
+
+
     </application>
 
 </manifest>
