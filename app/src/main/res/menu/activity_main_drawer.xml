@@ -12,7 +12,7 @@
         <item
         android:id="@+id/top_up"
         android:icon="@drawable/ic_top_up"
-        android:title="Top up account"/>
+        android:title="Account finance"/>
 
         <item
             android:id="@+id/fav_items"
