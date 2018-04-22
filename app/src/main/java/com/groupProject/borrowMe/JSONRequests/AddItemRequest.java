@@ -13,19 +13,17 @@ public class AddItemRequest extends StringRequest{
     private Map<String, String> params;
 
     public AddItemRequest(String email,String name, String price, String des, String ADate, String UDate, String department, int deposit, int fine, Response.Listener<String> listener) {
-            super( Method.POST, REGISTER_REQUEST_URL, listener, null);
+        super( Method.POST, REGISTER_REQUEST_URL, listener, null );
         params = new HashMap<>();
-        params.put("email", email);
-        params.put("Name", name);
-        params.put("Des", des );
-        params.put("Price",price);
-        params.put("ADate", ADate);
-        params.put("UDate", UDate);
-        params.put("Department", department);
-        params.put("Deposit", String.valueOf( deposit ) );
-        params.put("Fine", String.valueOf( fine ));
-
-
+        params.put( "email", email );
+        params.put( "Name", name );
+        params.put( "Des", des );
+        params.put( "Price", price );
+        params.put( "ADate", ADate );
+        params.put( "UDate", UDate );
+        params.put( "Department", department );
+        params.put( "Deposit", String.valueOf( deposit ) );
+        params.put( "Fine", String.valueOf( fine ) );
     }
 
     @Override
