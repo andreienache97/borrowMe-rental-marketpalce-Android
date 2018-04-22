@@ -118,12 +118,16 @@ public class ItemDetails extends AppCompatActivity {
         borrow.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
-                builder.setMessage("Email contact: "+ LendarEMAIL +"\nYour Email "+BorrowerEmail
-                        )
-                        .setNegativeButton("OK", null)
-                        .create()
-                        .show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+//                builder.setMessage("Email contact: "+ LendarEMAIL +"\nYour Email "+BorrowerEmail
+//                        )
+//                        .setNegativeButton("OK", null)
+//                        .create()
+//                        .show();
+
+                Intent BackToMain = new Intent( ItemDetails.this, MainActivity.class );
+                BackToMain.putExtra( "email", BorrowerEmail );
+                ItemDetails.this.startActivity( BackToMain );
 
             }
         } );

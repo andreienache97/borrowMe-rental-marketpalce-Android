@@ -59,7 +59,7 @@ public class Top_upActivity extends AppCompatActivity{
                                     boolean success = jsonResponse.getBoolean( "success" );
                                     if (success) {
                                         int newBalance = jsonResponse.getInt( "balance" );
-                                        Intent BacktoMainintent = new Intent( Top_upActivity.this, Top_upActivity.class );
+                                        Intent BacktoMainintent = new Intent( Top_upActivity.this, MainActivity.class );
                                         BacktoMainintent.putExtra( "email", email );
                                         BacktoMainintent.putExtra( "balance", newBalance);
                                         Top_upActivity.this.startActivity( BacktoMainintent );
