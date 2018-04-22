@@ -55,14 +55,15 @@ public class DepartmentByName extends AppCompatActivity{
 
         Intent intent = getIntent();
         String dep = intent.getStringExtra("department");
+        final String email = intent.getStringExtra( "email" );
 
 
-        sendRequest(dep);
+        sendRequest(dep, email);
 
     }
 
 
-    public void sendRequest(final String department) {
+    public void sendRequest(final String department,final String email) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, request_url,
                 new Response.Listener<String>() {
@@ -87,7 +88,7 @@ public class DepartmentByName extends AppCompatActivity{
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            AdaptorItemDepartments adapter = new AdaptorItemDepartments(DepartmentByName.this, items);
+                            AdaptorItemDepartments adapter = new AdaptorItemDepartments(DepartmentByName.this, items,email);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();

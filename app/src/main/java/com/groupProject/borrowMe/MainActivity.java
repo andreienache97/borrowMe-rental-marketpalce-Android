@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,15 +80,19 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String dep = (String)listView.getItemAtPosition(position);
+                Intent intent = getIntent();
+                String email = intent.getStringExtra("email");
 
                 if(dep == "All Departments") {
                     Intent listItems = new Intent(MainActivity.this, AllDepartments.class);
                     listItems.putExtra("department", dep);
+                    listItems.putExtra( "email", email );
                     MainActivity.this.startActivity(listItems);
                 }else
                     {
                     Intent listItems = new Intent(MainActivity.this, DepartmentByName.class);
                     listItems.putExtra("department", dep);
+                    listItems.putExtra( "email", email );
                     MainActivity.this.startActivity(listItems);
 
                 }

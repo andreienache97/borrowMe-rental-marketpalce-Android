@@ -24,8 +24,8 @@ public class ItemDetails extends AppCompatActivity {
 
     public AppCompatTextView title,price,details,available,unavailable,department,deposit,fine;
     public Button userDetails,borrow,report;
-    String id,TITLE,PRICE,DETAILS,AVAILABLE,UNAVAILABLE,DEPARTMENT,EMAIL,name,phone,address,city,postcode,DEPOSIT,FINE;
-
+    String id,TITLE,PRICE,DETAILS,AVAILABLE,UNAVAILABLE,DEPARTMENT,LendarEMAIL,name,phone,address,city,postcode,DEPOSIT,FINE;
+    String BorrowerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class ItemDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("item_id");
+        BorrowerEmail = intent.getStringExtra( "email" );
 
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -60,7 +61,7 @@ public class ItemDetails extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
-                        EMAIL = jsonResponse.getString( "email" );
+                        LendarEMAIL = jsonResponse.getString( "email" );
                         TITLE = jsonResponse.getString("name");
                         PRICE = jsonResponse.getString("price");
                         DETAILS = jsonResponse.getString("Description");
@@ -77,10 +78,10 @@ public class ItemDetails extends AppCompatActivity {
                         available.setText(AVAILABLE);
                         unavailable.setText(UNAVAILABLE);
                         department.setText(DEPARTMENT);
-                        deposit.setText(DEPOSIT+" £");
-                        fine.setText(FINE+" £");
+                        deposit.setText("£ " +DEPOSIT);
+                        fine.setText("£ " + FINE);
 
-                        secondRequest(EMAIL);
+                        secondRequest(LendarEMAIL);
 
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
@@ -106,13 +107,26 @@ public class ItemDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
-                builder.setMessage("Email contact: "+ EMAIL +"\nNumber contact: "+phone
+                builder.setMessage("Email contact: "+ LendarEMAIL +"\nNumber contact: "+phone
                                     +"\nName contact: "+name + "\nCity: " +city)
                         .setNegativeButton("OK", null)
                         .create()
                         .show();
             }
         });
+
+        borrow.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                builder.setMessage("Email contact: "+ LendarEMAIL +"\nYour Email "+BorrowerEmail
+                        )
+                        .setNegativeButton("OK", null)
+                        .create()
+                        .show();
+
+            }
+        } );
 
     }
 
