@@ -6,6 +6,8 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+//Report Item
+//Author: Sebastian Arocha
 public class ReportItemRequest extends StringRequest{
     private static final String REPORT_REQUEST_URL = "https://myxstyle120.000webhostapp.com/ReportItem.php";
     private Map<String, String> params;
