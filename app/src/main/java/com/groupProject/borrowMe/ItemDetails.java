@@ -119,7 +119,7 @@ public class ItemDetails extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                String item_id = id;
+                int item_id = Integer.parseInt(id);
                 String email = EMAIL;
 
 
@@ -129,7 +129,8 @@ public class ItemDetails extends AppCompatActivity {
 
                         try
                         {
-                            JSONObject jsonResponse = new JSONObject();
+                            JSONObject jsonResponse = new JSONObject(response);
+                            System.out.println(jsonResponse.toString());
                             boolean success = jsonResponse.getBoolean("success");
                             if(success)
                             {
@@ -154,8 +155,11 @@ public class ItemDetails extends AppCompatActivity {
                 };
 
                 ReportItemRequest reportRequest = new ReportItemRequest(item_id, email,responseListener);
+
+
                 RequestQueue queue = Volley.newRequestQueue(ItemDetails.this);
                 queue.add(reportRequest);
+                queue.start();
             }
         });
     }
