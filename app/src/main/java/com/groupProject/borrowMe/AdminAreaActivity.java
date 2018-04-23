@@ -1,3 +1,4 @@
+/* Author: Andrei Enache */
 package com.groupProject.borrowMe;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import com.groupProject.borrowMe.R;
 
 public class AdminAreaActivity extends AppCompatActivity {
 
+//Admin main page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +20,7 @@ public class AdminAreaActivity extends AppCompatActivity {
 
         final AppCompatButton cCheck = (AppCompatButton) findViewById(R.id.check);
 
-
+//Check item button is clicked
         cCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
