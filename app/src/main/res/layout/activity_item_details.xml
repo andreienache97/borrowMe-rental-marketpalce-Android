@@ -10,30 +10,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical"
-        android:padding="16dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Title"
-            />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/colorAccent"
-            android:text="title" />
-    </LinearLayout>
+        android:padding="16dp"
+        android:layout_alignParentLeft="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,16 +26,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Price"
-                />
+                android:text="Title" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="title"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Price" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:text="price" />
+                android:text="price"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,16 +68,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Description"
-                />
+                android:text="Description" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:text="description" />
+                android:text="description"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,16 +89,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Available date"
-                />
+                android:text="Available date" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewAvailable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:text="available date" />
+                android:text="available date"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,16 +110,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Unavailable date"
-                />
+                android:text="Unavailable date" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewUnavailable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:text="unavailable date" />
+                android:text="unavailable date"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
@@ -133,16 +131,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Department"
-                />
+                android:text="Department" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewDepartment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:text="department" />
+                android:text="department"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
@@ -155,16 +152,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Deposit"
-                />
+                android:text="Deposit" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewDeposit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:text="depostit" />
+                android:text="depostit"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
@@ -177,18 +173,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Fine"
-                />
+                android:text="Fine" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewFine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:text="fine" />
+                android:text="fine"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -196,7 +190,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
-
 
 
             <Button
@@ -215,13 +208,15 @@
                 android:id="@+id/bReport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Report Item" />
+                android:text="Report Item"
 
+            />
 
 
         </LinearLayout>
 
 
-
     </LinearLayout>
+
+
 </RelativeLayout>
