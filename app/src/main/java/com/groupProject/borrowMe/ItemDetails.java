@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.JSONRequests.ReportItemRequest;
 import com.groupProject.borrowMe.JSONRequests.RequestItem;
 import com.groupProject.borrowMe.JSONRequests.RequestUser;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
@@ -114,6 +115,49 @@ public class ItemDetails extends AppCompatActivity {
             }
         });
 
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String item_id = id;
+                String email = EMAIL;
+
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try
+                        {
+                            JSONObject jsonResponse = new JSONObject();
+                            boolean success = jsonResponse.getBoolean("success");
+                            if(success)
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                                builder.setMessage("Report has been submitted: ")
+                                        .setNegativeButton("OK", null)
+                                        .create()
+                                        .show();
+                            }else{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                                builder.setMessage("Failed Report")
+                                        .setNegativeButton("OK", null)
+                                        .create()
+                                        .show();
+                            }
+                        }catch(JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+
+                ReportItemRequest reportRequest = new ReportItemRequest(item_id, email,responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ItemDetails.this);
+                queue.add(reportRequest);
+            }
+        });
     }
 
     public void secondRequest(String email)
