@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.Helpers.AvailableDate;
 import com.groupProject.borrowMe.JSONRequests.RequestItem;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
+import com.groupProject.borrowMe.JSONRequests.ReportItemRequest;
 import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
@@ -136,13 +137,51 @@ public class ItemDetails extends AppCompatActivity {
             }
         } );
 
-        report.setOnClickListener( new View.OnClickListener() {
+        report.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Log.d("email",LendarEMAIL + "+" + id);
+            public void onClick(View view)
+            {
+                int item_id = Integer.parseInt(id);
+                String email = BorrowerEmail;
 
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try
+                        {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            System.out.println(jsonResponse.toString());
+                            boolean success = jsonResponse.getBoolean("success");
+                            if(success)
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                                builder.setMessage("Report has been submitted: ")
+                                        .setNegativeButton("OK", null)
+                                        .create()
+                                        .show();
+                            }else{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                                builder.setMessage("Failed Report")
+                                        .setNegativeButton("OK", null)
+                                        .create()
+                                        .show();
+                            }
+                        }catch(JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+
+                ReportItemRequest reportRequest = new ReportItemRequest(item_id, email,responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ItemDetails.this);
+                queue.add(reportRequest);
+                queue.start();
             }
-        } );
+        });
 
     }
 
