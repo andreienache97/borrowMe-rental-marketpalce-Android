@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -48,7 +49,7 @@ public class AllDepartments extends AppCompatActivity {
 
         Intent intent = getIntent();
         Department = intent.getStringExtra("department");
-
+        final String email = intent.getStringExtra( "email" );
 
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, request_url,
@@ -74,7 +75,7 @@ public class AllDepartments extends AppCompatActivity {
                                 }
 
                                 //creating adapter object and setting it to recyclerview
-                                AdaptorItemDepartments adapter = new AdaptorItemDepartments(AllDepartments.this, items);
+                                AdaptorItemDepartments adapter = new AdaptorItemDepartments(AllDepartments.this, items, email);
                                 recyclerView.setAdapter(adapter);
                             } catch (JSONException e) {
                                 e.printStackTrace();
