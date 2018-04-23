@@ -1,4 +1,4 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -10,21 +10,16 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.AcceptItemRequest;
 
-import com.groupProject.borrowMe.JSONRequests.LoginRequest;
-import com.groupProject.borrowMe.JSONRequests.UpdateRequest;
 import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
+import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class InspectItem extends AppCompatActivity {
 

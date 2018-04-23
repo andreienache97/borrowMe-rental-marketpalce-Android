@@ -18,20 +18,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".AdminLoginActivity" />
-        <activity android:name=".AdminAreaActivity" />
+        <activity android:name=".Admin.AdminLoginActivity" />
+        <activity android:name=".Admin.AdminAreaActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Add_itemActivity"
+            android:name=".Item.Add_itemActivity"
             android:label="Add_item" />
         <activity
-            android:name=".Unavaliable_Date"
+            android:name=".Helpers.Unavaliable_Date"
             android:label="Unavaliable Date" />
         <activity
-            android:name=".AvailableDate"
+            android:name=".Helpers.AvailableDate"
             android:label="Available Date" />
         <activity
             android:name=".SettingsActivity"
@@ -39,28 +39,29 @@
         <activity
             android:name=".Submit_Activity"
             android:label="Submit" />
-        <activity android:name=".UserDetails" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".ChangeUserDetails" />
+        <activity android:name=".User.UserDetails" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".User.ChangeUserDetails" />
         <activity
             android:name=".FaqActivity"
             android:label="@string/title_activity_faq" />
         <activity
             android:name=".SupportActivity"
             android:label="User Support" />
-        <activity android:name=".CheckItems" />
+        <activity android:name=".Item.CheckItems" />
         <activity
-            android:name=".InspectItem"
+            android:name=".Item.InspectItem"
             android:label="@string/title_activity_inspect_item"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Departments.AllDepartments" />
         <activity android:name=".Top_upActivity" />
-        <activity android:name=".ItemDetails"></activity>
-
-        <activity android:name=".Departments.DepartmentByName"></activity>
-
-
-
+        <activity android:name=".Item.ItemDetails" />
+        <activity android:name=".Departments.DepartmentByName" />
+        <activity android:name=".Item.MyItems" />
+        <activity
+            android:name=".Item.PostedItem"
+            android:label="@string/title_activity_posted_item"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -3,7 +3,7 @@ package com.groupProject.borrowMe;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HelpActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

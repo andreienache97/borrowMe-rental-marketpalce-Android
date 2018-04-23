@@ -1,8 +1,7 @@
 /* Author: Lau Tsz Chung,Andrei Enache, Sebastián Arocha */
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;
-import android.content.ClipData;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,8 +12,10 @@ import android.widget.Button;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Helpers.AvailableDate;
 import com.groupProject.borrowMe.JSONRequests.RequestItem;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
+import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

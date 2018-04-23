@@ -1,5 +1,5 @@
 /* Author: Lau Tsz Chung*/
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -16,7 +16,11 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Helpers.AvailableDate;
 import com.groupProject.borrowMe.JSONRequests.AddItemRequest;
+import com.groupProject.borrowMe.MainActivity;
+import com.groupProject.borrowMe.R;
+import com.groupProject.borrowMe.Helpers.Unavaliable_Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;

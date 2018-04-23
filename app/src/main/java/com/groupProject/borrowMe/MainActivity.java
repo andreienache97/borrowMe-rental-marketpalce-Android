@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +20,9 @@ import android.widget.ListView;
 
 import com.groupProject.borrowMe.Departments.AllDepartments;
 import com.groupProject.borrowMe.Departments.DepartmentByName;
+import com.groupProject.borrowMe.Item.Add_itemActivity;
+import com.groupProject.borrowMe.Item.MyItems;
+import com.groupProject.borrowMe.User.UserDetails;
 
 import java.util.Comparator;
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent = new Intent(MainActivity.this, HelpActivity.class);
+                Intent registerIntent = new Intent(MainActivity.this, SearchActivity.class);
                 MainActivity.this.startActivity(registerIntent);
             }
 
@@ -201,6 +203,10 @@ public class MainActivity extends AppCompatActivity
 
         }
         else if (id == R.id.my_items) {
+
+            Intent intent = new Intent(MainActivity.this, MyItems.class);
+            intent.putExtra("email", email);
+            MainActivity.this.startActivity(intent);
 
         }
 

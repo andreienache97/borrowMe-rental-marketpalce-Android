@@ -1,4 +1,4 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Helpers;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

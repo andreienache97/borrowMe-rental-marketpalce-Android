@@ -1,4 +1,4 @@
-/* Author: Lau Tsz Chung */
+/* Author: Lau Tsz Chung, Andrei Enache */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -144,7 +144,7 @@ public class Top_upActivity extends AppCompatActivity{
                             }
                         };
 
-//Connect to databse
+//Connect to database
                         WithdrawRequest Request = new WithdrawRequest( email, tmp, money, responseListener );
                         RequestQueue queue = Volley.newRequestQueue( Top_upActivity.this );
                         queue.add( Request );
