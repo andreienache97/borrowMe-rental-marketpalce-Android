@@ -46,7 +46,7 @@ public class AdaptorItemDepartments extends RecyclerView.Adapter<AdaptorItemDepa
         final ItemDepartments product = items.get(position);
 
         holder.title.setText(product.getItemTitle());
-        holder.price.setText(product.getItemPrice());
+        holder.price.setText(product.getItemPrice()+ " £/day");
        // holder.id.setText(product.getItemId());
 
         holder.id = product.getItemId();
