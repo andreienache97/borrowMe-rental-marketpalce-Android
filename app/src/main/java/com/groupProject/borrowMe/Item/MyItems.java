@@ -1,4 +1,4 @@
-package com.groupProject.borrowMe.Departments;
+package com.groupProject.borrowMe.Item;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +12,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Departments.DepartmentByName;
 import com.groupProject.borrowMe.R;
 import com.groupProject.borrowMe.adaptors.AdaptorItemDepartments;
+import com.groupProject.borrowMe.adaptors.AdaptorUserItems;
 import com.groupProject.borrowMe.models.ItemDepartments;
+import com.groupProject.borrowMe.models.UserItems;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,30 +29,30 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Enache on 22/04/2018.
+ * Created by Enache on 23/04/2018.
  */
 
-public class DepartmentByName extends AppCompatActivity{
-
+public class MyItems extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
 
 
-    List<ItemDepartments> items;
+    List<UserItems> items;
 
 
 
-  String request_url ="https://myxstyle120.000webhostapp.com/itemsDepartment.php";
+    String request_url ="https://myxstyle120.000webhostapp.com/myItems.php";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_department);
+        setContentView(R.layout.activity_my_items);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.ItemsAdapter);
+
+        recyclerView = (RecyclerView) findViewById(R.id.MyItems);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -57,16 +60,13 @@ public class DepartmentByName extends AppCompatActivity{
         items = new ArrayList<>();
 
         Intent intent = getIntent();
-        String dep = intent.getStringExtra("department");
         final String email = intent.getStringExtra( "email" );
 
-
-        sendRequest(dep, email);
+        sendRequest(email);
 
     }
 
-
-    public void sendRequest(final String department,final String email) {
+    public void sendRequest(final String email) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, request_url,
                 new Response.Listener<String>() {
@@ -83,15 +83,15 @@ public class DepartmentByName extends AppCompatActivity{
                                 JSONObject item = array.getJSONObject(i);
 
                                 //adding the product to product list
-                                items.add(new ItemDepartments(
+                                items.add(new UserItems(
                                         item.getString("item_id"),
-                                        item.getString("name"),
-                                        item.getString("price")
+                                        item.getString("name")
+
                                 ));
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            AdaptorItemDepartments adapter = new AdaptorItemDepartments(DepartmentByName.this, items,email);
+                            AdaptorUserItems adapter = new AdaptorUserItems(MyItems.this, items);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -107,7 +107,7 @@ public class DepartmentByName extends AppCompatActivity{
                 }) {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Department", department); //Add the data you'd like to send to the server.
+                params.put( "email", email ); //Add the data you'd like to send to the server.
                 return params;
             }
 
@@ -125,8 +125,4 @@ public class DepartmentByName extends AppCompatActivity{
         Volley.newRequestQueue(this).add(stringRequest);
     }
 
-
 }
-
-
-

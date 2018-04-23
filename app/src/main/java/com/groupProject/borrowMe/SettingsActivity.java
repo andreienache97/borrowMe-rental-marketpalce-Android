@@ -20,6 +20,8 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 
+import com.groupProject.borrowMe.Helpers.AppCompatPreferenceActivity;
+
 import java.util.List;
 
 /**

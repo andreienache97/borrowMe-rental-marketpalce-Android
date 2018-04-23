@@ -97,4 +97,5 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_inspect_item">Inspect Item</string>
+    <string name="title_activity_posted_item">PostedItem</string>
 </resources>

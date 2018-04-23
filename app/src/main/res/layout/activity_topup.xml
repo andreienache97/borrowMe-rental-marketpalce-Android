@@ -50,6 +50,40 @@
         android:layout_below="@+id/etMoney"
         android:text="Top Up" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Amount to withdraw"
+        android:id="@+id/withdraw_text"
+        android:layout_below="@+id/bTopUp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/etWithdraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/withdraw_text"
+        android:ems="10"
+        android:hint="£"
+        android:inputType="number" />
+
+
+    <Button
+        android:id="@+id/bWithdraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etWithdraw"
+        android:text="Withdraw" />
+
 
 
 

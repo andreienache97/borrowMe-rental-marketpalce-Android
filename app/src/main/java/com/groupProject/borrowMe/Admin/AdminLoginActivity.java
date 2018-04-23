@@ -1,7 +1,7 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Admin;
 
 /**
- * Created by Enache on 13/04/2018.
+ * Created by Andrei Enache on 13/04/2018.
  */
 
 import android.app.AlertDialog;
@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.AdminLoginRequest;
+import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,17 +24,18 @@ import org.json.JSONObject;
 
 public class AdminLoginActivity extends AppCompatActivity {
 
-
+//Admin Login page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login);
 
+//Fields
         final EditText adminName = (EditText) findViewById(R.id.etAdminUsername);
         final EditText adminPassword = (EditText) findViewById(R.id.etAdminPassword);
         final Button bLogin = (Button) findViewById(R.id.bSignIn);
 
-
+//login button
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +43,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                 final String password = adminPassword.getText().toString();
 
 
-                // Response received from the server
+// Response received from the server
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -50,15 +52,13 @@ public class AdminLoginActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
+//Login successfully, direct to admin page
                                 String name = jsonResponse.getString("name");
                                 Intent intent = new Intent(AdminLoginActivity.this, AdminAreaActivity.class);
                                 AdminLoginActivity.this.startActivity(intent);
 
-                               // intent.putExtra("", name);
-                                //intent.putExtra("age", age);
-                                //intent.putExtra("username", username);
-
                             } else {
+ //Error, wrong inputs
                                 AlertDialog.Builder builder = new AlertDialog.Builder(AdminLoginActivity.this);
                                 builder.setMessage("Login Failed")
                                         .setNegativeButton("Retry", null)
@@ -72,6 +72,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                     }
                 };
 
+//Connect to database
                 AdminLoginRequest loginRequest = new AdminLoginRequest(name, password, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(AdminLoginActivity.this);
                 queue.add(loginRequest);

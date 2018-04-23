@@ -1,3 +1,4 @@
+/* Author: Lau Tsz Chung,Andrei Enache */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -23,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+//set EditText and Buttons
         final EditText email = (EditText) findViewById(R.id.etEmail);
         final EditText pass = (EditText) findViewById(R.id.etPassword);
         final EditText name = (EditText) findViewById(R.id.etName);
@@ -32,17 +34,19 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText postcode = (EditText) findViewById(R.id.etPostcode);
         final Button bRegister = (Button) findViewById(R.id.bRegister);
 
-
+//When user clicks the register button
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//Validation for email
                 boolean input = isInputEditTextEmail( email );
-                String user_email = "";
-                if (input == false) {
-
+                String user_email;
+                if (!input) {
+//when the email is not in correct format
                 } else {
+//email is on the correct format
 
-
+//get the inputs from user
                              user_email = email.getText().toString();
                 final String user_password = pass.getText().toString();
                 final String user_name = name.getText().toString();
@@ -55,13 +59,15 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+//response from php code
                             JSONObject jsonResponse = new JSONObject( response );
                             boolean success = jsonResponse.getBoolean( "success" );
                             if (success) {
-
+//if registerd, direct to login page and allow user to login
                                 Intent intent = new Intent( RegisterActivity.this, LoginActivity.class );
                                 RegisterActivity.this.startActivity( intent );
                             } else {
+//cant register, email has been used in our database, password in wrong format
                                 AlertDialog.Builder builder = new AlertDialog.Builder( RegisterActivity.this );
                                 builder.setMessage( "Register Failed" )
                                         .setNegativeButton( "Retry", null )
@@ -73,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 };
-
+//Register request to connect the database by php code
                 RegisterRequest registerRequest = new RegisterRequest( user_email, user_password, user_name, user_phone, user_address, user_city, user_postcode, responseListener );
                 RequestQueue queue = Volley.newRequestQueue( RegisterActivity.this );
                 queue.add( registerRequest );
@@ -82,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+//email validation
     public boolean isInputEditTextEmail(EditText EMAIL) {
         String value = EMAIL.getText().toString().trim();
         if (value.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches()) {
