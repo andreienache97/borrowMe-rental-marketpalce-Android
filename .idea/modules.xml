@@ -3,11 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Enache\Desktop\groupProject\borrowMeApp\app\app.iml" filepath="C:\Users\Enache\Desktop\groupProject\borrowMeApp\app\app.iml" />
-      <module fileurl="file://C:\Users\Diana\Desktop\borrowMe\borrowMeApp\app\app.iml" filepath="C:\Users\Diana\Desktop\borrowMe\borrowMeApp\app\app.iml" />
+      <module fileurl="file://C:/Users/Enache/Desktop/groupProject/borrowMeApp/app/app.iml" filepath="C:/Users/Enache/Desktop/groupProject/borrowMeApp/app/app.iml" />
+      <module fileurl="file://C:/Users/Diana/Desktop/borrowMe/borrowMeApp/app/app.iml" filepath="C:/Users/Diana/Desktop/borrowMe/borrowMeApp/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/borrowMeApp.iml" filepath="$PROJECT_DIR$/borrowMeApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/borrowMeApp.iml" filepath="$PROJECT_DIR$/.idea/borrowMeApp.iml" />
-      <module fileurl="file://C:\Users\Enache\Desktop\groupProject\borrowMeApp\.idea\borrowMeApp.iml" filepath="C:\Users\Enache\Desktop\groupProject\borrowMeApp\.idea\borrowMeApp.iml" />
-      <module fileurl="file://C:\Users\Enache\Desktop\groupProject12\borrowMeApp\borrowMeApp.iml" filepath="C:\Users\Enache\Desktop\groupProject12\borrowMeApp\borrowMeApp.iml" />
+      <module fileurl="file://C:/Users/Enache/Desktop/groupProject/borrowMeApp/.idea/borrowMeApp.iml" filepath="C:/Users/Enache/Desktop/groupProject/borrowMeApp/.idea/borrowMeApp.iml" />
+      <module fileurl="file://C:/Users/Enache/Desktop/groupProject12/borrowMeApp/borrowMeApp.iml" filepath="C:/Users/Enache/Desktop/groupProject12/borrowMeApp/borrowMeApp.iml" />
     </modules>
   </component>
 </project>
