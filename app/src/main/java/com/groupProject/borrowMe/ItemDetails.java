@@ -18,6 +18,7 @@ import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.util.Log;
 
 public class ItemDetails extends AppCompatActivity {
 
@@ -130,6 +131,14 @@ public class ItemDetails extends AppCompatActivity {
                 SelectDate.putExtra( "item_id", id );
                 SelectDate.putExtra( "FromItemDetail", test );
                 startActivity( SelectDate );
+
+            }
+        } );
+
+        report.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("email",LendarEMAIL + "+" + id);
 
             }
         } );
