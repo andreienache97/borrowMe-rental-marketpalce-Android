@@ -1,3 +1,4 @@
+/* Author: Lau Tsz Chung */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -24,25 +25,32 @@ public class Top_upActivity extends AppCompatActivity{
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_topup);
+
+//Fields
             final TextView Balance = (TextView) findViewById( R.id.Balance );
             final EditText etMoney = (EditText) findViewById( R.id.etMoney );
             final Button bTopUp = (Button) findViewById( R.id.bTopUp );
 
-
             final EditText etWithdraw = (EditText) findViewById( R.id.etWithdraw );
             final Button bWithdraw = (Button) findViewById( R.id.bWithdraw );
 
+//Get vaules from intent
             Intent incomingIntent = getIntent();
             final String email = incomingIntent.getStringExtra( "email" );
             final int balance = incomingIntent.getIntExtra("balance",0);
+
+//show the balance
             Balance.setText( "Balance : £ " + balance );
 
+//Top up in order to borrow items
             bTopUp.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//Get inputs from user
                     String money = etMoney.getText().toString();
                     String tmp = String.valueOf( balance );
 
+//check if the input is valid
                     if(money.isEmpty()){
                         AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
                         builder.setMessage( "Please enter the amount of money to top up " )
@@ -51,19 +59,23 @@ public class Top_upActivity extends AppCompatActivity{
                                 .show();
 
                     }else{
+//input is valid
                         Response.Listener<String> responseListener = new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
+//Response from php code
                                     JSONObject jsonResponse = new JSONObject( response );
                                     boolean success = jsonResponse.getBoolean( "success" );
                                     if (success) {
+//direct user back to the main page
                                         int newBalance = jsonResponse.getInt( "balance" );
-                                        Intent BacktoMainintent = new Intent( Top_upActivity.this, Top_upActivity.class );
+                                        Intent BacktoMainintent = new Intent( Top_upActivity.this, MainActivity.class );
                                         BacktoMainintent.putExtra( "email", email );
                                         BacktoMainintent.putExtra( "balance", newBalance);
                                         Top_upActivity.this.startActivity( BacktoMainintent );
                                     } else {
+//php code will check if the input is 0 or not
                                         AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
                                         builder.setMessage( "Please enter a valid amount( not 0 )" )
                                                 .setNegativeButton( "Retry", null )
@@ -75,6 +87,7 @@ public class Top_upActivity extends AppCompatActivity{
                                 }
                             }
                         };
+//Connect to database
                         Top_upRequest TopUpRequest = new Top_upRequest( email, tmp, money, responseListener );
                         RequestQueue queue = Volley.newRequestQueue( Top_upActivity.this );
                         queue.add( TopUpRequest );
@@ -85,15 +98,16 @@ public class Top_upActivity extends AppCompatActivity{
                 }
             } );
 
+//Withdraw cash from account
             bWithdraw.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     String money = etWithdraw.getText().toString();
                     String tmp = String.valueOf( balance );
-
+//check if there is enough balance
                     int difference = balance - Integer.parseInt(money);
-
+//error
                     if(money.isEmpty() || difference < 0){
                         AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
                         builder.setMessage( "Please enter the the right amount to withdraw " )
@@ -106,15 +120,18 @@ public class Top_upActivity extends AppCompatActivity{
                             @Override
                             public void onResponse(String response) {
                                 try {
+//Response from php code
                                     JSONObject jsonResponse = new JSONObject( response );
                                     boolean success = jsonResponse.getBoolean( "success" );
                                     if (success) {
+ //direct user back to main page
                                         int newBalance = jsonResponse.getInt( "balance" );
-                                        Intent BacktoMainintent = new Intent( Top_upActivity.this, Top_upActivity.class );
+                                        Intent BacktoMainintent = new Intent( Top_upActivity.this, MainActivity.class );
                                         BacktoMainintent.putExtra( "email", email );
                                         BacktoMainintent.putExtra( "balance", newBalance);
                                         Top_upActivity.this.startActivity( BacktoMainintent );
                                     } else {
+//cant enter 0
                                         AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
                                         builder.setMessage( "Please enter a valid amount( not 0 )" )
                                                 .setNegativeButton( "Retry", null )
@@ -126,6 +143,8 @@ public class Top_upActivity extends AppCompatActivity{
                                 }
                             }
                         };
+
+//Connect to databse
                         WithdrawRequest Request = new WithdrawRequest( email, tmp, money, responseListener );
                         RequestQueue queue = Volley.newRequestQueue( Top_upActivity.this );
                         queue.add( Request );

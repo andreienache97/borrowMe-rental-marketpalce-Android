@@ -1,3 +1,4 @@
+/* Author: Andrei Enache */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -18,6 +19,7 @@ import org.json.JSONObject;
 
 public class UserDetails extends AppCompatActivity {
 
+//Fields
     public AppCompatTextView textViewEmail;
     public AppCompatTextView textViewName;
     public AppCompatTextView textViewPhone;
@@ -40,12 +42,12 @@ public class UserDetails extends AppCompatActivity {
         textViewPostcode = (AppCompatTextView) findViewById(R.id.textViewPostcode);
         button = (Button) findViewById(R.id.bChange);
 
-
-
+//get values from intent
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
         Email = email;
 
+//show the user details
         Response.Listener<String> responseListener = new Response.Listener<String>() {
 
             @Override
@@ -72,6 +74,7 @@ public class UserDetails extends AppCompatActivity {
                         textViewPostcode.setText(postcode);
 
                     } else {
+ //Error
                         AlertDialog.Builder builder = new AlertDialog.Builder(UserDetails.this);
                         builder.setMessage("Can not fetch the user details at the moment")
                                 .setNegativeButton("Retry", null)
@@ -85,10 +88,12 @@ public class UserDetails extends AppCompatActivity {
             }
         };
 
+//Connec to database
         RequestUser loginRequest = new RequestUser(Email, responseListener);
         RequestQueue queue = Volley.newRequestQueue(UserDetails.this);
         queue.add(loginRequest);
 
+//update changes
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

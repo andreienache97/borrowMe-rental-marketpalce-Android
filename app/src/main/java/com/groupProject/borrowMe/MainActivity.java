@@ -3,20 +3,22 @@ package com.groupProject.borrowMe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.groupProject.borrowMe.Departments.AllDepartments;
+import com.groupProject.borrowMe.Departments.DepartmentByName;
 
 import java.util.Comparator;
 
@@ -24,8 +26,12 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView listView;
-    private static String[] LANG = new String[] {"All Departments","Books, Comic & Magazines", "Business, Office & Industrial", "Cameras & Photography", "Cars,Motorcycles & Vehicles", "Clothes, Shoes & Accessories", "Computers/Tablets & Networking", "DVDs, Films & TV", "Event Tickets", "Garden & Patio", "Health & Beauty", "Holiday & Travel", "Home,Furniture", "Mobile Phones & Communication", "Music, Sound & Vision", "Sporting Goods", "Video Games & Consoles", "Everything else"};
+    private static String[] LANG = new String[] {"All Departments","Mobile Devices & Tablets" ,"Camera & Accessories",
+            "Computer & Accessories", "Tools & Equipments", "Bicycles & E-Scooter",
+            "Car Accessories", "Sports Equipments", "Party", "Clothing", "Costumes", "Travel Essentials",
+            "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Music Related", "Other"};
 
+    //HI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
     void ListItem(){
         listView = (ListView)findViewById(R.id.lv_display);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.department_list,LANG);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>( this, R.layout.department_list, LANG );
         adapter.sort(new Comparator<String>() {
             @Override
             public int compare(String lhs, String rhs) {
@@ -73,11 +79,29 @@ public class MainActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String display = (String)listView.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this, display, Toast.LENGTH_SHORT).show();
+                String dep = (String)listView.getItemAtPosition(position);
+                Intent intent = getIntent();
+                String email = intent.getStringExtra("email");
+
+                if(dep == "All Departments") {
+                    Intent listItems = new Intent(MainActivity.this, AllDepartments.class);
+                    listItems.putExtra("department", dep);
+                    listItems.putExtra( "email", email );
+                    MainActivity.this.startActivity(listItems);
+                }else
+                    {
+                    Intent listItems = new Intent(MainActivity.this, DepartmentByName.class);
+                    listItems.putExtra("department", dep);
+                    listItems.putExtra( "email", email );
+                    MainActivity.this.startActivity(listItems);
+
+                }
+
             }
         });
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -145,20 +169,48 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent incomingintent = getIntent();
+        String email = incomingintent.getStringExtra("email");
+        int balance = incomingintent.getIntExtra( "balance",0 );
 
         if (id == R.id.add_item) {
-            // Handle the add item action
-        } else if (id == R.id.fav_items) {
+            Intent intent = new Intent(MainActivity.this, Add_itemActivity.class);
+            intent.putExtra("email", email);
+            startActivity(intent);
+        }
+        else if (id == R.id.top_up) {
+            Intent TopUpintent= new Intent( MainActivity.this, Top_upActivity.class );
+            TopUpintent.putExtra( "email", email );
+            TopUpintent.putExtra( "balance", balance );
+            startActivity( TopUpintent );
 
-        } else if (id == R.id.lent_items) {
+
+        }
+        else if (id == R.id.fav_items) {
+
+        }
+        else if (id == R.id.borrow_request) {
+
+        }
+        else if (id == R.id.my_items) {
+
+        }
+
+        else if (id == R.id.lent_items) {
 
         } else if (id == R.id.borrowed_items) {
 
-        } else if (id == R.id.history) {
+        }
 
-        } else if (id == R.id.message_user) {
+        else if (id == R.id.message_user) {
 
-        } //change1
+        } else if (id == R.id.faq){
+            Intent registerIntent = new Intent(MainActivity.this, FaqActivity.class);
+            MainActivity.this.startActivity(registerIntent);
+        } else if (id == R.id.support){
+            Intent registerIntent = new Intent(MainActivity.this, SupportActivity.class);
+            MainActivity.this.startActivity(registerIntent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
