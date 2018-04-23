@@ -1,6 +1,6 @@
+/* Author: Lau Tsz Chung, */
 package com.groupProject.borrowMe;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +19,7 @@ public class AvailableDate extends AppCompatActivity{
 
         ACalendarView = (CalendarView) findViewById( R.id.calendarView );
         Intent incomingIntent = getIntent();
+//Getting variables from intent
         final String email = incomingIntent.getStringExtra( "email" );
         final String UDate = incomingIntent.getStringExtra( "UDate" );
         final String name = incomingIntent.getStringExtra( "Name" );
@@ -34,6 +35,7 @@ public class AvailableDate extends AppCompatActivity{
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
                 String date = i + "-" + (i1+1) + "-" + i2 ;
+//"check" is to check which page come from, if check = 0, its from item details, which means user is trying to borrow an item
                 if(check == 0){
                     Intent GoToUDate = new Intent( AvailableDate.this, Unavaliable_Date.class );
                     GoToUDate.putExtra( "Lenderemail", LenderEmail );
@@ -44,6 +46,7 @@ public class AvailableDate extends AppCompatActivity{
                     startActivity( GoToUDate );
 
                 }else {
+//if its not from item details, must be from add item page, which means the user is adding an item
                     Intent BackToAddItem = new Intent( AvailableDate.this, Add_itemActivity.class );
                     BackToAddItem.putExtra( "email", email );
                     BackToAddItem.putExtra( "ADate", date );

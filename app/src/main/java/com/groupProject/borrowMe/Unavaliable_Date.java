@@ -1,6 +1,6 @@
+/* Author: Lau Tsz Chung */
 package com.groupProject.borrowMe;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +19,7 @@ public class Unavaliable_Date extends AppCompatActivity{
 
         UCalendarView = (CalendarView) findViewById( R.id.calendarView2 );
         Intent incomingIntent = getIntent();
+//Got from intent
         final String email = incomingIntent.getStringExtra( "email" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
         final String name = incomingIntent.getStringExtra( "Name" );
@@ -30,12 +31,13 @@ public class Unavaliable_Date extends AppCompatActivity{
         final String item_id = incomingIntent.getStringExtra( "item_id" );
         final int check = incomingIntent.getIntExtra( "FromItemDetail",1 );
 
-
+//When the user chose a date
         UCalendarView.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
                 String date = i + "-" + (i1+1) + "-" + i2 ;
                 if(check == 0){
+//"check" is to check which page come from, if check = 0, its from item details, which means user is trying to borrow an item
                     Intent GotoNext = new Intent( Unavaliable_Date.this, Submit_Activity.class );
                     GotoNext.putExtra( "Lenderemail", LenderEmail );
                     GotoNext.putExtra( "Borrowemail", BorrowEmal );
@@ -46,6 +48,7 @@ public class Unavaliable_Date extends AppCompatActivity{
                     startActivity( GotoNext );
 
                 }else {
+//if its not from item details, must be from add item page, which means the user is adding an item
                     Intent BackToAddItem = new Intent( Unavaliable_Date.this, Add_itemActivity.class );
                     BackToAddItem.putExtra( "email", email );
                     BackToAddItem.putExtra( "UDate", date );

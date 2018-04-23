@@ -1,3 +1,4 @@
+/* Author: Lau Tsz Chung*/
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -25,11 +26,12 @@ import java.util.Calendar;
 
 public class Add_itemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+//List of departments name
     private static final String[] DepartmentNames={"Select a department","Mobile Devices & Tablets" ,"Camera & Accessories",
     "Computer & Accessories", "Tools & Equipments", "Bicycles & E-Scooter",
     "Car Accessories", "Sports Equipments", "Party", "Clothing", "Costumes", "Travel Essentials",
     "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Music Related", "Other"};
-
+//options for deposit plan and fine plan
     private static final String [] Deposit = {"Refundable deposit","none - £0","low - £25", "normal - £75", "high - £125"};
     private static final String [] Fine = {"Late return fine","low - £15/day", "normal - £30/day", "high - £60/day"};
 
@@ -83,7 +85,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         final AppCompatButton bSubmit = (AppCompatButton) findViewById( R.id.bSubmit );
 
         Intent incomingIntent = getIntent();
-
+//Get from the previous page
         final String email = incomingIntent.getStringExtra( "email" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
         final String UDate = incomingIntent.getStringExtra( "UDate" );
@@ -91,6 +93,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         final String P1 = incomingIntent.getStringExtra( "Price" );
         final String D1 = incomingIntent.getStringExtra( "Des" );
 
+//show to user, if they are not null
             DADate.setText( ADate );
             DUDate.setText( UDate );
             etItemName.setText( N1 );
@@ -98,7 +101,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
             etDes.setText( D1 );
 
 
-//When user click select available date
+//When user select available date
         tvADate.setOnClickListener( new View.OnClickListener() {
 
             @Override
@@ -116,7 +119,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
             }
         } );
 
-//When user click select unavailable date
+//When user select unavailable date
         tvUDate.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,9 +136,12 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
             }
         } );
 
+//When user clicks Submit
         bSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+//Get inputs from user
                 final String item_name = etItemName.getText().toString();
                 final String item_price = etPrice.getText().toString();
                 final String item_Des = etDes.getText().toString();
@@ -145,10 +151,12 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                 final String deposit = myDeposit.getSelectedItem().toString();
                 Spinner myfine=(Spinner) findViewById(R.id.simpleSpinner3);
                 final String fine = myfine.getSelectedItem().toString();
+
+//All Validation, Empty check, Date validation
                 boolean check = TextIsNull( item_name,  item_price,  item_Des,  ADate,  UDate);
                 boolean test = ValidDates(ADate,UDate);
                 if(!ValidDepartmentAndFine( Department, deposit, fine ) || !check || !test){
-
+//if one of all inputs is wrong, error message is generated in the method
 
                 } else {
 
@@ -156,15 +164,17 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                         @Override
                         public void onResponse(String response) {
                             try {
+//Response from php code
                                 JSONObject jsonResponse = new JSONObject( response );
                                 boolean success = jsonResponse.getBoolean( "success" );
                                 if (success) {
                                     String email = jsonResponse.getString( "email" );
-
+//item has been submitted to our database
                                     Intent BacktoMainintent = new Intent( Add_itemActivity.this, MainActivity.class );
                                     BacktoMainintent.putExtra( "email", email );
                                     Add_itemActivity.this.startActivity( BacktoMainintent );
                                 } else {
+//Insertion denied
                                     AlertDialog.Builder builder = new AlertDialog.Builder( Add_itemActivity.this );
                                     builder.setMessage( "Failed" )
                                             .setNegativeButton( "Retry", null )
@@ -176,7 +186,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
                             }
                         }
                     };
-
+//Request that connect the database with php code
                     AddItemRequest addItemRequest = new AddItemRequest( email, item_name, item_price, item_Des, ADate, UDate, Department, finalD, finalF, responseListener );
                     RequestQueue queue = Volley.newRequestQueue( Add_itemActivity.this );
                     queue.add( addItemRequest );
@@ -201,6 +211,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+//Check if one of the spinners has not selected
     private boolean ValidDepartmentAndFine(String Department, String deposit, String fine) {
         if (Department.equals( DepartmentNames[0] )) {
 
@@ -249,6 +260,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         return true;
     }
 
+//Empty text fields check
     private boolean TextIsNull(String Name, String Price, String Des, String ADate, String UDate) {
         if (Name.isEmpty() ) {
 
@@ -286,7 +298,7 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         }
         return true;
     }
-
+//Check if the Available , Unavailabe date is valid(not in the past, U Date cant before A Date)
     private boolean ValidDates(String ADate, String UDate) {
         Calendar calendar;
         SimpleDateFormat simpleDateFormat;

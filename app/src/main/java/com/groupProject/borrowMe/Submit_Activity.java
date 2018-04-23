@@ -1,3 +1,4 @@
+/* Author: Lau Tsz Chung  */
 package com.groupProject.borrowMe;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ public class Submit_Activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit);
+//Show the input details when user wants to borrow an item before submit
         final TextView StartDate = (TextView) findViewById( R.id.StartDate );
         final TextView EndDate = (TextView) findViewById( R.id.EndDate );
         final TextView Item_id = (TextView) findViewById( R.id.item_id );
