@@ -1,3 +1,8 @@
+/* Author: Andrei Enache
+* This is the step after users update their personal details,
+* it will connect to the database to make changes
+* Note that this is not a visible page to anyone
+ * */
 package com.groupProject.borrowMe.User;
 
 import android.app.AlertDialog;

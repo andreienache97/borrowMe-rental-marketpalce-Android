@@ -1,4 +1,7 @@
-/* Author: Lau Tsz Chung, Andrei Enache */
+/* Author: Lau Tsz Chung, Andrei Enache
+ * This is the top up activity, allow user to top up and withdraw cash from our system,
+  * Users must have eoungh money in theirs account in order to borrow an item
+   */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;

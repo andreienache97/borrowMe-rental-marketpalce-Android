@@ -1,4 +1,9 @@
-/* Author: Lau Tsz Chung*/
+/* Author: Lau Tsz Chung
+* Login page, is the initial page when open the app, which allows user to login if they are registered,
+* user will need to enter email and password which match the record stored in our database system
+* if they are not, there's a text view that will direct to the register page
+* Admin could also login here to check items and response to support ticket
+* */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;

@@ -1,4 +1,7 @@
-/* Author: Lau Tsz Chung,Andrei Enache */
+/* Author: Lau Tsz Chung,Andrei Enache
+ * This is the register page which allows new users to register,
+  * they will need to enter some personal details, email, password, address etc
+  * email,password will be used for login */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
