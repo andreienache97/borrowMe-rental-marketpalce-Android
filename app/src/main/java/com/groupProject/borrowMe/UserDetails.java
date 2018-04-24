@@ -34,6 +34,10 @@ public class UserDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         textViewName = (AppCompatTextView) findViewById(R.id.textViewName);
         textViewEmail = (AppCompatTextView) findViewById(R.id.textViewEmail);
         textViewPhone = (AppCompatTextView) findViewById(R.id.textViewPhone);
