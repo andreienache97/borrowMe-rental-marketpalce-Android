@@ -43,6 +43,7 @@
         <activity
             android:name=".Submit_Activity"
             android:label="Submit" />
+
         <activity android:name=".UserDetails" android:parentActivityName=".MainActivity"></activity>>
         <activity android:name=".HelpActivity" />
         <activity android:name=".ChangeUserDetails" />
