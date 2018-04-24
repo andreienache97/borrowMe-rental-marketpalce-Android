@@ -45,6 +45,10 @@ public class DepartmentByName extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_department);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         recyclerView = (RecyclerView) findViewById(R.id.ItemsAdapter);
         recyclerView.setHasFixedSize(true);

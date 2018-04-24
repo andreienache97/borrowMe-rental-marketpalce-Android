@@ -33,6 +33,10 @@ public class ItemDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
 
+//return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 //setting text views and buttons
         title = (AppCompatTextView) findViewById(R.id.textViewTitle);
         price = (AppCompatTextView) findViewById(R.id.textViewPrice);
