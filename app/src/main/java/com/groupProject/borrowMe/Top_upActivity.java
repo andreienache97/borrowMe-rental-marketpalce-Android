@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,13 +21,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Top_upActivity extends AppCompatActivity{
-
+private Button button2;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_topup);
 
 //Fields
+
+            //return button
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
             final TextView Balance = (TextView) findViewById( R.id.Balance );
             final EditText etMoney = (EditText) findViewById( R.id.etMoney );
             final Button bTopUp = (Button) findViewById( R.id.bTopUp );
@@ -98,6 +105,18 @@ public class Top_upActivity extends AppCompatActivity{
                 }
             } );
 
+
+
+
+
+
+
+
+
+
+
+
+
 //Withdraw cash from account
             bWithdraw.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -159,5 +178,15 @@ public class Top_upActivity extends AppCompatActivity{
 
         }
 
+// return button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
 
+            if (id == android.R.id.home){
+                this.finish();
+            }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

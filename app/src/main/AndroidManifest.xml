@@ -54,7 +54,13 @@
             android:label="@string/title_activity_inspect_item"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Departments.AllDepartments" />
-        <activity android:name=".Top_upActivity" />
+
+        <!--back button-->
+        <activity android:name=".Top_upActivity" android:parentActivityName=".MainActivity">
+
+        </activity>
+        <!-- end of back button-->
+
         <activity android:name=".ItemDetails"></activity>
 
         <activity android:name=".Departments.DepartmentByName"></activity>
