@@ -70,7 +70,9 @@
         <activity
             android:name=".BorrowRequestDetails"
             android:label="@string/title_activity_borrow_request_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BorrowedItems" />
+        <activity android:name=".BorrowedItemsDetails"></activity>
     </application>
 
 </manifest>

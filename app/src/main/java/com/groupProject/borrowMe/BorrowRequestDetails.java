@@ -128,7 +128,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                acceptRequest(borrow_id);
+                acceptRequest(borrow_id,ITEM_ID);
             }
         });
 
@@ -149,7 +149,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
     }
 
 
-    public void acceptRequest(final String borrow_id){
+    public void acceptRequest(final String borrow_id,final String item_id){
         Response.Listener<String> deleteItem = new Response.Listener<String>() {
             @Override
             public void onResponse(String response1) {
@@ -181,7 +181,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
             }
         };
 
-        acceptBorrowRequest Request = new acceptBorrowRequest(borrow_id, deleteItem);
+        acceptBorrowRequest Request = new acceptBorrowRequest(borrow_id,item_id, deleteItem);
         RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
         queue.add(Request);
     }
@@ -300,7 +300,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
                                 .create()
                                 .show();
 
-                        //returnDeposit(EMAIL,tmp,tmp_dep);
+                       // returnDeposit(EMAIL,tmp,tmp_dep);
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
                         builder.setMessage("Error")
@@ -321,7 +321,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
     }
 
-    public void returnDeposit(final String lender_email,String balance,String deposit) {
+    public void returnDeposit(final String lender_email,final String balance,final String deposit) {
 
         Response.Listener<String> deleteItem = new Response.Listener<String>() {
             @Override
@@ -334,11 +334,11 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
                     if (success1) {
 
-                      //  AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                      //  builder.setMessage("The request has been denied and the deposit returned.")
-                       //         .setNegativeButton("Ok", null)
-                        //        .create()
-                        //        .show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
+                        builder.setMessage("The request has been denied and the deposit returned.")
+                                .setNegativeButton("Ok", null)
+                                .create()
+                                .show();
 
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);

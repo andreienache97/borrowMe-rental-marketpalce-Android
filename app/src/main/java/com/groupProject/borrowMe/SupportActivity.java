@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.groupProject.borrowMe.JSONRequests.SupportRequest;
+//import com.groupProject.borrowMe.JSONRequests.SupportRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,9 +65,9 @@ public class SupportActivity extends AppCompatActivity {
                         }
                     }
                 };
-                SupportRequest SupportRequest = new SupportRequest(issue, comment, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
-                queue.add(SupportRequest);
+               // SupportRequest SupportRequest = new SupportRequest(issue, comment, responseListener);
+               // RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
+              //  queue.add(SupportRequest);
             }
         });
     }
