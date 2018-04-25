@@ -13,9 +13,11 @@ import android.view.View;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Departments.DepartmentByName;
 import com.groupProject.borrowMe.JSONRequests.RequestUser;
 import com.groupProject.borrowMe.JSONRequests.RequestUserItem;
 import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
+import com.groupProject.borrowMe.MainActivity;
 import com.groupProject.borrowMe.R;
 import com.groupProject.borrowMe.User.UserDetails;
 
@@ -67,6 +69,12 @@ public class PostedItem extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
 
+                Intent listItems = new Intent(PostedItem.this, ChangeItemDetails.class);
+                listItems.putExtra("title", name);
+                listItems.putExtra( "price", price );
+                listItems.putExtra( "description", description );
+                listItems.putExtra( "item_id", id );
+                PostedItem.this.startActivity(listItems);
 
 
             }
