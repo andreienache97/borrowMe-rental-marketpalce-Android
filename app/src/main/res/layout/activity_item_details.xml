@@ -9,12 +9,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="339dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_alignParentLeft="true">
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -194,25 +194,38 @@
 
             <Button
                 android:id="@+id/bUserDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
                 android:text="Contact details" />
 
             <Button
                 android:id="@+id/bBorrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="108dp"
+                android:layout_height="match_parent"
                 android:text="Borrow Item" />
 
             <Button
                 android:id="@+id/bReport"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Report Item"
 
-            />
+                />
 
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Add To Favorites" />
         </LinearLayout>
 
 

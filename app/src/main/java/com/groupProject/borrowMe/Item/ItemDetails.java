@@ -2,6 +2,7 @@
 package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import com.groupProject.borrowMe.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class ItemDetails extends AppCompatActivity {
 
@@ -137,49 +140,85 @@ public class ItemDetails extends AppCompatActivity {
             }
         } );
 
+        //Report Button
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                int item_id = Integer.parseInt(id);
-                String email = BorrowerEmail;
+                final EditText reportInputText = new EditText(ItemDetails.this);
+                LinearLayout.LayoutParams layParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                                                                    LinearLayout.LayoutParams.MATCH_PARENT);
+                reportInputText.setLayoutParams(layParameters);
 
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+                //Show User Details and Prompt to enter the report reason
+                AlertDialog.Builder reportInput= new AlertDialog.Builder(ItemDetails.this);
+                reportInput.setTitle("Report Submission");
+                reportInput.setMessage("Item: "+ TITLE +"\nDepartment: "+ DEPARTMENT +"Owner: "+ LendarEMAIL +
+                             "\nEnter your reason for reporting this item (MAX 140 Characters): \n")
+                            .setView(reportInputText)
+                            .setPositiveButton("Submit", new DialogInterface.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                        try
-                        {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            System.out.println(jsonResponse.toString());
-                            boolean success = jsonResponse.getBoolean("success");
-                            if(success)
-                            {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
-                                builder.setMessage("Report has been submitted: ")
-                                        .setNegativeButton("OK", null)
-                                        .create()
-                                        .show();
-                            }else{
-                                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
-                                builder.setMessage("Failed Report")
-                                        .setNegativeButton("OK", null)
-                                        .create()
-                                        .show();
-                            }
-                        }catch(JSONException e)
-                        {
-                            e.printStackTrace();
-                        }
+                                    //Gets Item id, Reporter e-mail and Reason
+                                    int item_id = Integer.parseInt(id);
+                                    String email = BorrowerEmail;
+                                    String reason = reportInputText.getText().toString();
 
-                    }
-                };
+                                    //Create a response listener
+                                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
 
-                ReportItemRequest reportRequest = new ReportItemRequest(item_id, email,responseListener);
-                RequestQueue queue = Volley.newRequestQueue(ItemDetails.this);
-                queue.add(reportRequest);
-                queue.start();
+                                            //Try to connect to the PHP File And get response boolean
+                                            try
+                                            {
+                                                JSONObject jsonResponse = new JSONObject(response);
+                                                System.out.println(jsonResponse.toString());
+                                                boolean success = jsonResponse.getBoolean("success");
+                                                //If Connection Successful then Display Successful submission message
+                                                //Else Display Submission Error
+                                                if(success)
+                                                {
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                                                    builder.setMessage("Report has been submitted: ")
+                                                            .setNegativeButton("OK", null)
+                                                            .create()
+                                                            .show();
+                                                }else{
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                                                    builder.setMessage("Failed Report")
+                                                            .setNegativeButton("OK", null)
+                                                            .create()
+                                                            .show();
+                                                }//Catch Exception and Print Stack Trace
+                                            }catch(JSONException e)
+                                            {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    };
+
+                                    //Create the connection between the The Listener and the class that interacts with the Php
+                                    ReportItemRequest reportRequest = new ReportItemRequest(item_id, email,reason,responseListener);
+                                    //Create a queue and add the request to it
+                                    RequestQueue queue = Volley.newRequestQueue(ItemDetails.this);
+                                    queue.add(reportRequest);
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .create()
+                            .show();
+
+
+
             }
         });
 
