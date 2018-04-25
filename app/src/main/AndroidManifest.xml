@@ -65,6 +65,11 @@
         <activity
             android:name=".Item.ChangeItemDetails"
             android:label="@string/title_activity_change_item_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BorrowItemRequests" />
+        <activity
+            android:name=".BorrowRequestDetails"
+            android:label="@string/title_activity_borrow_request_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

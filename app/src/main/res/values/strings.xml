@@ -99,4 +99,5 @@
     <string name="title_activity_inspect_item">Inspect Item</string>
     <string name="title_activity_posted_item">PostedItem</string>
     <string name="title_activity_change_item_details">ChangeItemDetails</string>
+    <string name="title_activity_borrow_request_details">BorrowRequestDetails</string>
 </resources>

@@ -206,6 +206,11 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.borrow_request) {
 
+
+            Intent intent = new Intent(MainActivity.this, BorrowItemRequests.class);
+            intent.putExtra("email", email);
+            MainActivity.this.startActivity(intent);
+
         }
         else if (id == R.id.my_items) {
 
