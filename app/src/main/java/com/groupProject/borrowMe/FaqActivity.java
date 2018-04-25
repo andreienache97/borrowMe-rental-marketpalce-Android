@@ -1,3 +1,6 @@
+/* Author:
+ * FAQ page will show the questions that are most likely to be asked by users
+ * */
 package com.groupProject.borrowMe;
 
 import android.os.Bundle;

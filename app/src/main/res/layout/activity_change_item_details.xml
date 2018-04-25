@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.groupProject.borrowMe.Item.PostedItem">
+    tools:context="com.groupProject.borrowMe.Item.ChangeItemDetails">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_posted_item" />
+    <include layout="@layout/content_change_item_details" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/upload"
@@ -28,16 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/upload" />
-
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/delete" />
+        app:srcCompat="@drawable/check" />
 
 </android.support.design.widget.CoordinatorLayout>

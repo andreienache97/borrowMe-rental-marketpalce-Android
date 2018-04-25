@@ -1,4 +1,8 @@
-/* Author: Andrei Enache */
+/* Author: Andrei Enache, Sebastián Arocha, Lau Tsz Chung
+ * Main page for the app, include all major function on the left drawer, Add item, Top up, My item, FAQ
+  * the centre of the page is search by departments, when user select one of the deparments on the list,
+  * the app will direct user to the search results of that department
+  * top right corner has a drop down menu, include settings, user details, logout*/
 package com.groupProject.borrowMe;
 
 import android.content.Intent;
@@ -189,6 +193,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.top_up) {
 //Top up
+
             Intent TopUpintent= new Intent( MainActivity.this, Top_upActivity.class );
             TopUpintent.putExtra( "email", email );
             TopUpintent.putExtra( "balance", balance );

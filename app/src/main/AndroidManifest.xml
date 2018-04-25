@@ -61,6 +61,10 @@
         <activity
             android:name=".Item.PostedItem"
             android:label="@string/title_activity_posted_item"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Item.ChangeItemDetails"
+            android:label="@string/title_activity_change_item_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
