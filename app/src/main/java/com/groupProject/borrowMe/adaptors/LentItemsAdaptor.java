@@ -8,23 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.groupProject.borrowMe.Item.BorrowedItemsDetails;
+import com.groupProject.borrowMe.Item.LentItemsDetails;
 import com.groupProject.borrowMe.R;
-import com.groupProject.borrowMe.models.BorrowItem;
+import com.groupProject.borrowMe.models.LentItem;
 
 import java.util.List;
 
-
 /**
- * Created by Enache on 25/04/2018.
+ * Created by Enache on 26/04/2018.
  */
 
-public class BorrowedItemsAdaptor extends  RecyclerView.Adapter<BorrowedItemsAdaptor.ViewHolder>{
+public class LentItemsAdaptor extends  RecyclerView.Adapter<LentItemsAdaptor.ViewHolder> {
 
     private static Context context;
-    private List<BorrowItem> req;
+    private List<LentItem> req;
 
-    public BorrowedItemsAdaptor(Context context, List<BorrowItem> req) {
+    public LentItemsAdaptor(Context context, List<LentItem> req) {
         this.context = context;
         this.req = req;
     }
@@ -33,19 +32,17 @@ public class BorrowedItemsAdaptor extends  RecyclerView.Adapter<BorrowedItemsAda
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.single_borrowed_items, null);
+        View view = inflater.inflate(R.layout.single_lent_item, null);
         return new ViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final BorrowItem LIST = req.get(position);
+        final LentItem LIST = req.get(position);
 
-        holder.Lemail.setText(LIST.getEmailLender());
+        holder.Gemail.setText(LIST.getEmailBorrower());
 
         holder.id = LIST.getBorrowId();
-
 
     }
 
@@ -57,7 +54,7 @@ public class BorrowedItemsAdaptor extends  RecyclerView.Adapter<BorrowedItemsAda
 
     public static class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
-        public AppCompatTextView Lemail;
+        public AppCompatTextView Gemail;
         String id;
 
 
@@ -68,13 +65,13 @@ public class BorrowedItemsAdaptor extends  RecyclerView.Adapter<BorrowedItemsAda
             super(itemView);
             itemView.setOnClickListener(this);
 
-            Lemail = (AppCompatTextView) itemView.findViewById(R.id.emailLender);
+            Gemail = (AppCompatTextView) itemView.findViewById(R.id.emailBorrower);
 
         }
 
         @Override
         public void onClick(View view) {
-            Intent listItems = new Intent(context, BorrowedItemsDetails.class);
+            Intent listItems = new Intent(context, LentItemsDetails.class);
             listItems.putExtra("borrow_id", id);
 
             context.startActivity(listItems);

@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.groupProject.borrowMe.BorrowRequestDetails;
-import com.groupProject.borrowMe.Item.PostedItem;
+import com.groupProject.borrowMe.Item.BorrowRequestDetails;
 import com.groupProject.borrowMe.R;
 import com.groupProject.borrowMe.models.BorrowItem;
-import com.groupProject.borrowMe.models.UserItems;
 
 import java.util.List;
 

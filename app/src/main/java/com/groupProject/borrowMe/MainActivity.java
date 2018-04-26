@@ -25,6 +25,9 @@ import android.widget.ListView;
 import com.groupProject.borrowMe.Departments.AllDepartments;
 import com.groupProject.borrowMe.Departments.DepartmentByName;
 import com.groupProject.borrowMe.Item.Add_itemActivity;
+import com.groupProject.borrowMe.Item.BorrowItemRequests;
+import com.groupProject.borrowMe.Item.BorrowedItems;
+import com.groupProject.borrowMe.Item.LentItems;
 import com.groupProject.borrowMe.Item.MyItems;
 import com.groupProject.borrowMe.User.UserDetails;
 
@@ -221,6 +224,10 @@ public class MainActivity extends AppCompatActivity
         }
 
         else if (id == R.id.lent_items) {
+
+            Intent intent = new Intent(MainActivity.this, LentItems.class);
+            intent.putExtra("email", email);
+            MainActivity.this.startActivity(intent);
 
         } else if (id == R.id.borrowed_items) {
 

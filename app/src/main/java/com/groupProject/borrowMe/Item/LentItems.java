@@ -1,4 +1,4 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Item;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +12,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.groupProject.borrowMe.Item.MyItems;
-import com.groupProject.borrowMe.adaptors.AdaptorUserItems;
-import com.groupProject.borrowMe.adaptors.BorrowRequestAdaptor;
-import com.groupProject.borrowMe.models.BorrowItem;
-import com.groupProject.borrowMe.models.UserItems;
+import com.groupProject.borrowMe.R;
+import com.groupProject.borrowMe.adaptors.LentItemsAdaptor;
+import com.groupProject.borrowMe.models.LentItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,29 +25,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Enache on 25/04/2018.
- */
-
-public class BorrowItemRequests extends AppCompatActivity {
-
+public class LentItems extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
 
-    List<BorrowItem> requests;
+    List<LentItem> requests;
 
 
 
-    String request_url ="https://myxstyle120.000webhostapp.com/borrowRequests.php";
+    String request_url ="https://myxstyle120.000webhostapp.com/lentItems.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_borrow_item_requests);
+        setContentView(R.layout.activity_lent_items);
 
-
-        recyclerView = (RecyclerView) findViewById(R.id.BorrowAdapter);
+        recyclerView = (RecyclerView) findViewById(R.id.LentAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -58,6 +51,7 @@ public class BorrowItemRequests extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String email = intent.getStringExtra( "email" );
+
 
         sendRequest(email);
     }
@@ -79,15 +73,15 @@ public class BorrowItemRequests extends AppCompatActivity {
                                 JSONObject item = array.getJSONObject(i);
 
                                 //adding the product to product list
-                                requests.add(new BorrowItem(
+                                requests.add(new LentItem(
                                         item.getString("Borrow_ID"),
-                                        item.getString("Lender_email")
+                                        item.getString("Borrower_email")
 
                                 ));
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            BorrowRequestAdaptor adapter = new BorrowRequestAdaptor(BorrowItemRequests.this, requests);
+                            LentItemsAdaptor adapter = new LentItemsAdaptor(LentItems.this, requests);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -103,7 +97,7 @@ public class BorrowItemRequests extends AppCompatActivity {
                 }) {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put( "Borrower_email", email ); //Add the data you'd like to send to the server.
+                params.put( "Lender_email", email ); //Add the data you'd like to send to the server.
                 return params;
             }
 

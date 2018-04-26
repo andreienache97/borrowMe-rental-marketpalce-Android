@@ -1,71 +1,62 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.groupProject.borrowMe.Item.InspectItem;
-import com.groupProject.borrowMe.Item.ItemDetails;
-import com.groupProject.borrowMe.Item.PostedItem;
 import com.groupProject.borrowMe.JSONRequests.RequestBorrow;
 import com.groupProject.borrowMe.JSONRequests.RequestItemName;
-import com.groupProject.borrowMe.JSONRequests.RequestUser;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
-import com.groupProject.borrowMe.JSONRequests.RequestUserItem;
-import com.groupProject.borrowMe.JSONRequests.acceptBorrowRequest;
-import com.groupProject.borrowMe.JSONRequests.deleteBorrowRequest;
-import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
-import com.groupProject.borrowMe.JSONRequests.returnDepositRequest;
-import com.groupProject.borrowMe.User.UserDetails;
+import com.groupProject.borrowMe.JSONRequests.returnItemRequest;
+import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by Enache on 25/04/2018.
- */
-
-
-public class BorrowRequestDetails extends AppCompatActivity {
+public class BorrowedItemsDetails extends AppCompatActivity {
 
     public AppCompatTextView item, email, start,end;
+    Button returnItem;
     String ITEM,EMAIL,START,END,ITEM_ID,B_EMAIL,name,phone,address,city,postcode,price,tmp,tmp_dep;
     int balance_lender,deposit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_borrow_request_details);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        setContentView(R.layout.activity_borrowed_items_details);
 
         item = (AppCompatTextView) findViewById(R.id.textItem);
         email = (AppCompatTextView) findViewById(R.id.textEmail);
         start = (AppCompatTextView) findViewById(R.id.textStartDate);
         end = (AppCompatTextView) findViewById(R.id.textEndDate);
-
+        returnItem = (Button) findViewById(R.id.returnItem);
 
         Intent intent = getIntent();
         final String borrow_id = intent.getStringExtra("borrow_id");
 
         getDetails(borrow_id);
 
+        returnItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                returnItem(borrow_id,ITEM_ID);
+            }
+        });
+
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BorrowRequestDetails.this, PostedItem.class);
+                Intent intent = new Intent(BorrowedItemsDetails.this, PostedItem.class);
                 intent.putExtra("item_id", ITEM_ID);
-                BorrowRequestDetails.this.startActivity(intent);
+                BorrowedItemsDetails.this.startActivity(intent);
             }
         });
 
@@ -92,10 +83,10 @@ public class BorrowRequestDetails extends AppCompatActivity {
                                 tmp = String.valueOf( balance_lender );
 
 
-                                AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(BorrowedItemsDetails.this);
                                 builder.setMessage("Email contact: "+ EMAIL +"\nNumber contact: "+phone
                                         +"\nName contact: "+name + "\nCity: " +city + "\nAddress: "+ address
-                                +"\nPostcode: "+ postcode)
+                                        +"\nPostcode: "+ postcode)
                                         .setNegativeButton("OK", null)
                                         .create()
                                         .show();
@@ -104,7 +95,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
                             } else {
 //Error
-                                AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(BorrowedItemsDetails.this);
                                 builder.setMessage("Can not fetch the user details at the moment")
                                         .setNegativeButton("Retry", null)
                                         .create()
@@ -118,39 +109,16 @@ public class BorrowRequestDetails extends AppCompatActivity {
                 };
 //Connect to database
                 RequestUserContact user = new RequestUserContact(EMAIL, getUserDet);
-                RequestQueue queue1 = Volley.newRequestQueue(BorrowRequestDetails.this);
+                RequestQueue queue1 = Volley.newRequestQueue(BorrowedItemsDetails.this);
                 queue1.add(user);
-            }
-        });
-
-
-        FloatingActionButton accept = (FloatingActionButton) findViewById(R.id.accept);
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                acceptRequest(borrow_id,ITEM_ID);
-            }
-        });
-
-        FloatingActionButton decline = (FloatingActionButton) findViewById(R.id.decline);
-        decline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                deleteRequest(borrow_id);
-
-
-
-
             }
         });
 
 
     }
 
-
-    public void acceptRequest(final String borrow_id,final String item_id){
-        Response.Listener<String> deleteItem = new Response.Listener<String>() {
+    public void returnItem(final String borrow_id,final String item_id){
+        Response.Listener<String> Item = new Response.Listener<String>() {
             @Override
             public void onResponse(String response1) {
 
@@ -161,14 +129,14 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
                     if (success1) {
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("Borrow request accepted, the money are now in you account.")
+                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowedItemsDetails.this);
+                        builder.setMessage("The item was returned to it's owner.")
                                 .setNegativeButton("Ok", null)
                                 .create()
                                 .show();
 
                     } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowedItemsDetails.this);
                         builder.setMessage("Error")
                                 .setNegativeButton("Retry", null)
                                 .create()
@@ -181,11 +149,10 @@ public class BorrowRequestDetails extends AppCompatActivity {
             }
         };
 
-        acceptBorrowRequest Request = new acceptBorrowRequest(borrow_id,item_id, deleteItem);
-        RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
+        returnItemRequest Request = new returnItemRequest(borrow_id,item_id, Item);
+        RequestQueue queue = Volley.newRequestQueue(BorrowedItemsDetails.this);
         queue.add(Request);
     }
-
 
     public void getDetails(final String borrow_id) {
 
@@ -210,11 +177,11 @@ public class BorrowRequestDetails extends AppCompatActivity {
                         start.setText(START);
                         end.setText(END);
 
-                       getItemDetails(ITEM_ID);
+                        getItemDetails(ITEM_ID);
 
                     } else {
                         //Error
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowedItemsDetails.this);
                         builder.setMessage("Can not fetch the request details at the moment")
                                 .setNegativeButton("Retry", null)
                                 .create()
@@ -229,7 +196,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
 //Connec to database
         RequestBorrow Request = new RequestBorrow(borrow_id, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
+        RequestQueue queue = Volley.newRequestQueue(BorrowedItemsDetails.this);
         queue.add(Request);
 
     }
@@ -259,7 +226,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
                     } else {
                         //Error
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowedItemsDetails.this);
                         builder.setMessage("Can not fetch the item details at the moment")
                                 .setNegativeButton("Retry", null)
                                 .create()
@@ -274,88 +241,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
 //Connec to database
         RequestItemName Request = new RequestItemName(item_id, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
-        queue.add(Request);
-
-    }
-
-
-    public void deleteRequest(final String request_id){
-
-
-        Response.Listener<String> deleteItem = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response1) {
-
-
-                try {
-                    JSONObject jsonResponse = new JSONObject(response1);
-                    boolean success1 = jsonResponse.getBoolean("success");
-
-                    if (success1) {
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("The request has been denied and the deposit returned.")
-                                .setNegativeButton("Ok", null)
-                                .create()
-                                .show();
-
-                       // returnDeposit(EMAIL,tmp,tmp_dep);
-                    } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("Error")
-                                .setNegativeButton("Retry", null)
-                                .create()
-                                .show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        deleteBorrowRequest Request = new deleteBorrowRequest(request_id, deleteItem);
-        RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
-        queue.add(Request);
-
-    }
-
-    public void returnDeposit(final String lender_email,final String balance,final String deposit) {
-
-        Response.Listener<String> deleteItem = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response1) {
-
-
-                try {
-                    JSONObject jsonResponse = new JSONObject(response1);
-                    boolean success1 = jsonResponse.getBoolean("success");
-
-                    if (success1) {
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("The request has been denied and the deposit returned.")
-                                .setNegativeButton("Ok", null)
-                                .create()
-                                .show();
-
-                    } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("Error")
-                                .setNegativeButton("Retry", null)
-                                .create()
-                                .show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        returnDepositRequest Request = new returnDepositRequest(lender_email,balance,deposit, deleteItem);
-        RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
+        RequestQueue queue = Volley.newRequestQueue(BorrowedItemsDetails.this);
         queue.add(Request);
 
     }

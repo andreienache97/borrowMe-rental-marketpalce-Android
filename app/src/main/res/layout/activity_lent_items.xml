@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.groupProject.borrowMe.Item.BorrowedItems">
+    tools:context="com.groupProject.borrowMe.Item.LentItems">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/BorrowAdapter"
+        android:id="@+id/LentAdapter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"

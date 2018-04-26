@@ -66,13 +66,15 @@
             android:name=".Item.ChangeItemDetails"
             android:label="@string/title_activity_change_item_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BorrowItemRequests" />
+        <activity android:name=".Item.BorrowItemRequests" />
         <activity
-            android:name=".BorrowRequestDetails"
+            android:name=".Item.BorrowRequestDetails"
             android:label="@string/title_activity_borrow_request_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BorrowedItems" />
-        <activity android:name=".BorrowedItemsDetails" />
+        <activity android:name=".Item.BorrowedItems" />
+        <activity android:name=".Item.BorrowedItemsDetails" />
+        <activity android:name=".Item.LentItems" />
+        <activity android:name=".Item.LentItemsDetails"></activity>
     </application>
 
 </manifest>
