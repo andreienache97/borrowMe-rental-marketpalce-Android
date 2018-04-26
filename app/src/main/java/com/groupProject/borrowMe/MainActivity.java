@@ -187,7 +187,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent incomingintent = getIntent();
         String email = incomingintent.getStringExtra("email");
-        int balance = incomingintent.getIntExtra( "balance",0 );
 //add item page
         if (id == R.id.add_item) {
             Intent intent = new Intent(MainActivity.this, Add_itemActivity.class);
@@ -199,7 +198,6 @@ public class MainActivity extends AppCompatActivity
 
             Intent TopUpintent= new Intent( MainActivity.this, Top_upActivity.class );
             TopUpintent.putExtra( "email", email );
-            TopUpintent.putExtra( "balance", balance );
             startActivity( TopUpintent );
 
 

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Submit_Activity extends AppCompatActivity{
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +37,7 @@ public class Submit_Activity extends AppCompatActivity{
 //Get from intent
         Intent incomingIntent = getIntent();
         final String LEmail = incomingIntent.getStringExtra( "Lenderemail" );
-        final String BEmal = incomingIntent.getStringExtra( "Borrowemail" );
+        final String BEmail = incomingIntent.getStringExtra( "Borrowemail" );
         final String id = incomingIntent.getStringExtra( "item_id" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
         final String UDate = incomingIntent.getStringExtra( "UDate" );
@@ -46,7 +46,7 @@ public class Submit_Activity extends AppCompatActivity{
         EndDate.setText( UDate );
         Item_id.setText( id );
         LenderEmail.setText( LEmail );
-        BorrowEmail.setText( BEmal );
+        BorrowEmail.setText( BEmail );
 
 //when Submit
         Submit.setOnClickListener( new View.OnClickListener() {
@@ -55,12 +55,12 @@ public class Submit_Activity extends AppCompatActivity{
                 Response.Listener<String> responselistener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        JSONObject jsonResponse = null;
                         try {
-                            jsonResponse = new JSONObject(response);
+                            JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if(success){
                                 Intent BackToMain = new Intent( Submit_Activity.this, MainActivity.class );
+                                BackToMain.putExtra( "email",BEmail );
                                 startActivity( BackToMain );
 
                             }else{
@@ -74,7 +74,7 @@ public class Submit_Activity extends AppCompatActivity{
 
                     }
                 };
-                SubmitItem SubmitItem = new SubmitItem(LEmail,BEmal,id,ADate,UDate, responselistener);
+                SubmitItem SubmitItem = new SubmitItem(LEmail,BEmail,id,ADate,UDate, responselistener);
                 RequestQueue queue = Volley.newRequestQueue(Submit_Activity.this);
                 queue.add(SubmitItem);
             }

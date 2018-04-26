@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.util.Log;
+
 /**
  * Created by Enache on 25/04/2018.
  */
@@ -68,6 +70,7 @@ public class BorrowItemRequests extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             //converting the string to json array object
+                            Log.d("Content-----:",response);
                             JSONArray array = new JSONArray(response);
 
                             //traversing through all the object
@@ -79,7 +82,7 @@ public class BorrowItemRequests extends AppCompatActivity {
                                 //adding the product to product list
                                 requests.add(new BorrowItem(
                                         item.getString("Borrow_ID"),
-                                        item.getString("Lender_email")
+                                        item.getString("Borrower_email")
 
                                 ));
                             }
@@ -101,7 +104,7 @@ public class BorrowItemRequests extends AppCompatActivity {
                 }) {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put( "Borrower_email", email ); //Add the data you'd like to send to the server.
+                params.put( "Lender_email", email ); //Add the data you'd like to send to the server.
                 return params;
             }
 
