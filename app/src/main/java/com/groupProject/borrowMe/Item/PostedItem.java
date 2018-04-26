@@ -13,13 +13,9 @@ import android.view.View;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.groupProject.borrowMe.Departments.DepartmentByName;
-import com.groupProject.borrowMe.JSONRequests.RequestUser;
 import com.groupProject.borrowMe.JSONRequests.RequestUserItem;
 import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
-import com.groupProject.borrowMe.MainActivity;
 import com.groupProject.borrowMe.R;
-import com.groupProject.borrowMe.User.UserDetails;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,14 +65,19 @@ public class PostedItem extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
 
+                if(status == "0"){
                 Intent listItems = new Intent(PostedItem.this, ChangeItemDetails.class);
                 listItems.putExtra("title", name);
                 listItems.putExtra( "price", price );
                 listItems.putExtra( "description", description );
                 listItems.putExtra( "item_id", id );
-                PostedItem.this.startActivity(listItems);
+                PostedItem.this.startActivity(listItems);}
+                else {
 
+                    Snackbar.make(view, "Your item is borrowed, changes are not allowed", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
 
+                }
             }
         });
 
@@ -85,38 +86,45 @@ public class PostedItem extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
 
-                Response.Listener<String> deleteItem = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response1) {
+
+                if(status == "0") {
+                    Response.Listener<String> deleteItem = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response1) {
 
 
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response1);
-                            boolean success1 = jsonResponse.getBoolean("success");
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response1);
+                                boolean success1 = jsonResponse.getBoolean("success");
 
-                            if (success1) {
+                                if (success1) {
 
-                                Snackbar.make(view, "Your item has been removed", Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).show();
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(PostedItem.this);
-                                builder.setMessage("Update Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
+                                    Snackbar.make(view, "Your item has been removed", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(PostedItem.this);
+                                    builder.setMessage("Update Failed")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                };
+                    };
 
-                denyItemRequest Request = new denyItemRequest(item_id, deleteItem);
-                RequestQueue queue = Volley.newRequestQueue(PostedItem.this);
-                queue.add(Request);
+                    denyItemRequest Request = new denyItemRequest(item_id, deleteItem);
+                    RequestQueue queue = Volley.newRequestQueue(PostedItem.this);
+                    queue.add(Request);
 
-
+                }
+                else
+                {
+                    Snackbar.make(view, "Your item is borrowed, can not delete it", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
 

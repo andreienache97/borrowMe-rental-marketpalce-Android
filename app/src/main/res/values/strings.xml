@@ -100,4 +100,5 @@
     <string name="title_activity_posted_item">PostedItem</string>
     <string name="title_activity_change_item_details">ChangeItemDetails</string>
     <string name="title_activity_borrow_request_details">BorrowRequestDetails</string>
+    <string name="title_activity_change_item_details_price">ChangeItemDetailsPrice</string>
 </resources>
