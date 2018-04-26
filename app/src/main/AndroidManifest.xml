@@ -53,11 +53,17 @@
             android:name=".Item.InspectItem"
             android:label="@string/title_activity_inspect_item"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".Item.InspectReportedItem"
+            android:label="activity_inspect_reported_item"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".Departments.AllDepartments" />
         <activity android:name=".Top_upActivity" />
         <activity android:name=".Item.ItemDetails" />
         <activity android:name=".Departments.DepartmentByName" />
         <activity android:name=".Item.MyItems" />
+        <activity android:name=".Item.ReportItems" />
         <activity
             android:name=".Item.PostedItem"
             android:label="@string/title_activity_posted_item"
