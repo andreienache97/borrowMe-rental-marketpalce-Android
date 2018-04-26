@@ -148,10 +148,10 @@ public class ItemDetails extends AppCompatActivity {
                 final EditText reportInputText = new EditText(ItemDetails.this);
                 LinearLayout.LayoutParams layParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                                                     LinearLayout.LayoutParams.MATCH_PARENT);
+
                 reportInputText.setLayoutParams(layParameters);
 
-
-                //Show User Details and Prompt to enter the report reason
+                //Show User Details and Prompt to Enter the report reason
                 AlertDialog.Builder reportInput= new AlertDialog.Builder(ItemDetails.this);
                 reportInput.setTitle("Report Submission");
                 reportInput.setMessage("Item: "+ TITLE +"\nDepartment: "+ DEPARTMENT +"Owner: "+ LendarEMAIL +

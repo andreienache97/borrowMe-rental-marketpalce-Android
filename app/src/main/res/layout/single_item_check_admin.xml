@@ -141,6 +141,10 @@
 
 
 
+
+
+
+
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/bInspect"
             android:layout_width="match_parent"
