@@ -46,14 +46,7 @@ public class BorrowedItemsDetails extends AppCompatActivity {
 
 
 
-        item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BorrowedItemsDetails.this, PostedItem.class);
-                intent.putExtra("item_id", ITEM_ID);
-                BorrowedItemsDetails.this.startActivity(intent);
-            }
-        });
+
 
         email.setOnClickListener(new View.OnClickListener() {
             @Override

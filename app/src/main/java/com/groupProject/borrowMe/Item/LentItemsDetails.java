@@ -52,6 +52,15 @@ public class LentItemsDetails extends AppCompatActivity {
         });
 
 
+        item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LentItemsDetails.this, PostedItem.class);
+                intent.putExtra("item_id", ITEM_ID);
+                LentItemsDetails.this.startActivity(intent);
+            }
+        });
+
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,7 +221,7 @@ public class LentItemsDetails extends AppCompatActivity {
 
 
                         item.setText(ITEM);
-                     
+
 
 
                     } else {
