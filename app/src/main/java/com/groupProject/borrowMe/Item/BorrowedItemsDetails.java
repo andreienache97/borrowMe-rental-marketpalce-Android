@@ -22,8 +22,8 @@ import org.json.JSONObject;
 
 public class BorrowedItemsDetails extends AppCompatActivity {
 
-    public AppCompatTextView item, email, start,end;
-    Button returnItem;
+    public AppCompatTextView item, email, start,end,ItemPrice,item_deposit;
+
     String ITEM,EMAIL,START,END,ITEM_ID,B_EMAIL,name,phone,address,city,postcode,price,tmp,tmp_dep;
     int balance_lender,deposit;
 
@@ -36,20 +36,15 @@ public class BorrowedItemsDetails extends AppCompatActivity {
         email = (AppCompatTextView) findViewById(R.id.textEmail);
         start = (AppCompatTextView) findViewById(R.id.textStartDate);
         end = (AppCompatTextView) findViewById(R.id.textEndDate);
-        returnItem = (Button) findViewById(R.id.returnItem);
+        ItemPrice = (AppCompatTextView) findViewById(R.id.textItemPrice);
+        item_deposit = (AppCompatTextView) findViewById(R.id.textItemDeposit);
 
         Intent intent = getIntent();
         final String borrow_id = intent.getStringExtra("borrow_id");
 
         getDetails(borrow_id);
 
-        returnItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                returnItem(borrow_id,ITEM_ID);
-            }
-        });
 
         item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +79,7 @@ public class BorrowedItemsDetails extends AppCompatActivity {
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(BorrowedItemsDetails.this);
-                                builder.setMessage("Email contact: "+ EMAIL +"\nNumber contact: "+phone
+                                builder.setMessage("Email contact: "+ B_EMAIL +"\nNumber contact: "+phone
                                         +"\nName contact: "+name + "\nCity: " +city + "\nAddress: "+ address
                                         +"\nPostcode: "+ postcode)
                                         .setNegativeButton("OK", null)
@@ -108,7 +103,7 @@ public class BorrowedItemsDetails extends AppCompatActivity {
                     }
                 };
 //Connect to database
-                RequestUserContact user = new RequestUserContact(EMAIL, getUserDet);
+                RequestUserContact user = new RequestUserContact(B_EMAIL, getUserDet);
                 RequestQueue queue1 = Volley.newRequestQueue(BorrowedItemsDetails.this);
                 queue1.add(user);
             }
@@ -220,6 +215,9 @@ public class BorrowedItemsDetails extends AppCompatActivity {
 
 
                         item.setText(ITEM);
+                        ItemPrice.setText(price+ " £/day");
+                        item_deposit.setText(deposit+ " £");
+
 
 
 

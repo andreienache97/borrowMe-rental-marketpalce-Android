@@ -223,15 +223,16 @@ public class MainActivity extends AppCompatActivity
 
         else if (id == R.id.lent_items) {
 
-            Intent intent = new Intent(MainActivity.this, LentItems.class);
+            Intent intent = new Intent(MainActivity.this, BorrowedItems.class);
             intent.putExtra("email", email);
             MainActivity.this.startActivity(intent);
 
         } else if (id == R.id.borrowed_items) {
 
-            Intent intent = new Intent(MainActivity.this, BorrowedItems.class);
+            Intent intent = new Intent(MainActivity.this, LentItems.class);
             intent.putExtra("email", email);
             MainActivity.this.startActivity(intent);
+
 
         }
 

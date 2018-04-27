@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.groupProject.borrowMe.Item.LentItemsDetails">
+>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Borrower email"
+                android:text="Borower email"
                 />
 
             <android.support.v7.widget.AppCompatTextView
@@ -99,61 +99,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/select"
                 android:text="end date"
                 />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <Button
+            android:id="@+id/returnItem"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Item returned"
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Price"
-                />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textItemPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/select"
-                android:text="price"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Deposit"
-                />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textItemDeposit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/select"
-                android:text="deposit"
-                />
-        </LinearLayout>
-
+            />
 
 
     </LinearLayout>
-
 
 </RelativeLayout>

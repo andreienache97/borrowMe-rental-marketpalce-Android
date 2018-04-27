@@ -77,18 +77,17 @@ public class BorrowRequestDetails extends AppCompatActivity {
                             if (success) {
                                 name = jsonResponse.getString("name");
                                 phone = jsonResponse.getString("phone");
-                                balance_lender = jsonResponse.getInt("balance");
                                 address = jsonResponse.getString("address");
                                 city = jsonResponse.getString("city");
                                 postcode = jsonResponse.getString("postcode");
 
-                                tmp = String.valueOf( balance_lender );
+
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                                builder.setMessage("Email contact: "+ EMAIL +"\nNumber contact: "+phone
+                                builder.setMessage("Email contact: "+ B_EMAIL +"\nNumber contact: "+phone
                                         +"\nName contact: "+name + "\nCity: " +city + "\nAddress: "+ address
-                                +"\nPostcode: "+ postcode)
+                                        +"\nPostcode: "+ postcode)
                                         .setNegativeButton("OK", null)
                                         .create()
                                         .show();
@@ -110,7 +109,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
                     }
                 };
 //Connect to database
-                RequestUserContact user = new RequestUserContact(EMAIL, getUserDet);
+                RequestUserContact user = new RequestUserContact(B_EMAIL, getUserDet);
                 RequestQueue queue1 = Volley.newRequestQueue(BorrowRequestDetails.this);
                 queue1.add(user);
             }
@@ -199,7 +198,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
 
 
-                        email.setText(EMAIL);
+                        email.setText(B_EMAIL);
                         start.setText(START);
                         end.setText(END);
 
