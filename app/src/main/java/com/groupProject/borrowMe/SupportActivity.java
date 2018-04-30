@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-//import com.groupProject.borrowMe.JSONRequests.SupportRequest;
+import com.groupProject.borrowMe.JSONRequests.SupportRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,8 +32,8 @@ public class SupportActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String issue = spinner1.getSelectedItem().toString();
-                final String comment = editText4.getText().toString();
+                final String type = spinner1.getSelectedItem().toString();
+                final String message = editText4.getText().toString();
 
                 // Response received from the server
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -46,12 +46,12 @@ public class SupportActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-                                String issue = jsonResponse.getString("issue");
-                                String comment = jsonResponse.getString("comment");
+                                String type = jsonResponse.getString("type");
+                                String message = jsonResponse.getString("message");
 
                                 Intent intent = new Intent(SupportActivity.this, MainActivity.class);
-                                intent.putExtra("issue", issue);
-                                intent.putExtra( "comment",comment );
+                                intent.putExtra("issue", type);
+                                intent.putExtra( "comment",message );
                                 SupportActivity.this.startActivity(intent);
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SupportActivity.this);
@@ -65,9 +65,10 @@ public class SupportActivity extends AppCompatActivity {
                         }
                     }
                 };
-               // SupportRequest SupportRequest = new SupportRequest(issue, comment, responseListener);
-               // RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
-              //  queue.add(SupportRequest);
+                SupportRequest SupportRequest = new SupportRequest(type, message, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
+                queue.add(SupportRequest);
+
             }
         });
     }
