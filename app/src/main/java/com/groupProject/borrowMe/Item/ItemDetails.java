@@ -61,7 +61,7 @@ public class ItemDetails extends AppCompatActivity {
         BorrowerEmail = intent.getStringExtra( "email" );
 
 //chat button
-        FloatingActionButton chat = (FloatingActionButton) findViewById(R.id.bContact);
+        Button chat = (Button) findViewById(R.id.bContact);
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
@@ -73,7 +73,7 @@ public class ItemDetails extends AppCompatActivity {
         });
 
 // favorite item button
-        FloatingActionButton favoriteItem = (FloatingActionButton) findViewById(R.id.bFavorite);
+        Button favoriteItem = (Button) findViewById(R.id.bFavorite);
         favoriteItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
