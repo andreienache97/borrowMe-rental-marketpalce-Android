@@ -211,25 +211,31 @@
                 android:text="Report Item"
 
                 />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/bContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@drawable/chat" />
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/bFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@drawable/favorite" />
 
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Add To Favorites" />
-        </LinearLayout>
 
 
     </LinearLayout>
+
+
 
 
 </RelativeLayout>
