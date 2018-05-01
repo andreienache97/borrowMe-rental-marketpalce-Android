@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.groupProject.borrowMe.Item.ItemDetails">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="339dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -185,6 +185,8 @@
         </LinearLayout>
 
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -194,7 +196,7 @@
 
             <Button
                 android:id="@+id/bUserDetails"
-                android:layout_width="138dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Contact details" />
 
@@ -206,7 +208,7 @@
 
             <Button
                 android:id="@+id/bReport"
-                android:layout_width="wrap_content"
+                android:layout_width="128dp"
                 android:layout_height="match_parent"
                 android:text="Report Item"
 
@@ -216,20 +218,30 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bContact"
+            android:layout_width="178dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:text="Chat" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Add To Favorites" />
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/bFavorite"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:text="Add to favorite" />
 
     </LinearLayout>
+
+    </LinearLayout>
+
+
 
 
 </RelativeLayout>

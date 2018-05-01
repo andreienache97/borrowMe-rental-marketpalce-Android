@@ -4,6 +4,8 @@ package com.groupProject.borrowMe.Item;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
@@ -17,6 +19,7 @@ import com.groupProject.borrowMe.Helpers.AvailableDate;
 import com.groupProject.borrowMe.JSONRequests.RequestItem;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
 import com.groupProject.borrowMe.JSONRequests.ReportItemRequest;
+import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
 import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
@@ -56,6 +59,30 @@ public class ItemDetails extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("item_id");
         BorrowerEmail = intent.getStringExtra( "email" );
+
+//chat button
+        Button chat = (Button) findViewById(R.id.bContact);
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+
+
+
+            }
+        });
+
+// favorite item button
+        Button favoriteItem = (Button) findViewById(R.id.bFavorite);
+        favoriteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+
+
+
+            }
+        });
 
 
 //get the item details from database

@@ -1,5 +1,6 @@
 package com.groupProject.borrowMe.Item;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Helpers.SeparatorDecoration;
 import com.groupProject.borrowMe.R;
 import com.groupProject.borrowMe.adaptors.AdaptorAdminCheckItem;
 import com.groupProject.borrowMe.models.ItemCheck;
@@ -45,6 +47,9 @@ public class CheckItems extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.CheckItemsAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        SeparatorDecoration decoration = new SeparatorDecoration(this, Color.GRAY, 1.5f);
+        recyclerView.addItemDecoration(decoration);
 
 
         items = new ArrayList<>();

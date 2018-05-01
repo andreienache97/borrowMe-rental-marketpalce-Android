@@ -81,6 +81,9 @@
         <activity android:name=".Item.BorrowedItemsDetails" />
         <activity android:name=".Item.LentItems" />
         <activity android:name=".Item.LentItemsDetails"></activity>
+        <activity android:name=".Chat.ChatActivity"/>
+        <activity android:name=".Chat.ChatroomsActivity"/>
+
     </application>
 
 </manifest>
