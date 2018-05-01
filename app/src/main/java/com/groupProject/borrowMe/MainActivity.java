@@ -11,11 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.groupProject.borrowMe.Departments.AllDepartments;
 import com.groupProject.borrowMe.Departments.DepartmentByName;
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity
         ListItem();
     }
 
+
+
     void ListItem(){
         listView = (ListView)findViewById(R.id.lv_display);
         ArrayAdapter<String> adapter = new ArrayAdapter<>( this, R.layout.department_list, LANG );
@@ -115,9 +119,35 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        inflater.inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.menuSearch);
+        SearchView searchView = (SearchView)item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //variablegoeshere.getFilter().filter(newText);
+                // result goes here
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+
+
+        // we don't need this anymore
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+//        inflater.inflate(R.menu.main, menu);
+//        return true;
+
+
     }
 
     @Override
