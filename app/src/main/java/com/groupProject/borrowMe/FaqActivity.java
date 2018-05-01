@@ -13,9 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.FaqRequest;
-import com.groupProject.borrowMe.JSONRequests.SupportRequest;
-import com.groupProject.borrowMe.MainActivity;
-import com.groupProject.borrowMe.R;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
