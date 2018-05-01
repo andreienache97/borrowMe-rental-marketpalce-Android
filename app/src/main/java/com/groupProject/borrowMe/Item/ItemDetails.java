@@ -15,6 +15,7 @@ import android.widget.Button;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Chat.ChatActivity;
 import com.groupProject.borrowMe.Helpers.AvailableDate;
 import com.groupProject.borrowMe.JSONRequests.RequestItem;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
@@ -32,7 +33,7 @@ public class ItemDetails extends AppCompatActivity {
 
 //Fields
     public AppCompatTextView title,price,details,available,unavailable,department,deposit,fine;
-    public Button userDetails,borrow,report;
+    public Button userDetails,borrow,report,contact;
     String id,TITLE,PRICE,DETAILS,AVAILABLE,UNAVAILABLE,DEPARTMENT,LendarEMAIL,name,phone,address,city,postcode,DEPOSIT,FINE;
     String BorrowerEmail;
 
@@ -54,23 +55,15 @@ public class ItemDetails extends AppCompatActivity {
         userDetails = (Button) findViewById(R.id.bUserDetails);
         borrow = (Button) findViewById(R.id.bBorrow);
         report = (Button) findViewById(R.id.bReport);
+        contact = (Button) findViewById(R.id.bContact);
 
 //get variables from intent
         Intent intent = getIntent();
         id = intent.getStringExtra("item_id");
         BorrowerEmail = intent.getStringExtra( "email" );
 
-//chat button
-        Button chat = (Button) findViewById(R.id.bContact);
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
+        contact.setVisibility(View.GONE);
 
-
-
-
-            }
-        });
 
 // favorite item button
         Button favoriteItem = (Button) findViewById(R.id.bFavorite);
@@ -114,6 +107,9 @@ public class ItemDetails extends AppCompatActivity {
                         department.setText(DEPARTMENT);
                         deposit.setText( String.format( "£ %s", DEPOSIT ) );
                         fine.setText( String.format( "£ %s", FINE ) );
+
+
+                        setupContactButton();
 
 //get the lender\s details
                         secondRequest(LendarEMAIL);
@@ -290,6 +286,24 @@ public class ItemDetails extends AppCompatActivity {
         RequestUserContact user = new RequestUserContact(email, getUserDet);
         RequestQueue queue1 = Volley.newRequestQueue(ItemDetails.this);
         queue1.add(user);
+    }
+
+
+    private void setupContactButton() {
+        contact.setVisibility(View.VISIBLE);
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ItemDetails.this, ChatActivity.class);
+
+                intent.putExtra(ChatActivity.EXTRA_EMAIL_FROM, BorrowerEmail);
+                intent.putExtra(ChatActivity.EXTRA_EMAIL_TO, LendarEMAIL);
+                intent.putExtra(ChatActivity.EXTRA_EMAIL_ITEM_ID, id);
+
+                startActivity(intent);
+            }
+        });
     }
 
 }
