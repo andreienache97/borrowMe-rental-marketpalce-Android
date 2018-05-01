@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.groupProject.borrowMe.JSONRequests.SupportRequest;
+//import com.groupProject.borrowMe.JSONRequests.SupportRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,9 +35,6 @@ public class SupportActivity extends AppCompatActivity {
                 final String type = spinner1.getSelectedItem().toString();
                 final String message = editText4.getText().toString();
 
-                Intent incomingIntent = getIntent();
-                final String email = incomingIntent.getStringExtra( "email" );
-
                 // Response received from the server
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 
@@ -49,14 +46,13 @@ public class SupportActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-
                                 String type = jsonResponse.getString("type");
                                 String message = jsonResponse.getString("message");
 
-                                Intent intent = new Intent(com.groupProject.borrowMe.SupportActivity.this, MainActivity.class);
-                                intent.putExtra("type", type);
-                                intent.putExtra( "message",message );
-                                com.groupProject.borrowMe.SupportActivity.this.startActivity(intent);
+                                Intent intent = new Intent(SupportActivity.this, MainActivity.class);
+                                intent.putExtra("issue", type);
+                                intent.putExtra( "comment",message );
+                                SupportActivity.this.startActivity(intent);
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SupportActivity.this);
                                 builder.setMessage("Your message was successfully submitted.")
@@ -69,9 +65,9 @@ public class SupportActivity extends AppCompatActivity {
                         }
                     }
                 };
-                SupportRequest SupportRequest = new SupportRequest(email, type, message, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
-                queue.add(SupportRequest);
+//                SupportRequest SupportRequest = new SupportRequest(type, message, responseListener);
+//                RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
+//                queue.add(SupportRequest);
 
             }
         });

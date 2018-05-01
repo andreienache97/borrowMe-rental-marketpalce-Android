@@ -19,6 +19,11 @@ import com.groupProject.borrowMe.JSONRequests.SubmitItem;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Date;
+import java.text.ParseException;
+import java.util.concurrent.*;
 
 public class Submit_Activity extends AppCompatActivity{
     @Override
@@ -41,7 +46,6 @@ public class Submit_Activity extends AppCompatActivity{
         final String id = incomingIntent.getStringExtra( "item_id" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
         final String UDate = incomingIntent.getStringExtra( "UDate" );
-
         StartDate.setText( ADate );
         EndDate.setText( UDate );
         Item_id.setText( id );
@@ -52,31 +56,37 @@ public class Submit_Activity extends AppCompatActivity{
         Submit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    boolean test = checkDate( ADate,UDate );
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 Response.Listener<String> responselistener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if(success){
-                                Intent BackToMain = new Intent( Submit_Activity.this, MainActivity.class );
-                                BackToMain.putExtra( "email",BEmail );
-                                startActivity( BackToMain );
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonResponse = new JSONObject( response );
+                                    boolean success = jsonResponse.getBoolean( "success" );
+                                    if (success) {
+                                        Intent BackToMain = new Intent( Submit_Activity.this, MainActivity.class );
+                                        BackToMain.putExtra( "email", BEmail );
+                                        startActivity( BackToMain );
 
-                            }else{
+                                    } else {
+
+
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
 
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        };
+                        SubmitItem SubmitItem = new SubmitItem( LEmail, BEmail, id, ADate, UDate, responselistener );
+                        RequestQueue queue = Volley.newRequestQueue( Submit_Activity.this );
+                        queue.add( SubmitItem );
 
-
-                    }
-                };
-                SubmitItem SubmitItem = new SubmitItem(LEmail,BEmail,id,ADate,UDate, responselistener);
-                RequestQueue queue = Volley.newRequestQueue(Submit_Activity.this);
-                queue.add(SubmitItem);
             }
         } );
 
@@ -84,5 +94,22 @@ public class Submit_Activity extends AppCompatActivity{
 
     }
 
+    private boolean checkDate(String ADate, String UDate) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date firstDate = sdf.parse(ADate);
+        Date secondDate = sdf.parse(UDate);
+
+        long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        Log.d( "Time is ---", String.valueOf( diff ) );
+        return true;
+    }
+
 }
 
+
+
+//Payment
+//Support
+//remove keywords

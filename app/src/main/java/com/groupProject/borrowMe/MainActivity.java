@@ -1,4 +1,8 @@
-/* Author: Andrei Enache */
+/* Author: Andrei Enache, Sebastián Arocha, Lau Tsz Chung
+ * Main page for the app, include all major function on the left drawer, Add item, Top up, My item, FAQ
+  * the centre of the page is search by departments, when user select one of the deparments on the list,
+  * the app will direct user to the search results of that department
+  * top right corner has a drop down menu, include settings, user details, logout*/
 package com.groupProject.borrowMe;
 
 import android.content.Intent;
@@ -11,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +24,12 @@ import android.widget.ListView;
 
 import com.groupProject.borrowMe.Departments.AllDepartments;
 import com.groupProject.borrowMe.Departments.DepartmentByName;
+import com.groupProject.borrowMe.Item.Add_itemActivity;
+import com.groupProject.borrowMe.Item.BorrowItemRequests;
+import com.groupProject.borrowMe.Item.BorrowedItems;
+import com.groupProject.borrowMe.Item.LentItems;
+import com.groupProject.borrowMe.Item.MyItems;
+import com.groupProject.borrowMe.User.UserDetails;
 
 import java.util.Comparator;
 
@@ -42,19 +51,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//Help page
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent registerIntent = new Intent(MainActivity.this, HelpActivity.class);
-                MainActivity.this.startActivity(registerIntent);
-            }
 
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                  //      .setAction("Action", null).show();
-
-        });
 
 //The drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -178,7 +175,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent incomingintent = getIntent();
         String email = incomingintent.getStringExtra("email");
-        int balance = incomingintent.getIntExtra( "balance",0 );
 //add item page
         if (id == R.id.add_item) {
             Intent intent = new Intent(MainActivity.this, Add_itemActivity.class);
@@ -187,9 +183,9 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.top_up) {
 //Top up
+
             Intent TopUpintent= new Intent( MainActivity.this, Top_upActivity.class );
             TopUpintent.putExtra( "email", email );
-            TopUpintent.putExtra( "balance", balance );
             startActivity( TopUpintent );
 
 
@@ -199,14 +195,32 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.borrow_request) {
 
+
+            Intent intent = new Intent(MainActivity.this, BorrowItemRequests.class);
+            intent.putExtra("email", email);
+            MainActivity.this.startActivity(intent);
+
         }
         else if (id == R.id.my_items) {
 
+            Intent intent = new Intent(MainActivity.this, MyItems.class);
+            intent.putExtra("email", email);
+            MainActivity.this.startActivity(intent);
+
         }
 
-        else if (id == R.id.lent_items) {
+        else if (id == R.id.borrowed_items) {
 
-        } else if (id == R.id.borrowed_items) {
+            Intent intent = new Intent(MainActivity.this, BorrowedItems.class);
+            intent.putExtra("email", email);
+            MainActivity.this.startActivity(intent);
+
+        } else if (id == R.id.lent_items) {
+
+            Intent intent = new Intent(MainActivity.this, LentItems.class);
+            intent.putExtra("email", email);
+            MainActivity.this.startActivity(intent);
+
 
         }
 
