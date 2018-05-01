@@ -1,4 +1,9 @@
-/* Author: Lau Tsz Chung*/
+/* Author: Lau Tsz Chung
+* Login page, is the initial page when open the app, which allows user to login if they are registered,
+* user will need to enter email and password which match the record stored in our database system
+* if they are not, there's a text view that will direct to the register page
+* Admin could also login here to check items and response to support ticket
+* */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -13,6 +18,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Admin.AdminLoginActivity;
 import com.groupProject.borrowMe.JSONRequests.LoginRequest;
 
 import org.json.JSONException;
@@ -93,11 +99,11 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
 //Cant login, no record found in database
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setMessage("Login Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
-                            }
+                            builder.setMessage("Login Failed")
+                                    .setNegativeButton("Retry", null)
+                                    .create()
+                                    .show();
+                        }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

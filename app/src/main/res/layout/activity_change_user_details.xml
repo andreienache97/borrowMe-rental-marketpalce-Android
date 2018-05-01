@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.groupProject.borrowMe.ChangeUserDetails">
+    tools:context="com.groupProject.borrowMe.User.ChangeUserDetails">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -77,6 +77,23 @@
             android:layout_height="wrap_content"
             android:text="Update" />
 
+
+        <CheckedTextView
+            android:id="@+id/checkedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="\nThe password should have the following format:\n
+               \n
+               - At least a capital letter\n
+               \n
+               - At least a small letter\n
+               \n
+               - At least a number\n
+               \n
+               - Number of characters between 8 and 20\n
+             "
+            />
 
     </LinearLayout>
 

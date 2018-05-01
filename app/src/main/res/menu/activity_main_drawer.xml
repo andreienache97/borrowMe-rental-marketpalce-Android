@@ -19,12 +19,12 @@
             android:icon="@drawable/ic_menu_fav"
             android:title="Favorite items" />
         <item
-            android:id="@+id/lent_items"
-            android:icon="@drawable/ic_menu_lent"
-            android:title="Borrowed items" />
-        <item
             android:id="@+id/borrowed_items"
             android:icon="@drawable/ic_menu_borrowed"
+            android:title="Borrowed items" />
+        <item
+            android:id="@+id/lent_items"
+            android:icon="@drawable/ic_menu_lent"
             android:title="Lent items" />
         <item
             android:id="@+id/my_items"

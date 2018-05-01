@@ -33,18 +33,13 @@
         <activity
             android:name=".AvailableDate"
             android:label="Available Date" />
-
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity">
-        </activity>
-
+            android:label="@string/title_activity_settings" />
         <activity
             android:name=".Submit_Activity"
             android:label="Submit" />
-
-        <activity android:name=".UserDetails" android:parentActivityName=".MainActivity"></activity>>
+        <activity android:name=".UserDetails" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".ChangeUserDetails" />
         <activity
@@ -58,17 +53,11 @@
             android:name=".InspectItem"
             android:label="@string/title_activity_inspect_item"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Departments.AllDepartments"></activity>
+        <activity android:name=".Departments.AllDepartments" />
+        <activity android:name=".Top_upActivity" />
+        <activity android:name=".ItemDetails"></activity>
 
-        <!--back button-->
-        <activity android:name=".Top_upActivity" android:parentActivityName=".MainActivity">
-
-        </activity>
-        <!-- end of back button-->
-
-        <activity android:name=".ItemDetails" android:parentActivityName=".Departments.AllDepartments"> </activity>
-
-        <activity android:name=".Departments.DepartmentByName" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".Departments.DepartmentByName"></activity>
 
 
 

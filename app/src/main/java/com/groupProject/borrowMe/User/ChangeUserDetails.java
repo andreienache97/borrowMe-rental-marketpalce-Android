@@ -1,4 +1,9 @@
-package com.groupProject.borrowMe;
+/* Author: Andrei Enache
+* This is the step after users update their personal details,
+* it will connect to the database to make changes
+* Note that this is not a visible page to anyone
+ * */
+package com.groupProject.borrowMe.User;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.UpdateRequest;
+import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

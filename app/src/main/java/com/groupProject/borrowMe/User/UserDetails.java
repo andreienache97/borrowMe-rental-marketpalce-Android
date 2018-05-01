@@ -1,5 +1,8 @@
-/* Author: Andrei Enache */
-package com.groupProject.borrowMe;
+/* Author: Andrei Enache
+* This page can be selected from the top right corner of the main page,
+* this page will allow user to change theirs personal details here, such as password, phone number,
+* Note that email is not allow to change since it is a primary in our system*/
+package com.groupProject.borrowMe.User;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.RequestUser;
+import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,7 +96,7 @@ public class UserDetails extends AppCompatActivity {
             }
         };
 
-//Connec to database
+//Connect to database to get user details
         RequestUser loginRequest = new RequestUser(Email, responseListener);
         RequestQueue queue = Volley.newRequestQueue(UserDetails.this);
         queue.add(loginRequest);

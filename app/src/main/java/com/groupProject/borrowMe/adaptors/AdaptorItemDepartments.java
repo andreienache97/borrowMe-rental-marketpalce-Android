@@ -2,21 +2,17 @@ package com.groupProject.borrowMe.adaptors;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.groupProject.borrowMe.ItemDetails;
+import com.groupProject.borrowMe.Item.ItemDetails;
 import com.groupProject.borrowMe.R;
 import com.groupProject.borrowMe.models.ItemDepartments;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Enache on 20/04/2018.
@@ -48,7 +44,7 @@ public class AdaptorItemDepartments extends RecyclerView.Adapter<AdaptorItemDepa
         final ItemDepartments product = items.get(position);
 
         holder.title.setText(product.getItemTitle());
-        holder.price.setText(product.getItemPrice());
+        holder.price.setText(product.getItemPrice()+ " £/day");
        // holder.id.setText(product.getItemId());
 
         holder.id = product.getItemId();

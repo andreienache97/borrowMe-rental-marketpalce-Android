@@ -4,14 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminAreaActivity">
+    tools:context=".Admin.AdminAreaActivity">
 
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/check"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Check items added by users" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Check items added by users" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/reportedItemsAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Check Reported Items" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

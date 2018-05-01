@@ -1,4 +1,4 @@
-package com.groupProject.borrowMe;
+package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -10,31 +10,29 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.JSONRequests.AcceptItemRequest;
 
-import com.groupProject.borrowMe.JSONRequests.LoginRequest;
-import com.groupProject.borrowMe.JSONRequests.UpdateRequest;
 import com.groupProject.borrowMe.JSONRequests.denyItemRequest;
+import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+/**
+ * Created by Arocha 25/04/2018
+ */
+public class InspectReportedItem extends AppCompatActivity {
 
-public class InspectItem extends AppCompatActivity {
-
-    String item_id, email, title, price, details, department;
-    public AppCompatTextView ID, EMAIL, TITLE, PRICE, DETAILS, DEPARTMENT;
+    String item_id, email, title, price, details, department,reportEmail,reportReason;
+    public AppCompatTextView ID, EMAIL, TITLE, PRICE, DETAILS, DEPARTMENT,REPORTEMAIL,REPORTREASON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inspect_item);
+        setContentView(R.layout.activity_inspect_reported_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,6 +42,8 @@ public class InspectItem extends AppCompatActivity {
         PRICE = (AppCompatTextView) findViewById(R.id.textPrice);
         DETAILS = (AppCompatTextView) findViewById(R.id.textDetails);
         DEPARTMENT = (AppCompatTextView) findViewById(R.id.textDepartment);
+        REPORTEMAIL = (AppCompatTextView) findViewById(R.id.textReportEmail);
+        REPORTREASON = (AppCompatTextView) findViewById(R.id.textReportReason);
 
         Intent intent = getIntent();
         item_id = intent.getStringExtra("item_id");
@@ -52,6 +52,8 @@ public class InspectItem extends AppCompatActivity {
         price = intent.getStringExtra("price");
         details = intent.getStringExtra("description");
         department = intent.getStringExtra("department");
+        reportEmail = intent.getStringExtra("reportEmail");
+        reportReason = intent.getStringExtra("reportReason");
 
         ID.setText(item_id);
         EMAIL.setText(email);
@@ -59,10 +61,12 @@ public class InspectItem extends AppCompatActivity {
         PRICE.setText(price);
         DETAILS.setText(details);
         DEPARTMENT.setText(department);
+        REPORTEMAIL.setText(reportEmail);
+        REPORTREASON.setText(reportReason);
 
 
-        FloatingActionButton check = (FloatingActionButton) findViewById(R.id.check);
-        check.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton report = (FloatingActionButton) findViewById(R.id.check);
+        report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
 
@@ -74,11 +78,11 @@ public class InspectItem extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
 
-                                Snackbar.make(view, "Item has been accepted", Snackbar.LENGTH_LONG)
+                                Snackbar.make(view, "Reported Item has been accepted", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
 
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(InspectItem.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(InspectReportedItem.this);
                                 builder.setMessage("Update Failed")
                                         .setNegativeButton("Retry", null)
                                         .create()
@@ -91,7 +95,7 @@ public class InspectItem extends AppCompatActivity {
                 };
 
                 AcceptItemRequest registerRequest = new AcceptItemRequest(item_id, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(InspectItem.this);
+                RequestQueue queue = Volley.newRequestQueue(InspectReportedItem.this);
                 queue.add(registerRequest);
 
             }
@@ -113,10 +117,10 @@ public class InspectItem extends AppCompatActivity {
 
                             if (success1) {
 
-                                Snackbar.make(view, "Item has been denied and removed", Snackbar.LENGTH_LONG)
+                                Snackbar.make(view, "Reported Item has been denied and removed", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(InspectItem.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(InspectReportedItem.this);
                                 builder.setMessage("Update Failed")
                                         .setNegativeButton("Retry", null)
                                         .create()
@@ -130,7 +134,7 @@ public class InspectItem extends AppCompatActivity {
                 };
 
                 denyItemRequest Request = new denyItemRequest(item_id, deleteItem);
-                RequestQueue queue = Volley.newRequestQueue(InspectItem.this);
+                RequestQueue queue = Volley.newRequestQueue(InspectReportedItem.this);
                 queue.add(Request);
             }
         });

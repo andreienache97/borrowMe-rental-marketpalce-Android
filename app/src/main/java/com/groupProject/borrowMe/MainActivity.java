@@ -1,7 +1,9 @@
+/* Author: Andrei Enache */
 package com.groupProject.borrowMe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,13 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import com.groupProject.borrowMe.Departments.AllDepartments;
 import com.groupProject.borrowMe.Departments.DepartmentByName;
@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView listView;
+//list of departments name
     private static String[] LANG = new String[] {"All Departments","Mobile Devices & Tablets" ,"Camera & Accessories",
             "Computer & Accessories", "Tools & Equipments", "Bicycles & E-Scooter",
             "Car Accessories", "Sports Equipments", "Party", "Clothing", "Costumes", "Travel Essentials",
             "Outdoor Essentials", "Board Games", "Toys", "Video Games", "Books", "Music Related", "Other"};
 
-    //HI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
+//Help page
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity
 
         });
 
+//The drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,10 +68,8 @@ public class MainActivity extends AppCompatActivity
         ListItem();
     }
 
-
-
+//List the departments
     void ListItem(){
-        //
         listView = (ListView)findViewById(R.id.lv_display);
         ArrayAdapter<String> adapter = new ArrayAdapter<>( this, R.layout.department_list, LANG );
         adapter.sort(new Comparator<String>() {
@@ -88,6 +86,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = getIntent();
                 String email = intent.getStringExtra("email");
 
+//When user select all deparments, direct to AllDepartments class
                 if(dep == "All Departments") {
                     Intent listItems = new Intent(MainActivity.this, AllDepartments.class);
                     listItems.putExtra("department", dep);
@@ -95,6 +94,7 @@ public class MainActivity extends AppCompatActivity
                     MainActivity.this.startActivity(listItems);
                 }else
                     {
+//When user select a department, direct to Departemnt by names
                     Intent listItems = new Intent(MainActivity.this, DepartmentByName.class);
                     listItems.putExtra("department", dep);
                     listItems.putExtra( "email", email );
@@ -120,50 +120,24 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
-        inflater.inflate(R.menu.main, menu);
-        MenuItem item = menu.findItem(R.id.menuSearch);
-        SearchView searchView = (SearchView)item.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                //variablegoeshere.getFilter().filter(newText);
-                // result goes here
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-
-
-        // we don't need this anymore
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        inflater.inflate(R.menu.main, menu);
-//        return true;
-
-
+// Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+// Handle action bar item clicks here. The action bar will
+// automatically handle clicks on the Home/Up button, so long
+// as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+//noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent registerIntent = new Intent(MainActivity.this, SettingsActivity.class);
             MainActivity.this.startActivity(registerIntent);
         }
-
+//show user details
         if (id == R.id.user_details) {
             Intent intent = getIntent();
             String name = intent.getStringExtra("name");
@@ -187,6 +161,7 @@ public class MainActivity extends AppCompatActivity
             MainActivity.this.startActivity(IntentDetails);
         }
 
+//choose to logout
         if (id == R.id.logout) {
             Intent registerIntent = new Intent(MainActivity.this, LoginActivity.class);
             MainActivity.this.startActivity(registerIntent);
@@ -195,21 +170,23 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+//menu on the left, user can select options from there
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Intent incomingintent = getIntent();
         String email = incomingintent.getStringExtra("email");
         int balance = incomingintent.getIntExtra( "balance",0 );
-
+//add item page
         if (id == R.id.add_item) {
             Intent intent = new Intent(MainActivity.this, Add_itemActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
         }
         else if (id == R.id.top_up) {
+//Top up
             Intent TopUpintent= new Intent( MainActivity.this, Top_upActivity.class );
             TopUpintent.putExtra( "email", email );
             TopUpintent.putExtra( "balance", balance );
@@ -236,9 +213,11 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.message_user) {
 
         } else if (id == R.id.faq){
+//FAQ
             Intent registerIntent = new Intent(MainActivity.this, FaqActivity.class);
             MainActivity.this.startActivity(registerIntent);
         } else if (id == R.id.support){
+//Suport ticket
             Intent registerIntent = new Intent(MainActivity.this, SupportActivity.class);
             MainActivity.this.startActivity(registerIntent);
         }
