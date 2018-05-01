@@ -235,7 +235,7 @@
             android:id="@+id/bFavorite"
             android:layout_width="174dp"
             android:layout_height="wrap_content"
-            android:text="Add to favorite" />
+            android:text="Add to favourite" />
 
     </LinearLayout>
 

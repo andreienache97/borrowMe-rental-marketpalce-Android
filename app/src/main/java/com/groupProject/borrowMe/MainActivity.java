@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.groupProject.borrowMe.Chat.ChatroomsActivity;
 import com.groupProject.borrowMe.Departments.AllDepartments;
 import com.groupProject.borrowMe.Departments.DepartmentByName;
 import com.groupProject.borrowMe.Item.Add_itemActivity;
@@ -226,6 +227,10 @@ public class MainActivity extends AppCompatActivity
         }
 
         else if (id == R.id.message_user) {
+
+            Intent intent = new Intent(MainActivity.this, ChatroomsActivity.class);
+            intent.putExtra(ChatroomsActivity.EXTRA_EMAIL, email);
+            startActivity(intent);
 
         } else if (id == R.id.faq){
 //FAQ
