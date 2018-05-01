@@ -15,7 +15,6 @@ import android.widget.Button;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.groupProject.borrowMe.Chat.ChatActivity;
 import com.groupProject.borrowMe.Helpers.AvailableDate;
 import com.groupProject.borrowMe.JSONRequests.RequestItem;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
@@ -28,6 +27,7 @@ import org.json.JSONObject;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import com.groupProject.borrowMe.Chat.ChatActivity;
 
 public class ItemDetails extends AppCompatActivity {
 
@@ -66,8 +66,8 @@ public class ItemDetails extends AppCompatActivity {
         id = intent.getStringExtra("item_id");
         BorrowerEmail = intent.getStringExtra( "email" );
 
+//chat button
         contact.setVisibility(View.GONE);
-
 
 // favorite item button
         Button favoriteItem = (Button) findViewById(R.id.bFavorite);
@@ -111,7 +111,6 @@ public class ItemDetails extends AppCompatActivity {
                         department.setText(DEPARTMENT);
                         deposit.setText( String.format( "£ %s", DEPOSIT ) );
                         fine.setText( String.format( "£ %s", FINE ) );
-
 
                         setupContactButton();
 
@@ -291,8 +290,6 @@ public class ItemDetails extends AppCompatActivity {
         RequestQueue queue1 = Volley.newRequestQueue(ItemDetails.this);
         queue1.add(user);
     }
-
-
     private void setupContactButton() {
         contact.setVisibility(View.VISIBLE);
 

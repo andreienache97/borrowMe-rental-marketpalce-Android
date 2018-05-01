@@ -30,6 +30,7 @@ import com.groupProject.borrowMe.Item.BorrowedItems;
 import com.groupProject.borrowMe.Item.LentItems;
 import com.groupProject.borrowMe.Item.MyItems;
 import com.groupProject.borrowMe.User.UserDetails;
+import com.groupProject.borrowMe.Chat.ChatActivity;
 
 import java.util.Comparator;
 
