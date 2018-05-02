@@ -6,8 +6,10 @@ package com.groupProject.borrowMe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Button;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.util.Log;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.Item.ItemDetails;
 import com.groupProject.borrowMe.JSONRequests.SubmitItem;
 
 import org.json.JSONException;
@@ -52,6 +55,10 @@ public class Submit_Activity extends AppCompatActivity{
         LenderEmail.setText( LEmail );
         BorrowEmail.setText( BEmail );
 
+        RadioGroup radioGroup;
+
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
 //when Submit
         Submit.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -70,6 +77,11 @@ public class Submit_Activity extends AppCompatActivity{
 
                                     } else {
 
+                                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(Submit_Activity.this);
+                                        builder.setMessage("Failed!")
+                                                .setNegativeButton("Retry", null)
+                                                .create()
+                                                .show();
 
                                     }
                                 } catch (JSONException e) {
