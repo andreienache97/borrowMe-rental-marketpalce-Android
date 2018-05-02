@@ -28,8 +28,10 @@ import com.groupProject.borrowMe.Departments.DepartmentByName;
 import com.groupProject.borrowMe.Item.Add_itemActivity;
 import com.groupProject.borrowMe.Item.BorrowItemRequests;
 import com.groupProject.borrowMe.Item.BorrowedItems;
+import com.groupProject.borrowMe.Item.ItemDetails;
 import com.groupProject.borrowMe.Item.LentItems;
 import com.groupProject.borrowMe.Item.MyItems;
+import com.groupProject.borrowMe.JSONRequests.FavouriteRequest;
 import com.groupProject.borrowMe.User.UserDetails;
 import com.groupProject.borrowMe.Chat.ChatActivity;
 
@@ -190,13 +192,13 @@ public class MainActivity extends AppCompatActivity
             TopUpintent.putExtra( "email", email );
             startActivity( TopUpintent );
 
-
         }
         else if (id == R.id.fav_items) {
-
+            Intent intent = new Intent(MainActivity.this, FavouriteActivity.class);
+            intent.putExtra("email", email);
+            startActivity(intent);
         }
         else if (id == R.id.borrow_request) {
-
 
             Intent intent = new Intent(MainActivity.this, BorrowItemRequests.class);
             intent.putExtra("email", email);
@@ -238,7 +240,7 @@ public class MainActivity extends AppCompatActivity
             Intent registerIntent = new Intent(MainActivity.this, FaqActivity.class);
             MainActivity.this.startActivity(registerIntent);
         } else if (id == R.id.support){
-//Suport ticket
+//Support ticket
             Intent SupportIntent = new Intent(MainActivity.this, SupportActivity.class);
             SupportIntent.putExtra( "email",email );
             MainActivity.this.startActivity(SupportIntent);

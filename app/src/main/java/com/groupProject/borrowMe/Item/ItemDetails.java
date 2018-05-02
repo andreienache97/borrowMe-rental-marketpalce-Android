@@ -73,20 +73,33 @@ public class ItemDetails extends AppCompatActivity {
 // favorite item button
         Button favoriteItem = (Button) findViewById(R.id.bFavorite);
         favoriteItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
+                                            @Override
+                                            public void onClick(final View view) {
 
-               //FavouriteRequest FavouriteRequest = new FavouriteRequest(BorrowerEmail, title, price, details,  available, unavailable, department, deposit, responseListener);
-                //RequestQueue queue = Volley.newRequestQueue(FavouriteActivity.this);
-                //queue.add(FavouriteRequest);
+                                                Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
-                builder.setMessage("Added to Favourites!")
-                        .setPositiveButton("OK", null)
-                        .create()
-                        .show();
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        try {
+                                                            JSONObject jsonResponse = new JSONObject(response);
+                                                            boolean success = jsonResponse.getBoolean("success");
+                                                            if (success) {
+                                                                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                                                                builder.setMessage("Added to Favourites!")
+                                                                        .setPositiveButton("OK", null)
+                                                                        .create()
+                                                                        .show();
+                                                            }
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                };
 
-            }
+                                                FavouriteRequest FavouriteRequest = new FavouriteRequest(id, BorrowerEmail, responseListener);
+                                                RequestQueue queue = Volley.newRequestQueue(ItemDetails.this);
+                                                queue.add(FavouriteRequest);
+                                            }
         });
 
 
