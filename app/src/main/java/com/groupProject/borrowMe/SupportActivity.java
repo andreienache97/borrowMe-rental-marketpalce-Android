@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-//import com.groupProject.borrowMe.JSONRequests.SupportRequest;
+import com.groupProject.borrowMe.JSONRequests.SupportRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +28,8 @@ public class SupportActivity extends AppCompatActivity {
         final Spinner spinner1 = findViewById(R.id.spinner1);
         final EditText editText4 = findViewById(R.id.editText4);
         final Button button = findViewById(R.id.button);
+        Intent incomingIntent = getIntent();
+        final String email = incomingIntent.getStringExtra( "email" );
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,28 +48,29 @@ public class SupportActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-                                String type = jsonResponse.getString("type");
-                                String message = jsonResponse.getString("message");
 
                                 Intent intent = new Intent(SupportActivity.this, MainActivity.class);
-                                intent.putExtra("issue", type);
-                                intent.putExtra( "comment",message );
                                 SupportActivity.this.startActivity(intent);
 
+
+                            }else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SupportActivity.this);
-                                builder.setMessage("Your message was successfully submitted.")
+                                builder.setMessage("Error")
                                         .setPositiveButton("Okay", null)
                                         .create()
                                         .show();
+
+
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 };
-//                SupportRequest SupportRequest = new SupportRequest(type, message, responseListener);
-//                RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
-//                queue.add(SupportRequest);
+                SupportRequest SupportRequest = new SupportRequest(email,type, message, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(SupportActivity.this);
+                queue.add(SupportRequest);
 
             }
         });

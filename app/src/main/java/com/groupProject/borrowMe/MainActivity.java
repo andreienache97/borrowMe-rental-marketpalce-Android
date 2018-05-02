@@ -239,8 +239,9 @@ public class MainActivity extends AppCompatActivity
             MainActivity.this.startActivity(registerIntent);
         } else if (id == R.id.support){
 //Suport ticket
-            Intent registerIntent = new Intent(MainActivity.this, SupportActivity.class);
-            MainActivity.this.startActivity(registerIntent);
+            Intent SupportIntent = new Intent(MainActivity.this, SupportActivity.class);
+            SupportIntent.putExtra( "email",email );
+            MainActivity.this.startActivity(SupportIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
