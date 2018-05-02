@@ -12,10 +12,10 @@ import java.util.Map;
 
     public class FavouriteRequest extends StringRequest {
 
-        private static final String FAVOURITE_REQUEST_URL = "https://myxstyle120.000webhostapp.com/AddFavourite.php";
+        private static final String FAVOURITE_REQUEST_URL = "https://myxstyle120.000webhostapp.com/AddFavorite.php";
         private Map<String, String> params;
 
-        public FavouriteRequest(String email,String item_id, Response.Listener<String> listener) {
+        public FavouriteRequest(String item_id,String email, Response.Listener<String> listener) {
             super( Method.POST, FAVOURITE_REQUEST_URL, listener, null );
             params = new HashMap<>();
             params.put( "item_id", item_id );

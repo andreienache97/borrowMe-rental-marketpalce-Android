@@ -34,7 +34,7 @@ public class ItemDetails extends AppCompatActivity {
 
 //Fields
     public AppCompatTextView title,price,details,available,unavailable,department,deposit,fine;
-    public Button userDetails,borrow,report,contact;
+    public Button userDetails,borrow,report,contact,favoriteItem;
     String id,TITLE,PRICE,DETAILS,AVAILABLE,UNAVAILABLE,DEPARTMENT,LendarEMAIL,name,phone,address,city,postcode,DEPOSIT,FINE;
     String BorrowerEmail;
 
@@ -61,7 +61,7 @@ public class ItemDetails extends AppCompatActivity {
         borrow = (Button) findViewById(R.id.bBorrow);
         report = (Button) findViewById(R.id.bReport);
         contact = (Button) findViewById(R.id.bContact);
-
+        favoriteItem = (Button) findViewById(R.id.bFavorite);
 //get variables from intent
         Intent intent = getIntent();
         id = intent.getStringExtra("item_id");
@@ -71,7 +71,6 @@ public class ItemDetails extends AppCompatActivity {
         contact.setVisibility(View.GONE);
 
 // favorite item button
-        Button favoriteItem = (Button) findViewById(R.id.bFavorite);
         favoriteItem.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(final View view) {
