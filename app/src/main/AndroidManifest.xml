@@ -58,7 +58,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".Departments.AllDepartments" />
-        <activity android:name=".Top_upActivity" android:parentActivityName=".MainActivity"> </activity>
+        <activity android:name=".Top_upActivity" android:parentActivityName=".MainActivity"> </activity> //luis
         <activity android:name=".Item.ItemDetails" />
         <activity android:name=".Departments.DepartmentByName" />
         <activity android:name=".Item.MyItems" />
