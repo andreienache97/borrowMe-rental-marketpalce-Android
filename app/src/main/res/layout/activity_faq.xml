@@ -101,6 +101,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:id="@+id/editText4"
             android:hint="If you have any questions that were not addressed here, please send them to us..." />
 
         <Button

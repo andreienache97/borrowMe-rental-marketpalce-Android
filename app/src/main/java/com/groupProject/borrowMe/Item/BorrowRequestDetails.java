@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.android.volley.RequestQueue;
@@ -18,10 +19,17 @@ import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
 import com.groupProject.borrowMe.JSONRequests.acceptBorrowRequest;
 import com.groupProject.borrowMe.JSONRequests.deleteBorrowRequest;
 import com.groupProject.borrowMe.JSONRequests.returnDepositRequest;
+import com.groupProject.borrowMe.MainActivity;
 import com.groupProject.borrowMe.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Enache on 25/04/2018.
@@ -31,8 +39,9 @@ import org.json.JSONObject;
 public class BorrowRequestDetails extends AppCompatActivity {
 
     public AppCompatTextView item, email, start,end;
-    String ITEM,EMAIL,START,END,ITEM_ID,B_EMAIL,name,phone,address,city,postcode,price,tmp,tmp_dep;
+    public String ITEM,EMAIL,START,END,ITEM_ID,B_EMAIL,name,phone,address,city,postcode,price,tmp,tmp_dep;
     int balance_lender,deposit;
+    private String Days;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +61,8 @@ public class BorrowRequestDetails extends AppCompatActivity {
         final String borrow_id = intent.getStringExtra("borrow_id");
 
         getDetails(borrow_id);
+
+
 
         item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +150,17 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
 
     }
+    private void checkDate(String ADate, String UDate) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date firstDate = sdf.parse(ADate);
+        Date secondDate = sdf.parse(UDate);
+
+        long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        Log.d( "Time is ---", String.valueOf( diff ) );
+        Days = String.valueOf( diff );
+    }
 
 
     public void acceptRequest(final String borrow_id,final String item_id){
@@ -152,12 +174,9 @@ public class BorrowRequestDetails extends AppCompatActivity {
                     boolean success1 = jsonResponse.getBoolean("success");
 
                     if (success1) {
+                        Intent Backintent = new Intent( BorrowRequestDetails.this, MainActivity.class );
+                        startActivity( Backintent );
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("Borrow request accepted, the money are now in you account.")
-                                .setNegativeButton("Ok", null)
-                                .create()
-                                .show();
 
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
@@ -173,7 +192,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
             }
         };
 
-        acceptBorrowRequest Request = new acceptBorrowRequest(borrow_id,item_id, deleteItem);
+        acceptBorrowRequest Request = new acceptBorrowRequest(borrow_id,item_id,Days, deleteItem);
         RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
         queue.add(Request);
     }
@@ -201,8 +220,14 @@ public class BorrowRequestDetails extends AppCompatActivity {
                         email.setText(B_EMAIL);
                         start.setText(START);
                         end.setText(END);
+                        try {
+                            checkDate(START,END);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
 
-                       getItemDetails(ITEM_ID);
+
+                        getItemDetails(ITEM_ID);
 
                     } else {
                         //Error

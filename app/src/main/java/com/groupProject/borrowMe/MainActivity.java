@@ -237,8 +237,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.faq){
 //FAQ
-            Intent registerIntent = new Intent(MainActivity.this, FaqActivity.class);
-            MainActivity.this.startActivity(registerIntent);
+            Intent FAQ = new Intent(MainActivity.this, FaqActivity.class);
+            FAQ.putExtra( "email", email );
+            MainActivity.this.startActivity(FAQ);
         } else if (id == R.id.support){
 //Support ticket
             Intent SupportIntent = new Intent(MainActivity.this, SupportActivity.class);

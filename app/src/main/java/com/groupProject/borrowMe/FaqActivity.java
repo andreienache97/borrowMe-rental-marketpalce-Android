@@ -58,17 +58,17 @@ public class FaqActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-                                String question = jsonResponse.getString("question");
 
                                 Intent intent = new Intent(com.groupProject.borrowMe.FaqActivity.this, MainActivity.class);
-                                intent.putExtra("question", question);
                                 com.groupProject.borrowMe.FaqActivity.this.startActivity(intent);
-
+                            } else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder(FaqActivity.this);
-                                builder.setMessage("Your question was successfully submitted.")
-                                        .setPositiveButton("Okay", null)
+                                builder.setMessage("Failed")
+                                        .setNegativeButton("Retry", null)
                                         .create()
                                         .show();
+
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

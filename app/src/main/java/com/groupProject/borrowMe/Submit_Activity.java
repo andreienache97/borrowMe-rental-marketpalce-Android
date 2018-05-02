@@ -56,11 +56,7 @@ public class Submit_Activity extends AppCompatActivity{
         Submit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    boolean test = checkDate( ADate,UDate );
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+
                 Response.Listener<String> responselistener = new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -94,17 +90,7 @@ public class Submit_Activity extends AppCompatActivity{
 
     }
 
-    private boolean checkDate(String ADate, String UDate) throws ParseException {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        Date firstDate = sdf.parse(ADate);
-        Date secondDate = sdf.parse(UDate);
-
-        long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
-        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-        Log.d( "Time is ---", String.valueOf( diff ) );
-        return true;
-    }
 
 }
 
