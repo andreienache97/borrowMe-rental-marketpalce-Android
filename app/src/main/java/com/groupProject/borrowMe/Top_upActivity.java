@@ -20,7 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Top_upActivity extends AppCompatActivity{
-
+    private String userbalance;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -37,10 +37,37 @@ public class Top_upActivity extends AppCompatActivity{
 //Get vaules from intent
             Intent incomingIntent = getIntent();
             final String email = incomingIntent.getStringExtra( "email" );
-            final int balance = incomingIntent.getIntExtra("balance",0);
+            Response.Listener<String> getuserbalance= new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
 
-//show the balance
-            Balance.setText( "Balance : £ " + balance );
+                    try {
+                        JSONObject jsonResponse = new JSONObject( response );
+                        boolean success = jsonResponse.getBoolean( "success" );
+                        if (success){
+                            String Bal = jsonResponse.getString( "balance" );
+                            userbalance = Bal;
+                            Balance.setText( "Balance : £ " + Bal );
+
+                        }else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
+                            builder.setMessage( "Cant find your balance " )
+                                    .setNegativeButton( "Retry", null )
+                                    .create()
+                                    .show();
+
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            GetBalance GetBalance = new GetBalance( email, getuserbalance );
+            RequestQueue queue = Volley.newRequestQueue( Top_upActivity.this );
+            queue.add( GetBalance );
+
+
 
 //Top up in order to borrow items
             bTopUp.setOnClickListener( new View.OnClickListener() {
@@ -48,7 +75,7 @@ public class Top_upActivity extends AppCompatActivity{
                 public void onClick(View v) {
 //Get inputs from user
                     String money = etMoney.getText().toString();
-                    String tmp = String.valueOf( balance );
+
 
 //check if the input is valid
                     if(money.isEmpty()){
@@ -69,10 +96,9 @@ public class Top_upActivity extends AppCompatActivity{
                                     boolean success = jsonResponse.getBoolean( "success" );
                                     if (success) {
 //direct user back to the main page
-                                        int newBalance = jsonResponse.getInt( "balance" );
+                                          String email = jsonResponse.getString( "email" );
                                         Intent BacktoMainintent = new Intent( Top_upActivity.this, MainActivity.class );
                                         BacktoMainintent.putExtra( "email", email );
-                                        BacktoMainintent.putExtra( "balance", newBalance);
                                         Top_upActivity.this.startActivity( BacktoMainintent );
                                     } else {
 //php code will check if the input is 0 or not
@@ -88,7 +114,7 @@ public class Top_upActivity extends AppCompatActivity{
                             }
                         };
 //Connect to database
-                        Top_upRequest TopUpRequest = new Top_upRequest( email, tmp, money, responseListener );
+                        Top_upRequest TopUpRequest = new Top_upRequest( email,userbalance, money, responseListener );
                         RequestQueue queue = Volley.newRequestQueue( Top_upActivity.this );
                         queue.add( TopUpRequest );
 
@@ -104,11 +130,9 @@ public class Top_upActivity extends AppCompatActivity{
                 public void onClick(View v) {
 
                     String money = etWithdraw.getText().toString();
-                    String tmp = String.valueOf( balance );
-//check if there is enough balance
-                    int difference = balance - Integer.parseInt(money);
+
 //error
-                    if(money.isEmpty() || difference < 0){
+                    if(money.isEmpty() ){
                         AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
                         builder.setMessage( "Please enter the the right amount to withdraw " )
                                 .setNegativeButton( "Retry", null )
@@ -124,11 +148,10 @@ public class Top_upActivity extends AppCompatActivity{
                                     JSONObject jsonResponse = new JSONObject( response );
                                     boolean success = jsonResponse.getBoolean( "success" );
                                     if (success) {
+                                        String email = jsonResponse.getString( "email");
  //direct user back to main page
-                                        int newBalance = jsonResponse.getInt( "balance" );
                                         Intent BacktoMainintent = new Intent( Top_upActivity.this, MainActivity.class );
                                         BacktoMainintent.putExtra( "email", email );
-                                        BacktoMainintent.putExtra( "balance", newBalance);
                                         Top_upActivity.this.startActivity( BacktoMainintent );
                                     } else {
 //cant enter 0
@@ -145,7 +168,7 @@ public class Top_upActivity extends AppCompatActivity{
                         };
 
 //Connect to databse
-                        WithdrawRequest Request = new WithdrawRequest( email, tmp, money, responseListener );
+                        WithdrawRequest Request = new WithdrawRequest( email, userbalance, money, responseListener );
                         RequestQueue queue = Volley.newRequestQueue( Top_upActivity.this );
                         queue.add( Request );
 
