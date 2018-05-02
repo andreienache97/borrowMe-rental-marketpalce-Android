@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.groupProject.borrowMe.Helpers.AvailableDate;
+import com.groupProject.borrowMe.JSONRequests.FavouriteRequest;
 import com.groupProject.borrowMe.JSONRequests.RequestItem;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
 import com.groupProject.borrowMe.JSONRequests.ReportItemRequest;
@@ -75,8 +76,15 @@ public class ItemDetails extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
 
+               //FavouriteRequest FavouriteRequest = new FavouriteRequest(BorrowerEmail, title, price, details,  available, unavailable, department, deposit, responseListener);
+                //RequestQueue queue = Volley.newRequestQueue(FavouriteActivity.this);
+                //queue.add(FavouriteRequest);
 
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(ItemDetails.this);
+                builder.setMessage("Added to Favourites!")
+                        .setPositiveButton("OK", null)
+                        .create()
+                        .show();
 
             }
         });
