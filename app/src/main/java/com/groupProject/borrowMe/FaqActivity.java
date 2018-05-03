@@ -26,6 +26,10 @@ public class FaqActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final TextView textView1 = findViewById(R.id.textView1);
         final TextView textView2 = findViewById(R.id.textView2);
         final TextView textView3 = findViewById(R.id.textView3);

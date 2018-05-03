@@ -30,6 +30,10 @@ public class AdminLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 //Fields
         final EditText adminName = (EditText) findViewById(R.id.etAdminUsername);
         final EditText adminPassword = (EditText) findViewById(R.id.etAdminPassword);

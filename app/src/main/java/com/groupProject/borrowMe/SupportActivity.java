@@ -25,6 +25,10 @@ public class SupportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final Spinner spinner1 = findViewById(R.id.spinner1);
         final EditText editText4 = findViewById(R.id.editText4);
         final Button button = findViewById(R.id.button);

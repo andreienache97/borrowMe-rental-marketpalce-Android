@@ -47,6 +47,10 @@ public class ChatroomsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatrooms);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent incomingIntent = getIntent();
 
         //Get from the previous page

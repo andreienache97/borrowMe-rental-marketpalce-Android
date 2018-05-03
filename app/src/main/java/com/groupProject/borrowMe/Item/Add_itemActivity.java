@@ -47,6 +47,10 @@ public class Add_itemActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 //The spinner
         Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
         assert spin != null;

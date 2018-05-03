@@ -34,6 +34,9 @@ public class ChangeUserDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_user_details);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         update = (Button) findViewById(R.id.bUpdate);
 

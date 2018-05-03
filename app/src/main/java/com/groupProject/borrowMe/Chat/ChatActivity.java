@@ -48,6 +48,10 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent incomingIntent = getIntent();
 
         final String emailFrom = incomingIntent.getStringExtra(EXTRA_EMAIL_FROM);

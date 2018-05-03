@@ -34,6 +34,10 @@ public class Submit_Activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 //Show the input details when user wants to borrow an item before submit
         final TextView StartDate = (TextView) findViewById( R.id.StartDate );
         final TextView EndDate = (TextView) findViewById( R.id.EndDate );

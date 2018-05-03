@@ -20,6 +20,10 @@ public class AvailableDate extends AppCompatActivity{
         super.onCreate( savedInstanceState );
         setContentView( R.layout.calendar_a );
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ACalendarView = (CalendarView) findViewById( R.id.calendarView );
         Intent incomingIntent = getIntent();
 //Getting variables from intent

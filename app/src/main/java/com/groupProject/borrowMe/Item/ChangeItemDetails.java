@@ -40,6 +40,10 @@ public class ChangeItemDetails extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         title = (EditText) findViewById(R.id.etTitle);
         price = (EditText) findViewById(R.id.etPrice);

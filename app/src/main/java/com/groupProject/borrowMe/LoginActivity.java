@@ -68,8 +68,8 @@ public class LoginActivity extends AppCompatActivity {
 // Response received from the server
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                    @Override
-                    public void onResponse(String response) {
+                   @Override
+                   public void onResponse(String response) {
                         try {
 //Getting responses from php file
                             JSONObject jsonResponse = new JSONObject(response);

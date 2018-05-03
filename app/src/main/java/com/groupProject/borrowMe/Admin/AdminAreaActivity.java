@@ -20,6 +20,10 @@ public class AdminAreaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_area);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final AppCompatButton cCheck = (AppCompatButton) findViewById(R.id.check);
         final AppCompatButton rCheck = (AppCompatButton) findViewById(R.id.reportedItemsAdmin);
 
