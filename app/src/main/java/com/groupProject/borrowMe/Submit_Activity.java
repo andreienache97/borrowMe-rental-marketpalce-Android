@@ -51,7 +51,6 @@ public class Submit_Activity extends AppCompatActivity{
         final String UDate = incomingIntent.getStringExtra( "UDate" );
         StartDate.setText( ADate );
         EndDate.setText( UDate );
-        Item_id.setText( id );
         LenderEmail.setText( LEmail );
         BorrowEmail.setText( BEmail );
 
@@ -83,7 +82,7 @@ public class Submit_Activity extends AppCompatActivity{
                                                 .create()
                                                 .show();
 
-                                    }
+                                }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -107,7 +106,3 @@ public class Submit_Activity extends AppCompatActivity{
 }
 
 
-
-//Payment
-//Support
-//remove keywords
