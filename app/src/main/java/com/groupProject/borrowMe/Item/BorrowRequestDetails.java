@@ -179,7 +179,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("Error")
+                        builder.setMessage("The balance of the borrower is low, please deny the request")
                                 .setNegativeButton("Retry", null)
                                 .create()
                                 .show();
