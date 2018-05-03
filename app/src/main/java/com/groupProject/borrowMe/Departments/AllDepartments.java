@@ -34,8 +34,6 @@ public class AllDepartments extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-
-
     List<ItemDepartments> items;
 
     private static final String request_url = "https://myxstyle120.000webhostapp.com/departments/allDepartments.php";

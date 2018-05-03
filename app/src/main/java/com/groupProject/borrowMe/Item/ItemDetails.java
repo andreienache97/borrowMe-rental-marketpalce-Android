@@ -151,7 +151,7 @@ public class ItemDetails extends AppCompatActivity {
                 }
             }
         };
-//Conenct to database
+//Connect to database
         RequestItem Request = new RequestItem(id, responseListener);
         RequestQueue queue = Volley.newRequestQueue(ItemDetails.this);
         queue.add(Request);

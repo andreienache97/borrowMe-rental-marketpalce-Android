@@ -16,15 +16,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.groupProject.borrowMe.Chat.ChatroomsActivity;
 import com.groupProject.borrowMe.Departments.AllDepartments;
 import com.groupProject.borrowMe.Departments.DepartmentByName;
+import com.groupProject.borrowMe.Departments.ItemSearch;
 import com.groupProject.borrowMe.Item.Add_itemActivity;
 import com.groupProject.borrowMe.Item.BorrowItemRequests;
 import com.groupProject.borrowMe.Item.BorrowedItems;
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
 
@@ -87,7 +91,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = getIntent();
                 String email = intent.getStringExtra("email");
 
-//When user select all deparments, direct to AllDepartments class
+//When user select all departments, direct to AllDepartments class
                 if(dep == "All Departments") {
                     Intent listItems = new Intent(MainActivity.this, AllDepartments.class);
                     listItems.putExtra("department", dep);
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity
                     MainActivity.this.startActivity(listItems);
                 }else
                     {
-//When user select a department, direct to Departemnt by names
+//When user select a department, direct to Department by names
                     Intent listItems = new Intent(MainActivity.this, DepartmentByName.class);
                     listItems.putExtra("department", dep);
                     listItems.putExtra( "email", email );
@@ -119,11 +123,33 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        inflater.inflate(R.menu.main,menu);
+        MenuItem item = menu.findItem(R.id.menuSearch);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent search = new Intent(MainActivity.this, ItemSearch.class);
+                search.putExtra("searchWord",query);
+                MainActivity.this.startActivity(search);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         return true;
+
+
+
     }
 
     @Override

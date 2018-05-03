@@ -60,6 +60,7 @@
         <activity android:name=".Top_upActivity" android:parentActivityName=".MainActivity"> </activity> //luis
         <activity android:name=".Item.ItemDetails" android:parentActivityName=".Departments.AllDepartments"> </activity>
         <activity android:name=".Departments.DepartmentByName" android:parentActivityName=".MainActivity"> </activity>
+        <activity android:name=".Departments.ItemSearch" android:parentActivityName=".MainActivity"> </activity>
         <activity android:name=".Item.MyItems" android:parentActivityName=".MainActivity"> </activity>
         <activity android:name=".Item.ReportItems"></activity>
         <activity
@@ -79,8 +80,8 @@
         <activity android:name=".Item.BorrowedItemsDetails" android:parentActivityName=".Item.BorrowedItems"> </activity>
         <activity android:name=".Item.LentItems" android:parentActivityName=".MainActivity"> </activity>
         <activity android:name=".Item.LentItemsDetails" android:parentActivityName=".Item.LentItems"> </activity>
-    <activity android:name=".Chat.ChatroomsActivity" android:parentActivityName=".MainActivity"> </activity>
-    <activity android:name=".Chat.ChatActivity" android:parentActivityName=".Chat.ChatroomsActivity"> </activity>
+        <activity android:name=".Chat.ChatroomsActivity" android:parentActivityName=".MainActivity"> </activity>
+        <activity android:name=".Chat.ChatActivity" android:parentActivityName=".Chat.ChatroomsActivity"> </activity>
 
     </application>
 </manifest>
