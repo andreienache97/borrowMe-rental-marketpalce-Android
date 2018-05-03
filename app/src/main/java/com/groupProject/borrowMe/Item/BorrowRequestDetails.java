@@ -18,7 +18,6 @@ import com.groupProject.borrowMe.JSONRequests.RequestItemName;
 import com.groupProject.borrowMe.JSONRequests.RequestUserContact;
 import com.groupProject.borrowMe.JSONRequests.acceptBorrowRequest;
 import com.groupProject.borrowMe.JSONRequests.deleteBorrowRequest;
-import com.groupProject.borrowMe.JSONRequests.returnDepositRequest;
 import com.groupProject.borrowMe.MainActivity;
 import com.groupProject.borrowMe.R;
 
@@ -312,7 +311,7 @@ public class BorrowRequestDetails extends AppCompatActivity {
                     if (success1) {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("The request has been denied and the deposit returned.")
+                        builder.setMessage("The request has been denied.")
                                 .setNegativeButton("Ok", null)
                                 .create()
                                 .show();
@@ -338,43 +337,6 @@ public class BorrowRequestDetails extends AppCompatActivity {
 
     }
 
-    public void returnDeposit(final String lender_email,final String balance,final String deposit) {
 
-        Response.Listener<String> deleteItem = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response1) {
-
-
-                try {
-                    JSONObject jsonResponse = new JSONObject(response1);
-                    boolean success1 = jsonResponse.getBoolean("success");
-
-                    if (success1) {
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("The request has been denied and the deposit returned.")
-                                .setNegativeButton("Ok", null)
-                                .create()
-                                .show();
-
-                    } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowRequestDetails.this);
-                        builder.setMessage("Error")
-                                .setNegativeButton("Retry", null)
-                                .create()
-                                .show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        returnDepositRequest Request = new returnDepositRequest(lender_email,balance,deposit, deleteItem);
-        RequestQueue queue = Volley.newRequestQueue(BorrowRequestDetails.this);
-        queue.add(Request);
-
-    }
 
 }

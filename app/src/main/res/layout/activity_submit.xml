@@ -21,14 +21,6 @@
         android:id="@+id/EndDate"
         android:layout_below="@+id/StartDate"
         android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="item_id"
-        android:id="@+id/item_id"
-        android:layout_below="@+id/EndDate"
-        android:layout_centerHorizontal="true" />
 
 
     <TextView
@@ -36,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Your email"
-        android:layout_below="@+id/item_id"
+        android:layout_below="@+id/EndDate"
         android:id="@+id/Borrowemail"
         android:layout_centerHorizontal="true" />
 
@@ -48,18 +40,45 @@
         android:id="@+id/Lenderemail"
         android:layout_below="@+id/Borrowemail"
         android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="123dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/Lenderemail">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/radioButton"
+            android:layout_alignBottom="@+id/radioButton"
+            android:layout_toEndOf="@+id/item_id"
+            android:layout_toRightOf="@+id/item_id"
+            android:text="Collection" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Lenderemail"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/item_id"
+            android:layout_toStartOf="@+id/item_id"
+            android:text="Delivery" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/bSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/EndDate"
+        android:layout_alignRight="@+id/EndDate"
         android:layout_below="@+id/Lenderemail"
+        android:layout_marginTop="132dp"
         android:text="Submit" />
-
-
 
 
 </RelativeLayout>

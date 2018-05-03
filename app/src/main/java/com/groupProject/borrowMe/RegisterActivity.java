@@ -27,6 +27,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 //set EditText and Buttons
         final EditText email = (EditText) findViewById(R.id.etEmail);
         final EditText pass = (EditText) findViewById(R.id.etPassword);

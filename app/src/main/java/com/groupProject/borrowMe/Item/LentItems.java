@@ -44,6 +44,10 @@ public class LentItems extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lent_items);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView = (RecyclerView) findViewById(R.id.LentAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

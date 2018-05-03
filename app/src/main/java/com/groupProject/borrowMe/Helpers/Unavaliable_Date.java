@@ -21,6 +21,11 @@ public class Unavaliable_Date extends AppCompatActivity{
         super.onCreate( savedInstanceState );
         setContentView( R.layout.calendar_u );
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         UCalendarView = (CalendarView) findViewById( R.id.calendarView2 );
         Intent incomingIntent = getIntent();
 //Got from intent

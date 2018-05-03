@@ -32,6 +32,10 @@ public class BorrowedItemsDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrowed_items_details);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         item = (AppCompatTextView) findViewById(R.id.textItem);
         email = (AppCompatTextView) findViewById(R.id.textEmail);
         start = (AppCompatTextView) findViewById(R.id.textStartDate);

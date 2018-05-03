@@ -33,6 +33,10 @@ public class InspectItem extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //return button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ID = (AppCompatTextView) findViewById(R.id.textId);
         EMAIL = (AppCompatTextView) findViewById(R.id.textEmail);
         TITLE = (AppCompatTextView) findViewById(R.id.textTitle);
