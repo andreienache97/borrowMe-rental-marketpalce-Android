@@ -29,6 +29,11 @@ import java.text.ParseException;
 import java.util.concurrent.*;
 
 public class Submit_Activity extends AppCompatActivity{
+    private String Start_Date;
+    private String End_Date;
+    private boolean checkedA;
+    private boolean checkedU = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,59 +57,183 @@ public class Submit_Activity extends AppCompatActivity{
         final String BEmail = incomingIntent.getStringExtra( "Borrowemail" );
         final String id = incomingIntent.getStringExtra( "item_id" );
         final String ADate = incomingIntent.getStringExtra( "ADate" );
+        Start_Date = ADate;
         final String UDate = incomingIntent.getStringExtra( "UDate" );
-        StartDate.setText( ADate );
-        EndDate.setText( UDate );
-        LenderEmail.setText( LEmail );
-        BorrowEmail.setText( BEmail );
+        End_Date = UDate;
+
+        Response.Listener <String> getDate = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject( response );
+                    boolean success = jsonResponse.getBoolean( "success" );
+                    if(success){
+                        String ATheDate = jsonResponse.getString( "ADate" );
+                        String UTheDate = jsonResponse.getString( "UDate" );
+                        boolean tmp1 = CheckADate(ATheDate);
+                        checkedA = tmp1;
+                        boolean tmp2 = CheckUDate(UTheDate);
+                        checkedU =  tmp2;
+                        StartDate.setText( ADate );
+                        EndDate.setText( UDate );
+                        LenderEmail.setText( LEmail );
+                        BorrowEmail.setText( BEmail );
+
+                    }else{
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder( Submit_Activity.this );
+                        builder.setMessage( "Cant find the dates " )
+                                .setNegativeButton( "Retry", null )
+                                .create()
+                                .show();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        };
+        GetDate getTheDate = new GetDate(id,getDate);
+        RequestQueue queue = Volley.newRequestQueue( Submit_Activity.this );
+        queue.add( getTheDate );
+
 
         RadioGroup radioGroup;
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
-//when Submit
-        Submit.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            //when Submit
+            Submit.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                Response.Listener<String> responselistener = new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jsonResponse = new JSONObject( response );
-                                    boolean success = jsonResponse.getBoolean( "success" );
-                                    if (success) {
-                                        Intent BackToMain = new Intent( Submit_Activity.this, MainActivity.class );
-                                        BackToMain.putExtra( "email", BEmail );
-                                        startActivity( BackToMain );
+                if(checkedA && checkedU){
+                    Response.Listener<String> responselistener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject( response );
+                                boolean success = jsonResponse.getBoolean( "success" );
+                                if (success) {
+                                    Intent BackToMain = new Intent( Submit_Activity.this, MainActivity.class );
+                                    BackToMain.putExtra( "email", BEmail );
+                                    startActivity( BackToMain );
 
-                                    } else {
+                                } else {
 
-                                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(Submit_Activity.this);
-                                        builder.setMessage("Failed!")
-                                                .setNegativeButton("Retry", null)
-                                                .create()
-                                                .show();
+                                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(Submit_Activity.this);
+                                    builder.setMessage("Failed!")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
 
                                 }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        };
-                        SubmitItem SubmitItem = new SubmitItem( LEmail, BEmail, id, ADate, UDate, responselistener );
-                        RequestQueue queue = Volley.newRequestQueue( Submit_Activity.this );
-                        queue.add( SubmitItem );
 
-            }
-        } );
+
+                        }
+                    };
+                    SubmitItem SubmitItem = new SubmitItem( LEmail, BEmail, id, ADate, UDate, responselistener );
+                    RequestQueue queue = Volley.newRequestQueue( Submit_Activity.this );
+                    queue.add( SubmitItem );
+
+
+                }else{
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(Submit_Activity.this);
+                    builder.setMessage("period selected is not available.")
+                            .setNegativeButton("Retry", null)
+                            .create()
+                            .show();
+                }
+
+
+                }
+            } );
+
+
+
+
+
 
 
 
     }
 
+    private boolean CheckUDate(String uTheDate) {
+        String splitUDate[] = uTheDate.split( "-" );
+        String splitEndDate[] = End_Date.split( "-" );
+        int EndDate[] = new int[3];
+        int UDate[] = new int[3];
+        for (int i = 0 ; i < 3; i++ ){
+            UDate[i] = Integer.parseInt( splitUDate[i] );
+            EndDate[i] = Integer.parseInt( splitEndDate[i] );
+
+        }
+        if(EndDate[0] < UDate[0]){
+            checkedU = true;
+            return true;
+
+        }else{
+            if(EndDate[0] == UDate[0]){
+                if(EndDate[1] < UDate[1]){
+                    checkedU = true;
+                    return true;
+                }else{
+                    if(EndDate[1] == UDate[1]){
+                        if(EndDate[2] < UDate[2]){
+                            checkedU = true;
+                            return true;
+                        }else{}
+
+                    }else{}
+
+                }
+            }else{}
+        }
+        return false;
+
+
+    }
+
+    private boolean CheckADate(String aTheDate) {
+            String splitADate[] = aTheDate.split( "-" );
+            String splitStartDate[] = Start_Date.split( "-" );
+            int StartDate[] = new int[3];
+            int ADate[] = new int[3];
+            for (int i = 0 ; i < 3; i++ ){
+                ADate[i] = Integer.parseInt( splitADate[i] );
+                StartDate[i] = Integer.parseInt( splitStartDate[i] );
+
+            }
+
+            if(StartDate[0] > ADate[0]){
+                checkedA = true;
+                return true;
+
+            }else{
+                if(StartDate[0] == ADate[0]){
+                    if(StartDate[1] > ADate[1]){
+                        checkedA = true;
+                        return true;
+                    }else{
+                        if(StartDate[1] == ADate[1]){
+                            if(StartDate[2] > ADate[2]){
+                                checkedA = true;
+                                return true;
+                            }else{}
+
+                        }else{}
+
+                    }
+                }else{}
+            }
+
+    return false;
+
+    }
 
 
 }
