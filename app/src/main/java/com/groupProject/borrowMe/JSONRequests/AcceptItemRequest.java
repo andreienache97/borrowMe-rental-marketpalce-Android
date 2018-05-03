@@ -1,10 +1,9 @@
 package com.groupProject.borrowMe.JSONRequests;
 
-        import com.android.volley.Response;
-        import com.android.volley.toolbox.StringRequest;
-
-        import java.util.HashMap;
-        import java.util.Map;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Enache on 19/04/2018.

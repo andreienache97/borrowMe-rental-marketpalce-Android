@@ -1,4 +1,6 @@
-/* Author: Lau Tsz Chung*/
+/* Author: Lau Tsz Chung
+* Add item page allows user to add the item to the database
+* enter the item name, price etc.*/
 package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;

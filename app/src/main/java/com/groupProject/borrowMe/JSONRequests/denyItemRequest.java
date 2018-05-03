@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * Created by Enache on 19/04/2018.
+ * deny an item
  */
 
 public class denyItemRequest extends StringRequest {

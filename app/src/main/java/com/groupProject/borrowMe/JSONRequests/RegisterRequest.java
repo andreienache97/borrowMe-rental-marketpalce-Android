@@ -1,3 +1,6 @@
+/* Author: Lau Tsz Chung
+* register request
+* */
 package com.groupProject.borrowMe.JSONRequests;
 
 import com.android.volley.Response;

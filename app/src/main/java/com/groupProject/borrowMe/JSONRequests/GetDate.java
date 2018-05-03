@@ -1,4 +1,7 @@
-package com.groupProject.borrowMe;
+/* Author: Lau Tsz Chung
+* get the dates if the user
+*/
+package com.groupProject.borrowMe.JSONRequests;
 
 import com.android.volley.Request;
 import com.android.volley.Response;

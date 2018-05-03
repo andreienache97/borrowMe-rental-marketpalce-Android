@@ -30,6 +30,7 @@ import java.util.Map;
 
 /**
  * Created by Sebastian Arocha on 24/04/2018.
+ * search
  */
 
 public class ItemSearch extends AppCompatActivity{
@@ -117,7 +118,7 @@ public class ItemSearch extends AppCompatActivity{
                 }) {
 
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("searchWord", searchWord); //Add the data you'd like to send to the server.
                 return params;
             }

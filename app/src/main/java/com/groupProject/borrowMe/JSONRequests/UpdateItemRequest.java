@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Created by Enache on 25/04/2018.
+ * update item details
  */
 
 public class UpdateItemRequest  extends StringRequest {

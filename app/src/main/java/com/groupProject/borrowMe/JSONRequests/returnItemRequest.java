@@ -1,3 +1,6 @@
+/* Author: Lau Tsz Chung, Andrei Enache
+ * return the deposit, set the item back to available
+ * */
 package com.groupProject.borrowMe.JSONRequests;
 
 import com.android.volley.Response;
@@ -6,9 +9,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Enache on 26/04/2018.
- */
 
 public class returnItemRequest extends StringRequest {
 

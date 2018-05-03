@@ -1,3 +1,6 @@
+/* Author:  Andrei Enache
+ * update user details
+ * */
 package com.groupProject.borrowMe.JSONRequests;
 
 import com.android.volley.Response;

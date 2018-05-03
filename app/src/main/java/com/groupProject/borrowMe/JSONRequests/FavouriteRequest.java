@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Created by Diana on 5/2/2018.
+ * add to Favorite table
  */
 
     public class FavouriteRequest extends StringRequest {

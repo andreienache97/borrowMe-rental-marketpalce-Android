@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Created by Diana on 5/1/2018.
+ * Submit the questions to database
  */
 
 public class FaqRequest extends StringRequest {

@@ -186,7 +186,7 @@ public class BorrowedItemsDetails extends AppCompatActivity {
             }
         };
 
-//Connec to database
+//Connect to database
         RequestBorrow Request = new RequestBorrow(borrow_id, responseListener);
         RequestQueue queue = Volley.newRequestQueue(BorrowedItemsDetails.this);
         queue.add(Request);
@@ -212,8 +212,8 @@ public class BorrowedItemsDetails extends AppCompatActivity {
 
 
                         item.setText(ITEM);
-                        ItemPrice.setText(price+ " £/day");
-                        item_deposit.setText(deposit+ " £");
+                        ItemPrice.setText( String.format( "%s £/day", price ) );
+                        item_deposit.setText( String.format( "%d £", deposit ) );
 
 
 
@@ -234,7 +234,7 @@ public class BorrowedItemsDetails extends AppCompatActivity {
             }
         };
 
-//Connec to database
+//Connect to database
         RequestItemName Request = new RequestItemName(item_id, responseListener);
         RequestQueue queue = Volley.newRequestQueue(BorrowedItemsDetails.this);
         queue.add(Request);

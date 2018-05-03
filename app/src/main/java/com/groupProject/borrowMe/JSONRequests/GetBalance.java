@@ -1,4 +1,7 @@
-package com.groupProject.borrowMe;
+/* Author: Lau Tsz Chung
+ * get the balance of the user
+ * */
+package com.groupProject.borrowMe.JSONRequests;
 
 import com.android.volley.Request;
 import com.android.volley.Response;

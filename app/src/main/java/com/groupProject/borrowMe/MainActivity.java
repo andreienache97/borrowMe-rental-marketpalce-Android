@@ -1,4 +1,4 @@
-/* Author: Andrei Enache, Sebastián Arocha, Lau Tsz Chung
+/* Author: Andrei Enache, Sebastián Arocha, Lau Tsz Chung, Diana Cocos, Luis Fernando Araujo, Calin Badea
  * Main page for the app, include all major function on the left drawer, Add item, Top up, My item, FAQ
   * the centre of the page is search by departments, when user select one of the deparments on the list,
   * the app will direct user to the search results of that department
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+//search bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 // Inflate the menu; this adds items to the action bar if it is present.
@@ -219,11 +219,13 @@ public class MainActivity extends AppCompatActivity
             startActivity( TopUpintent );
 
         }
+        //fav items
         else if (id == R.id.fav_items) {
             Intent intent = new Intent(MainActivity.this, FavouriteActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
         }
+        //borrow request from borrower
         else if (id == R.id.borrow_request) {
 
             Intent intent = new Intent(MainActivity.this, BorrowItemRequests.class);
@@ -232,6 +234,7 @@ public class MainActivity extends AppCompatActivity
             //
 
         }
+        //show my items
         else if (id == R.id.my_items) {
 
             Intent intent = new Intent(MainActivity.this, MyItems.class);
@@ -239,7 +242,7 @@ public class MainActivity extends AppCompatActivity
             MainActivity.this.startActivity(intent);
 
         }
-
+        //the item that the user has borrowed
         else if (id == R.id.borrowed_items) {
 
             Intent intent = new Intent(MainActivity.this, BorrowedItems.class);
@@ -247,14 +250,14 @@ public class MainActivity extends AppCompatActivity
             MainActivity.this.startActivity(intent);
 
         } else if (id == R.id.lent_items) {
-
+        //items that lent to someone
             Intent intent = new Intent(MainActivity.this, LentItems.class);
             intent.putExtra("email", email);
             MainActivity.this.startActivity(intent);
 
 
         }
-
+        //message
         else if (id == R.id.message_user) {
 
             Intent intent = new Intent(MainActivity.this, ChatroomsActivity.class);

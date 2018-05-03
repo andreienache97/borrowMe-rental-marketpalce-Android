@@ -1,3 +1,6 @@
+/* Author: Diana Cocos
+ * FAQ page
+ * */
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -30,6 +33,7 @@ public class FaqActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Fields
         final TextView textView1 = findViewById(R.id.textView1);
         final TextView textView2 = findViewById(R.id.textView2);
         final TextView textView3 = findViewById(R.id.textView3);
@@ -43,6 +47,7 @@ public class FaqActivity extends AppCompatActivity {
         final EditText editText4 = findViewById(R.id.editText4);
         final Button submitQuestion = findViewById(R.id.submitQuestion);
 
+        //when Submit
         submitQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +67,7 @@ public class FaqActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-
+                                //Submitted
                                 Intent intent = new Intent(com.groupProject.borrowMe.FaqActivity.this, MainActivity.class);
                                 com.groupProject.borrowMe.FaqActivity.this.startActivity(intent);
                             } else{
@@ -79,6 +84,7 @@ public class FaqActivity extends AppCompatActivity {
                         }
                     }
                 };
+                //Connect to database
                 FaqRequest FaqRequest = new FaqRequest(email, question, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(com.groupProject.borrowMe.FaqActivity.this);
                 queue.add(FaqRequest);

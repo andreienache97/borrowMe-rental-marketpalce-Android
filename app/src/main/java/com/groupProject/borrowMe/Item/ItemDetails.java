@@ -1,4 +1,5 @@
-/* Author: Lau Tsz Chung,Andrei Enache, Sebastián Arocha */
+/* Author: Lau Tsz Chung,Andrei Enache, Sebastián Arocha
+* Page that shows item details and allow user to borrow, report and look for lender details*/
 package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;

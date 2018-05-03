@@ -1,4 +1,6 @@
-/* Author: Lau Tsz Chung, */
+/* Author: Lau Tsz Chung
+* A CalendarView
+* */
 package com.groupProject.borrowMe.Helpers;
 
 import android.content.Intent;

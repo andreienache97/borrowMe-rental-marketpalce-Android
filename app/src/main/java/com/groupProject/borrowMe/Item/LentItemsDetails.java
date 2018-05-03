@@ -1,3 +1,7 @@
+/* Author: Andrei Enache
+ * show lent item details, lender can confirm the borrower has returned
+ * the item to him by thr return button
+ * */
 package com.groupProject.borrowMe.Item;
 
 import android.app.AlertDialog;

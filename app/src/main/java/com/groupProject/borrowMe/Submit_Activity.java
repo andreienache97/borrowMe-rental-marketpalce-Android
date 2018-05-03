@@ -1,32 +1,26 @@
 /* Author: Lau Tsz Chung
   * Submit page is final page before user make a borrow request,
    * this page will show the details such as, Lender email, user email, item id, start and end dates
-   * once the user clicks the submit button, lender will get a message*/
+   * once the user clicks the submit button, lender will get a message
+   * This page will also check the dates as well*/
 package com.groupProject.borrowMe;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Button;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.groupProject.borrowMe.Item.ItemDetails;
+import com.groupProject.borrowMe.JSONRequests.GetDate;
 import com.groupProject.borrowMe.JSONRequests.SubmitItem;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.Date;
-import java.text.ParseException;
-import java.util.concurrent.*;
 
 public class Submit_Activity extends AppCompatActivity{
     private String Start_Date;
@@ -61,6 +55,7 @@ public class Submit_Activity extends AppCompatActivity{
         final String UDate = incomingIntent.getStringExtra( "UDate" );
         End_Date = UDate;
 
+        //get the dates from database
         Response.Listener <String> getDate = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -70,10 +65,8 @@ public class Submit_Activity extends AppCompatActivity{
                     if(success){
                         String ATheDate = jsonResponse.getString( "ADate" );
                         String UTheDate = jsonResponse.getString( "UDate" );
-                        boolean tmp1 = CheckADate(ATheDate);
-                        checkedA = tmp1;
-                        boolean tmp2 = CheckUDate(UTheDate);
-                        checkedU =  tmp2;
+                        checkedA = CheckADate(ATheDate);
+                        checkedU = CheckUDate(UTheDate);
                         StartDate.setText( ADate );
                         EndDate.setText( UDate );
                         LenderEmail.setText( LEmail );
@@ -162,6 +155,7 @@ public class Submit_Activity extends AppCompatActivity{
 
     }
 
+    //Check if the End date is before the unavailable date
     private boolean CheckUDate(String uTheDate) {
         String splitUDate[] = uTheDate.split( "-" );
         String splitEndDate[] = End_Date.split( "-" );
@@ -198,6 +192,7 @@ public class Submit_Activity extends AppCompatActivity{
 
     }
 
+    //check if the Start date is after the available date
     private boolean CheckADate(String aTheDate) {
             String splitADate[] = aTheDate.split( "-" );
             String splitStartDate[] = Start_Date.split( "-" );

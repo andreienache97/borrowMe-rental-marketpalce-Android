@@ -1,4 +1,6 @@
-/* Author: Lau Tsz Chung */
+/* Author: Lau Tsz Chung
+* Top up Page allow users to top up and withdraw their account
+ * user must top up before borrow an item*/
 package com.groupProject.borrowMe;
 
 import android.app.AlertDialog;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.groupProject.borrowMe.JSONRequests.GetBalance;
 import com.groupProject.borrowMe.JSONRequests.Top_upRequest;
 import com.groupProject.borrowMe.JSONRequests.WithdrawRequest;
 
@@ -47,7 +50,7 @@ public class Top_upActivity extends AppCompatActivity{
                         if (success){
                             String Bal = jsonResponse.getString( "balance" );
                             userbalance = Bal;
-                            Balance.setText( "Balance : £ " + Bal );
+                            Balance.setText( String.format( "Balance : £ %s", Bal ) );
 
                         }else{
                             AlertDialog.Builder builder = new AlertDialog.Builder( Top_upActivity.this );
@@ -167,7 +170,7 @@ public class Top_upActivity extends AppCompatActivity{
                             }
                         };
 
-//Connect to databse
+//Connect to database
                         WithdrawRequest Request = new WithdrawRequest( email, userbalance, money, responseListener );
                         RequestQueue queue = Volley.newRequestQueue( Top_upActivity.this );
                         queue.add( Request );
