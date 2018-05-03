@@ -8,7 +8,6 @@ package com.groupProject.borrowMe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -31,12 +30,10 @@ import com.groupProject.borrowMe.Departments.ItemSearch;
 import com.groupProject.borrowMe.Item.Add_itemActivity;
 import com.groupProject.borrowMe.Item.BorrowItemRequests;
 import com.groupProject.borrowMe.Item.BorrowedItems;
-import com.groupProject.borrowMe.Item.ItemDetails;
+import com.groupProject.borrowMe.Item.FavouriteItems;
 import com.groupProject.borrowMe.Item.LentItems;
 import com.groupProject.borrowMe.Item.MyItems;
-import com.groupProject.borrowMe.JSONRequests.FavouriteRequest;
 import com.groupProject.borrowMe.User.UserDetails;
-import com.groupProject.borrowMe.Chat.ChatActivity;
 
 import java.util.Comparator;
 
@@ -221,7 +218,7 @@ public class MainActivity extends AppCompatActivity
         }
         //fav items
         else if (id == R.id.fav_items) {
-            Intent intent = new Intent(MainActivity.this, FavouriteActivity.class);
+            Intent intent = new Intent(MainActivity.this, FavouriteItems.class);
             intent.putExtra("email", email);
             startActivity(intent);
         }
