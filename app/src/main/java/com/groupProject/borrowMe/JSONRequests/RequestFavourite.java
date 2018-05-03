@@ -16,10 +16,11 @@ public class RequestFavourite extends StringRequest {
     private static final String LOGIN_REQUEST_URL = "https://myxstyle120.000webhostapp.com/FavouriteDetails.php";
     private Map<String, String> params;
 
-    public RequestFavourite(String email, Response.Listener<String> listener) {
+    public RequestFavourite(String email,String id, Response.Listener<String> listener) {
         super(Request.Method.POST, LOGIN_REQUEST_URL, listener, null);
         params = new HashMap<>();
         params.put("email", email);
+        params.put("item_id", id);
 
     }
 

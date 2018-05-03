@@ -75,6 +75,7 @@ public class FavouriteItemsAdaptor extends  RecyclerView.Adapter<FavouriteItemsA
         public void onClick(View view) {
             Intent listItems = new Intent(context, FavouriteItemsDetails.class);
             listItems.putExtra("email", Lemail);
+            listItems.putExtra("item_id", id);
 
             context.startActivity(listItems);
         }

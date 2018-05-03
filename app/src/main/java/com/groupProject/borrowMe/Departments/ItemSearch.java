@@ -55,7 +55,6 @@ public class ItemSearch extends AppCompatActivity{
         //return button
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//test
 
         recyclerView = (RecyclerView) findViewById(R.id.ItemsAdapter);
         recyclerView.setHasFixedSize(true);

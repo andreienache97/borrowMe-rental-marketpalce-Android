@@ -47,6 +47,8 @@
             android:name=".SupportActivity" android:parentActivityName=".Item.ItemDetails"
             android:label="User Support" > </activity>
         <activity android:name=".Item.CheckItems" />
+        <activity android:name=".Item.FavouriteItems" />
+        <activity android:name=".Item.FavouriteItemsDetails" />
         <activity
             android:name=".Item.InspectItem" android:parentActivityName=".LoginActivity"
             android:label="@string/title_activity_inspect_item"

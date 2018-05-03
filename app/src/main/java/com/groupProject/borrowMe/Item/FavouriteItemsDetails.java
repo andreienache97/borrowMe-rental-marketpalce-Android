@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,25 +40,26 @@ public class FavouriteItemsDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
+        final String id = intent.getStringExtra("item_id");
 
-        getDetails(email);
+        getDetails(email,id);
 
     }
 
-    public void getDetails(final String email) {
+    public void getDetails(final String email,String id) {
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 try {
+                    Log.d("---------",response);
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
 
                         LENDER_EMAIL = jsonResponse.getString( "email" );
-                        ITEM_ID = jsonResponse.getString( "item_id" );
                         START = jsonResponse.getString( "AvailableDate" );
                         END = jsonResponse.getString( "UnavailableDate" );
                         ITEM = jsonResponse.getString( "name" );
@@ -87,7 +89,7 @@ public class FavouriteItemsDetails extends AppCompatActivity {
         };
 
 //Connec to database
-        RequestFavourite Request = new RequestFavourite(email, responseListener);
+        RequestFavourite Request = new RequestFavourite(email,id, responseListener);
         RequestQueue queue = Volley.newRequestQueue(FavouriteItemsDetails.this);
         queue.add(Request);
 
