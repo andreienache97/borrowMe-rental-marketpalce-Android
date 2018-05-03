@@ -3,6 +3,7 @@
     package="com.groupProject.borrowMe">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/start"
@@ -16,72 +17,116 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" android:parentActivityName=".LoginActivity"> </activity>
-        <activity android:name=".Admin.AdminLoginActivity" android:parentActivityName=".LoginActivity"> </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".LoginActivity"></activity>
+        <activity
+            android:name=".Admin.AdminLoginActivity"
+            android:parentActivityName=".LoginActivity"></activity>
         <activity android:name=".Admin.AdminAreaActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Item.Add_itemActivity" android:parentActivityName=".Item.ItemDetails"
-            android:label="Add Item" > </activity>
+            android:name=".Item.Add_itemActivity"
+            android:label="Add Item"
+            android:parentActivityName=".Item.ItemDetails"></activity>
         <activity
-            android:name=".Helpers.Unavaliable_Date" android:parentActivityName=".Helpers.AvailableDate"
-            android:label="Unavailable Date" > </activity>
+            android:name=".Helpers.Unavaliable_Date"
+            android:label="Unavailable Date"
+            android:parentActivityName=".Helpers.AvailableDate"></activity>
         <activity
-            android:name=".Helpers.AvailableDate" android:parentActivityName=".Item.ItemDetails"
-            android:label="Available Date" > </activity>
+            android:name=".Helpers.AvailableDate"
+            android:label="Available Date"
+            android:parentActivityName=".Item.ItemDetails"></activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".Submit_Activity" android:parentActivityName=".Helpers.Unavaliable_Date"
-            android:label="Submit" > </activity>
-        <activity android:name=".User.UserDetails" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".User.ChangeUserDetails" android:parentActivityName=".User.UserDetails"> </activity>
+            android:name=".Submit_Activity"
+            android:label="Submit"
+            android:parentActivityName=".Helpers.Unavaliable_Date"></activity>
         <activity
-            android:name=".FaqActivity" android:parentActivityName=".MainActivity"
-            android:label="@string/title_activity_faq" > </activity>
+            android:name=".User.UserDetails"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
-            android:name=".SupportActivity" android:parentActivityName=".Item.ItemDetails"
-            android:label="User Support" > </activity>
+            android:name=".User.ChangeUserDetails"
+            android:parentActivityName=".User.UserDetails"></activity>
+        <activity
+            android:name=".FaqActivity"
+            android:label="@string/title_activity_faq"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".SupportActivity"
+            android:label="User Support"
+            android:parentActivityName=".Item.ItemDetails"></activity>
         <activity android:name=".Item.CheckItems" />
         <activity
-            android:name=".Item.InspectItem" android:parentActivityName=".LoginActivity"
+            android:name=".Item.InspectItem"
             android:label="@string/title_activity_inspect_item"
-            android:theme="@style/AppTheme.NoActionBar"> </activity>
-
-        <activity android:name=".Item.InspectReportedItem"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Item.InspectReportedItem"
             android:label="activity_inspect_reported_item"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".Departments.AllDepartments" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".Top_upActivity" android:parentActivityName=".MainActivity"> </activity> //luis
-        <activity android:name=".Item.ItemDetails" android:parentActivityName=".Departments.AllDepartments"> </activity>
-        <activity android:name=".Departments.DepartmentByName" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".Departments.ItemSearch" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".Item.MyItems" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".Item.ReportItems"></activity>
         <activity
-            android:name=".Item.PostedItem" android:parentActivityName=".Item.MyItems"
+            android:name=".Departments.AllDepartments"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Top_upActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        //luis
+        <activity
+            android:name=".Item.ItemDetails"
+            android:parentActivityName=".Departments.AllDepartments"></activity>
+        <activity
+            android:name=".Departments.DepartmentByName"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Departments.ItemSearch"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Item.MyItems"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".Item.ReportItems" />
+        <activity
+            android:name=".Item.PostedItem"
             android:label="@string/title_activity_posted_item"
-            android:theme="@style/AppTheme.NoActionBar" > </activity>
+            android:parentActivityName=".Item.MyItems"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Item.ChangeItemDetails" android:parentActivityName=".Item.PostedItem"
+            android:name=".Item.ChangeItemDetails"
             android:label="@string/title_activity_change_item_details"
-            android:theme="@style/AppTheme.NoActionBar" > </activity>
-        <activity android:name=".Item.BorrowItemRequests" android:parentActivityName=".MainActivity"> </activity>
+            android:parentActivityName=".Item.PostedItem"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Item.BorrowRequestDetails" android:parentActivityName=".MainActivity"
+            android:name=".Item.BorrowItemRequests"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Item.BorrowRequestDetails"
             android:label="@string/title_activity_borrow_request_details"
-            android:theme="@style/AppTheme.NoActionBar" > </activity>
-        <activity android:name=".Item.BorrowedItems" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".Item.BorrowedItemsDetails" android:parentActivityName=".Item.BorrowedItems"> </activity>
-        <activity android:name=".Item.LentItems" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".Item.LentItemsDetails" android:parentActivityName=".Item.LentItems"> </activity>
-        <activity android:name=".Chat.ChatroomsActivity" android:parentActivityName=".MainActivity"> </activity>
-        <activity android:name=".Chat.ChatActivity" android:parentActivityName=".Chat.ChatroomsActivity"> </activity>
-
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Item.BorrowedItems"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Item.BorrowedItemsDetails"
+            android:parentActivityName=".Item.BorrowedItems"></activity>
+        <activity
+            android:name=".Item.LentItems"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Item.LentItemsDetails"
+            android:parentActivityName=".Item.LentItems"></activity>
+        <activity
+            android:name=".Chat.ChatroomsActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Chat.ChatActivity"
+            android:parentActivityName=".Chat.ChatroomsActivity"></activity>
     </application>
+
 </manifest>
