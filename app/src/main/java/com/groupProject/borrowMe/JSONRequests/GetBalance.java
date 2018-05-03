@@ -10,6 +10,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+//Balance
 public class GetBalance extends StringRequest {
     private static final String REGISTER_REQUEST_URL = "https://myxstyle120.000webhostapp.com/GetBalance.php";
     private Map<String, String> params;
